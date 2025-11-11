@@ -3,6 +3,8 @@ bin/
 obj/
 **/bin/
 **/obj/
+publish/
+**/publish/
 
 # Visual Studio / Rider
 .vs/
