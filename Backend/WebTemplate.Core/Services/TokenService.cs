@@ -43,10 +43,10 @@ namespace WebTemplate.Core.Services
             };
         }
 
-        public async Task<string> GenerateAccessTokenAsync(
-            string userId, 
-            string email, 
-            IEnumerable<string> roles, 
+        public Task<string> GenerateAccessTokenAsync(
+            string userId,
+            string email,
+            IEnumerable<string> roles,
             Dictionary<string, object>? additionalClaims = null)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -81,12 +81,12 @@ namespace WebTemplate.Core.Services
                 Issuer = _jwtSettings.Issuer,
                 Audience = _jwtSettings.Audience,
                 SigningCredentials = new SigningCredentials(
-                    new SymmetricSecurityKey(key), 
+                    new SymmetricSecurityKey(key),
                     SecurityAlgorithms.HmacSha256Signature)
             };
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
+            return Task.FromResult(tokenHandler.WriteToken(token));
         }
 
         public async Task<string> GenerateRefreshTokenAsync(string userId, string? deviceId = null)
@@ -120,12 +120,12 @@ namespace WebTemplate.Core.Services
             return rawToken;
         }
 
-        public async Task<ClaimsPrincipal?> ValidateAccessTokenAsync(string token)
+        public Task<ClaimsPrincipal?> ValidateAccessTokenAsync(string token)
         {
             try
             {
                 var tokenHandler = new JwtSecurityTokenHandler();
-                
+
                 // Validate token
                 var principal = tokenHandler.ValidateToken(token, _tokenValidationParameters, out SecurityToken validatedToken);
 
@@ -133,22 +133,20 @@ namespace WebTemplate.Core.Services
                 if (validatedToken is JwtSecurityToken jwtToken &&
                     jwtToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
                 {
-                    return principal;
+                    return Task.FromResult<ClaimsPrincipal?>(principal);
                 }
 
-                return null;
+                return Task.FromResult<ClaimsPrincipal?>(null);
             }
             catch
             {
-                return null;
+                return Task.FromResult<ClaimsPrincipal?>(null);
             }
-        }
-
-        public async Task<string?> ValidateRefreshTokenAsync(string refreshToken)
+        }        public async Task<string?> ValidateRefreshTokenAsync(string refreshToken)
         {
             var hashed = HashToken(refreshToken);
             var token = await _refreshTokenRepository.GetByTokenAsync(hashed);
-            
+
             if (token == null || !token.IsActive)
             {
                 return null;
@@ -161,7 +159,7 @@ namespace WebTemplate.Core.Services
         {
             var hashed = HashToken(refreshToken);
             var token = await _refreshTokenRepository.GetByTokenAsync(hashed);
-            
+
             if (token == null)
             {
                 return false;
@@ -169,21 +167,21 @@ namespace WebTemplate.Core.Services
 
             token.Revoke();
             await _refreshTokenRepository.UpdateAsync(token);
-            
+
             return true;
         }
 
         public async Task<bool> RevokeAllRefreshTokensAsync(string userId)
         {
             var tokens = await _refreshTokenRepository.GetActiveTokensByUserIdAsync(userId);
-            
+
             foreach (var token in tokens)
             {
                 token.Revoke();
             }
 
             await _refreshTokenRepository.UpdateRangeAsync(tokens);
-            
+
             return true;
         }
 
@@ -193,7 +191,7 @@ namespace WebTemplate.Core.Services
             {
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var jwt = tokenHandler.ReadJwtToken(token);
-                
+
                 return jwt.ValidTo;
             }
             catch
@@ -208,7 +206,7 @@ namespace WebTemplate.Core.Services
             {
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var jwt = tokenHandler.ReadJwtToken(token);
-                
+
                 return jwt.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
             }
             catch
@@ -220,7 +218,7 @@ namespace WebTemplate.Core.Services
         public async Task<int> CleanupExpiredTokensAsync()
         {
             var expiredTokens = await _refreshTokenRepository.GetExpiredTokensAsync();
-            
+
             if (expiredTokens.Any())
             {
                 await _refreshTokenRepository.DeleteRangeAsync(expiredTokens);
@@ -235,7 +233,7 @@ namespace WebTemplate.Core.Services
         private async Task CleanupUserTokensAsync(string userId)
         {
             var userTokens = await _refreshTokenRepository.GetTokensByUserIdAsync(userId);
-            
+
             if (userTokens.Count() >= _jwtSettings.MaxRefreshTokensPerUser)
             {
                 // Remove oldest tokens, keeping only (max - 1) to make room for the new one
