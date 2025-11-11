@@ -1,13 +1,13 @@
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
-using WebTemplate.Core.DTOs.Auth;
-using WebTemplate.Core.Interfaces;
-using WebTemplate.Core.Configuration;
-using Microsoft.Extensions.Options;
-
 namespace WebTemplate.API.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using System.Security.Claims;
+    using WebTemplate.Core.DTOs.Auth;
+    using WebTemplate.Core.Interfaces;
+    using WebTemplate.Core.Configuration;
+    using Microsoft.Extensions.Options;
+
     /// <summary>
     /// Authentication controller - handles all authentication endpoints
     /// Uses configurable response messages - NO hard-coded text!

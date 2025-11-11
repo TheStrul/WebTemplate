@@ -1,16 +1,16 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-using WebTemplate.Core.Configuration.Features;
-using WebTemplate.Core.Entities;
-
 namespace WebTemplate.Core.Features
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using WebTemplate.Core.Configuration.Features;
+    using WebTemplate.Core.Entities;
+
     internal class AdminSeedModule : IFeatureModule
     {
         private readonly FeaturesOptions _options;

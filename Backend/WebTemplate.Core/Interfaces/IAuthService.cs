@@ -1,9 +1,7 @@
-using WebTemplate.Core.DTOs;
-using WebTemplate.Core.DTOs.Auth;
-using WebTemplate.Core.Entities;
-
 namespace WebTemplate.Core.Interfaces
 {
+    using WebTemplate.Core.DTOs.Auth;
+
     /// <summary>
     /// Authentication service interface
     /// Handles user authentication, registration, and token management

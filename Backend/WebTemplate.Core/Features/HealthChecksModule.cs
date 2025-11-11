@@ -1,11 +1,11 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
-using WebTemplate.Core.Configuration.Features;
-
 namespace WebTemplate.Core.Features
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Diagnostics.HealthChecks;
+    using WebTemplate.Core.Configuration.Features;
+
     internal class HealthChecksModule : IFeatureModule
     {
         private readonly FeaturesOptions _options;

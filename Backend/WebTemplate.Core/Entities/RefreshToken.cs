@@ -1,8 +1,8 @@
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace WebTemplate.Core.Entities
 {
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     /// <summary>
     /// Refresh token entity for JWT token management
     /// Stores refresh tokens with expiration and device tracking

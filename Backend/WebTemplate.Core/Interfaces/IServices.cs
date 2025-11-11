@@ -1,8 +1,7 @@
-using WebTemplate.Core.DTOs;
-using WebTemplate.Core.DTOs.Auth;
-
 namespace WebTemplate.Core.Interfaces
 {
+    using WebTemplate.Core.DTOs;
+
     public interface IUserService
     {
         Task<UserProfileDto> GetUserProfileAsync(string userId);

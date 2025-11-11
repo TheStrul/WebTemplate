@@ -1,10 +1,9 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using WebTemplate.Core.Configuration.Features;
-
 namespace WebTemplate.Core.Features
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+
     public class FeatureHost
     {
         private readonly IConfiguration _configuration;

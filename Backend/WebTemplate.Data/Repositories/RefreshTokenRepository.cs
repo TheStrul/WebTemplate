@@ -1,10 +1,10 @@
-using Microsoft.EntityFrameworkCore;
-using WebTemplate.Core.Entities;
-using WebTemplate.Core.Interfaces;
-using WebTemplate.Data.Context;
-
 namespace WebTemplate.Data.Repositories
 {
+    using Microsoft.EntityFrameworkCore;
+    using WebTemplate.Core.Entities;
+    using WebTemplate.Core.Interfaces;
+    using WebTemplate.Data.Context;
+
     /// <summary>
     /// Refresh token repository implementation
     /// Handles CRUD operations for refresh tokens using Entity Framework

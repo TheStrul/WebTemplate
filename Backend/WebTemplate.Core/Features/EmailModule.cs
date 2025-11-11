@@ -1,10 +1,10 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using WebTemplate.Core.Configuration;
-
 namespace WebTemplate.Core.Features
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using WebTemplate.Core.Configuration;
+
     internal class EmailModule : IFeatureModule
     {
         private readonly IConfiguration _configuration;

@@ -1,11 +1,11 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System.Threading.RateLimiting;
-using WebTemplate.Core.Configuration.Features;
-
 namespace WebTemplate.Core.Features
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using System.Threading.RateLimiting;
+    using WebTemplate.Core.Configuration.Features;
+
     internal class RateLimitingModule : IFeatureModule
     {
         private readonly FeaturesOptions _options;

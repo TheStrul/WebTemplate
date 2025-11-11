@@ -1,7 +1,7 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace WebTemplate.Core.Configuration
 {
+    using System.ComponentModel.DataAnnotations;
+
     /// <summary>
     /// Feature flags for the User Module (configurable via JSON)
     /// </summary>

@@ -1,7 +1,7 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace WebTemplate.Core.Configuration
 {
+    using System.ComponentModel.DataAnnotations;
+
     /// <summary>
     /// JWT authentication settings configuration
     /// All values configurable through appsettings.json - NO hard-coded values!

@@ -1,7 +1,7 @@
-using System.Security.Claims;
-
 namespace WebTemplate.Core.Interfaces
 {
+    using System.Security.Claims;
+
     /// <summary>
     /// JWT token service interface
     /// Handles JWT token generation, validation, and management

@@ -43,9 +43,6 @@ function Update-AppSettings {
                 if ($json.ConnectionStrings.PSObject.Properties['DefaultConnection']) {
                     $json.ConnectionStrings.DefaultConnection = $ProjectInfo.ConnectionString
                 }
-                if ($json.ConnectionStrings.PSObject.Properties['SqlServerConnection']) {
-                    $json.ConnectionStrings.SqlServerConnection = $ProjectInfo.ConnectionString -replace '\(localdb\\mssqllocaldb\)', 'localhost'
-                }
             }
 
             # Update JWT settings

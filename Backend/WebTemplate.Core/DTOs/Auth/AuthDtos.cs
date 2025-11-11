@@ -1,7 +1,7 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace WebTemplate.Core.DTOs.Auth
 {
+    using System.ComponentModel.DataAnnotations;
+
     /// <summary>
     /// Login request DTO - All validation messages configurable
     /// </summary>

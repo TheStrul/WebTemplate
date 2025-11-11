@@ -1,10 +1,10 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using WebTemplate.Core.Configuration.Features;
-
 namespace WebTemplate.Core.Features
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using WebTemplate.Core.Configuration.Features;
+
     internal class SecurityHeadersModule : IFeatureModule
     {
         private readonly FeaturesOptions _options;

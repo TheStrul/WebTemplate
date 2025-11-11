@@ -1,16 +1,16 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using System.Text.Json;
-using System.Web;
-using WebTemplate.Core.DTOs;
-using WebTemplate.Core.DTOs.Auth;
-using WebTemplate.Core.Entities;
-using WebTemplate.Core.Interfaces;
-using WebTemplate.Core.Configuration;
-
 namespace WebTemplate.Core.Services
 {
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.Extensions.Logging;
+    using Microsoft.Extensions.Options;
+    using System.Text.Json;
+    using System.Web;
+    using WebTemplate.Core.DTOs;
+    using WebTemplate.Core.DTOs.Auth;
+    using WebTemplate.Core.Entities;
+    using WebTemplate.Core.Interfaces;
+    using WebTemplate.Core.Configuration;
+
     /// <summary>
     /// Authentication service implementation
     /// Handles user authentication, registration, and token management

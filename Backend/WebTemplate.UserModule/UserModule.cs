@@ -227,10 +227,19 @@ public static class UserModule
         if (string.IsNullOrWhiteSpace(conn))
         {
             var csMod = moduleSection.GetSection("Db");
-            conn = csMod.GetValue<string>("ConnectionString")
-                   ?? root.GetConnectionString("DefaultConnection")
-                   ?? root.GetConnectionString("SqlServerConnection")
-                   ?? string.Empty;
+            conn = csMod.GetValue<string>("ConnectionString");
+            if (string.IsNullOrWhiteSpace(conn))
+            {
+                conn = root.GetConnectionString("DefaultConnection");
+            }
+        }
+
+        if (string.IsNullOrWhiteSpace(conn))
+        {
+            throw new InvalidOperationException(
+                "Connection string is required but not configured. Please provide a connection string via one of these methods: " +
+                "1) UserModule:Db:ConnectionString, 2) ConnectionStrings:DefaultConnection in appsettings.json, " +
+                "3) External config file specified in UserModule:ConfigPath or USER_MODULE_CONFIG environment variable.");
         }
 
         return (jwt, auth, conn);

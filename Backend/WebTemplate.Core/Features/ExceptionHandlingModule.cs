@@ -1,13 +1,13 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System.Text.Json;
-using WebTemplate.Core.Configuration.Features;
-
 namespace WebTemplate.Core.Features
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Diagnostics;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using System.Text.Json;
+    using WebTemplate.Core.Configuration.Features;
+
     internal class ExceptionHandlingModule : IFeatureModule
     {
         private readonly FeaturesOptions _options;

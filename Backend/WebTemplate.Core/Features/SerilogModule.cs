@@ -1,13 +1,13 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Serilog;
-using Serilog.Events;
-using WebTemplate.Core.Configuration.Features;
-
 namespace WebTemplate.Core.Features
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
+    using Serilog;
+    using Serilog.Events;
+    using WebTemplate.Core.Configuration.Features;
+
     internal class SerilogModule : IFeatureModule
     {
         private readonly FeaturesOptions _options;

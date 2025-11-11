@@ -1,23 +1,7 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using WebTemplate.Core.Entities;
-using WebTemplate.Core.Interfaces;
-using WebTemplate.Core.Configuration;
-using WebTemplate.Core.Services;
-using WebTemplate.Data.Context;
-using WebTemplate.Data.Repositories;
 using WebTemplate.UserModule;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using WebTemplate.Core.Features;
 using WebTemplate.Core.Configuration.Features;
-using Microsoft.OpenApi.Models;
-using System.Reflection;
-using WebTemplate.API;
-using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,6 +28,8 @@ builder.Services.TryAddScoped<WebTemplate.Core.Interfaces.IUserTypeRepository, W
 builder.Services.TryAddScoped<WebTemplate.Core.Interfaces.IEmailSender, WebTemplate.Core.Services.SmtpEmailSender>();
 builder.Services.TryAddScoped<WebTemplate.Core.Interfaces.ITokenService, WebTemplate.Core.Services.TokenService>();
 builder.Services.TryAddScoped<WebTemplate.Core.Interfaces.IAuthService, WebTemplate.Core.Services.AuthService>();
+builder.Services.TryAddScoped<WebTemplate.Core.Interfaces.IUserService, WebTemplate.Core.Services.UserService>();
+builder.Services.TryAddScoped<WebTemplate.Core.Interfaces.IUserTypeService, WebTemplate.Core.Services.UserTypeService>();
 
 // Conditionally add Identity/Auth module
 var features = builder.Configuration.GetSection(FeaturesOptions.SectionName).Get<FeaturesOptions>() ?? new FeaturesOptions();
@@ -57,8 +43,9 @@ featureHost.ConfigureServices(builder.Services);
 
 var app = builder.Build();
 
-// Pipeline
+// Pipeline - CRITICAL: UseRouting must come before UseEndpoints
 app.UseHttpsRedirection();
+app.UseRouting(); // Add routing middleware first
 featureHost.ConfigurePipeline(app);
 
 // Conditionally enable Identity/Auth pipeline
@@ -67,11 +54,11 @@ if (features.IdentityAuth.Enabled)
     app.UseUserModule();
 }
 
-// Endpoints
+// Endpoints - UseEndpoints is called by featureHost.MapEndpoints
 app.MapControllers();
 featureHost.MapEndpoints(app);
 
-app.Run();
+await app.RunAsync();
 
 // Expose Program for tests
 namespace WebTemplate.API { public class Program { } }

@@ -1,7 +1,7 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace WebTemplate.Core.Configuration
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class EmailSettings
     {
         public const string SectionName = "Email";

@@ -56,6 +56,7 @@ Coding guidance for Copilot
 - Keep responses concise with bullet lists; format file, directory, function, and class names using backticks
 - Avoid introducing secrets; use configuration and DI
 - Follow existing project structure and naming
+- **NO FALLBACKS ALLOWED**: Never use fallback logic anywhere in the codebase (e.g., `?? fallbackValue`, `|| defaultValue`, `.GetValueOrDefault()`, etc.). Fallbacks hide bugs! All required values must be explicitly provided and validated. Code should fail fast and clearly when required data is missing.
 
 Common tasks
 - Add a new field to `ApplicationUser`

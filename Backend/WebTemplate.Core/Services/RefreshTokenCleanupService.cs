@@ -1,12 +1,12 @@
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
-using WebTemplate.Core.Interfaces;
-using WebTemplate.Core.Configuration.Features;
-
 namespace WebTemplate.Core.Services
 {
+    using Microsoft.Extensions.Hosting;
+    using Microsoft.Extensions.Logging;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Options;
+    using WebTemplate.Core.Interfaces;
+    using WebTemplate.Core.Configuration.Features;
+
     public class RefreshTokenCleanupService : BackgroundService
     {
         private readonly ILogger<RefreshTokenCleanupService> _logger;

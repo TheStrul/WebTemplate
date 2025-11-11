@@ -1,4 +1,4 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebTemplate.ApiTests", "Backend\WebTemplate.ApiTests\WebTemplate.ApiTests.csproj", "{C01FBB46-84CD-4F10-914E-DFD2E360D00A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebTemplate.Data.Validator", "Backend\WebTemplate.Data.Validator\WebTemplate.Data.Validator.csproj", "{ABA1BD4A-27B3-4BC9-A4AC-2CF9F263F513}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebTemplate.UnitTests", "Backend\WebTemplate.UnitTests\WebTemplate.UnitTests.csproj", "{7ABD0049-785E-4F21-AF52-2D9E86F7A83F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +101,18 @@ Global
 		{ABA1BD4A-27B3-4BC9-A4AC-2CF9F263F513}.Release|x64.Build.0 = Release|Any CPU
 		{ABA1BD4A-27B3-4BC9-A4AC-2CF9F263F513}.Release|x86.ActiveCfg = Release|Any CPU
 		{ABA1BD4A-27B3-4BC9-A4AC-2CF9F263F513}.Release|x86.Build.0 = Release|Any CPU
+		{7ABD0049-785E-4F21-AF52-2D9E86F7A83F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7ABD0049-785E-4F21-AF52-2D9E86F7A83F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7ABD0049-785E-4F21-AF52-2D9E86F7A83F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7ABD0049-785E-4F21-AF52-2D9E86F7A83F}.Debug|x64.Build.0 = Debug|Any CPU
+		{7ABD0049-785E-4F21-AF52-2D9E86F7A83F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7ABD0049-785E-4F21-AF52-2D9E86F7A83F}.Debug|x86.Build.0 = Debug|Any CPU
+		{7ABD0049-785E-4F21-AF52-2D9E86F7A83F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7ABD0049-785E-4F21-AF52-2D9E86F7A83F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7ABD0049-785E-4F21-AF52-2D9E86F7A83F}.Release|x64.ActiveCfg = Release|Any CPU
+		{7ABD0049-785E-4F21-AF52-2D9E86F7A83F}.Release|x64.Build.0 = Release|Any CPU
+		{7ABD0049-785E-4F21-AF52-2D9E86F7A83F}.Release|x86.ActiveCfg = Release|Any CPU
+		{7ABD0049-785E-4F21-AF52-2D9E86F7A83F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -106,5 +120,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C01FBB46-84CD-4F10-914E-DFD2E360D00A} = {1AE8ACA6-933B-BF2A-3671-3E2EAC007D16}
 		{ABA1BD4A-27B3-4BC9-A4AC-2CF9F263F513} = {1AE8ACA6-933B-BF2A-3671-3E2EAC007D16}
+		{7ABD0049-785E-4F21-AF52-2D9E86F7A83F} = {1AE8ACA6-933B-BF2A-3671-3E2EAC007D16}
 	EndGlobalSection
 EndGlobal

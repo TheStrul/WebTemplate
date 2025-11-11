@@ -1,14 +1,14 @@
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Reflection;
-using System.Text;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-using WebTemplate.Core.Entities;
-using WebTemplate.Data.Context;
-
 namespace WebTemplate.Data.Validation
 {
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Reflection;
+    using System.Text;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata;
+    using WebTemplate.Core.Entities;
+    using WebTemplate.Data.Context;
+
     /// <summary>
     /// Validates that ApplicationDbContext configuration matches 100% with entity definitions
     /// Ensures no configuration drift between Data Annotations and Fluent API

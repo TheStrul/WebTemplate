@@ -1,15 +1,15 @@
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Text;
-using WebTemplate.Core.Configuration;
-using WebTemplate.Core.Entities;
-using WebTemplate.Core.Interfaces;
-
 namespace WebTemplate.Core.Services
 {
+    using Microsoft.Extensions.Options;
+    using Microsoft.IdentityModel.Tokens;
+    using System.IdentityModel.Tokens.Jwt;
+    using System.Security.Claims;
+    using System.Security.Cryptography;
+    using System.Text;
+    using WebTemplate.Core.Configuration;
+    using WebTemplate.Core.Entities;
+    using WebTemplate.Core.Interfaces;
+
     /// <summary>
     /// JWT Token service implementation
     /// NO hard-coded values - all configuration from settings!
@@ -207,7 +207,8 @@ namespace WebTemplate.Core.Services
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var jwt = tokenHandler.ReadJwtToken(token);
 
-                return jwt.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+                // JWT tokens use short claim names, not full URIs
+                return jwt.Claims.FirstOrDefault(x => x.Type == "nameid")?.Value;
             }
             catch
             {

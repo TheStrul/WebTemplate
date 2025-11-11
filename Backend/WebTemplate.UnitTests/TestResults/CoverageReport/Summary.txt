@@ -1,0 +1,93 @@
+Summary
+  Generated on: 11/11/2025 - 12:44:09
+  Coverage date: 11/11/2025 - 10:55:27 - 11/11/2025 - 12:43:55
+  Parser: MultiReport (9x Cobertura)
+  Assemblies: 2
+  Classes: 69
+  Files: 34
+  Line coverage: 56.4%
+  Covered lines: 964
+  Uncovered lines: 745
+  Coverable lines: 1709
+  Total lines: 3153
+  Branch coverage: 38.4% (123 of 320)
+  Covered branches: 123
+  Total branches: 320
+  Method coverage: 57% (226 of 396)
+  Full method coverage: 54% (214 of 396)
+  Covered methods: 226
+  Fully covered methods: 214
+  Total methods: 396
+
+WebTemplate.Core                                                            66.1%
+  WebTemplate.Core.Configuration.AdminSeedSettings                             0%
+  WebTemplate.Core.Configuration.AppUrls                                     100%
+  WebTemplate.Core.Configuration.AuthResponseMessages                          0%
+  WebTemplate.Core.Configuration.AuthSettings                                100%
+  WebTemplate.Core.Configuration.EmailConfirmationSettings                   100%
+  WebTemplate.Core.Configuration.EmailSettings                               100%
+  WebTemplate.Core.Configuration.Features.AdminSeedFeatureOptions            100%
+  WebTemplate.Core.Configuration.Features.CorsFeatureOptions                 100%
+  WebTemplate.Core.Configuration.Features.ExceptionHandlingFeatureOptions    100%
+  WebTemplate.Core.Configuration.Features.FeaturesOptions                    100%
+  WebTemplate.Core.Configuration.Features.HealthChecksFeatureOptions         100%
+  WebTemplate.Core.Configuration.Features.IdentityAuthFeatureOptions         100%
+  WebTemplate.Core.Configuration.Features.RateLimitingFeatureOptions         100%
+  WebTemplate.Core.Configuration.Features.RefreshTokensFeatureOptions        100%
+  WebTemplate.Core.Configuration.Features.SecurityHeadersFeatureOptions       50%
+  WebTemplate.Core.Configuration.Features.SerilogFeatureOptions              100%
+  WebTemplate.Core.Configuration.Features.SwaggerFeatureOptions              100%
+  WebTemplate.Core.Configuration.JwtSettings                                 100%
+  WebTemplate.Core.Configuration.LockoutSettings                             100%
+  WebTemplate.Core.Configuration.PasswordSettings                            100%
+  WebTemplate.Core.Configuration.ResponseMessages                              0%
+  WebTemplate.Core.Configuration.UserModuleFeatures                          100%
+  WebTemplate.Core.Configuration.UserSettings                               83.3%
+  WebTemplate.Core.DTOs.AdminUserDto                                           0%
+  WebTemplate.Core.DTOs.Auth.ApiResponseDto<T>                               100%
+  WebTemplate.Core.DTOs.Auth.AuthResponseDto                                 100%
+  WebTemplate.Core.DTOs.Auth.AuthStatusDto                                  83.3%
+  WebTemplate.Core.DTOs.Auth.ChangePasswordDto                               100%
+  WebTemplate.Core.DTOs.Auth.ConfirmEmailDto                                 100%
+  WebTemplate.Core.DTOs.Auth.ForgotPasswordDto                               100%
+  WebTemplate.Core.DTOs.Auth.LoginDto                                        100%
+  WebTemplate.Core.DTOs.Auth.LogoutDto                                       100%
+  WebTemplate.Core.DTOs.Auth.RefreshTokenDto                                 100%
+  WebTemplate.Core.DTOs.Auth.RegisterDto                                      80%
+  WebTemplate.Core.DTOs.Auth.ResetPasswordDto                                100%
+  WebTemplate.Core.DTOs.Auth.TwoFactorSetupDto                                 0%
+  WebTemplate.Core.DTOs.Auth.TwoFactorVerificationDto                          0%
+  WebTemplate.Core.DTOs.CreateUserDto                                          0%
+  WebTemplate.Core.DTOs.CreateUserTypeDto                                      0%
+  WebTemplate.Core.DTOs.UpdateUserDto                                          0%
+  WebTemplate.Core.DTOs.UpdateUserProfileDto                                   0%
+  WebTemplate.Core.DTOs.UserProfileDto                                      64.7%
+  WebTemplate.Core.DTOs.UserTypeDto                                          100%
+  WebTemplate.Core.Entities.ApplicationUser                                   47%
+  WebTemplate.Core.Entities.RefreshToken                                      60%
+  WebTemplate.Core.Entities.UserType                                        87.5%
+  WebTemplate.Core.Features.AdminSeedModule                                    0%
+  WebTemplate.Core.Features.CorsModule                                         0%
+  WebTemplate.Core.Features.EmailModule                                        0%
+  WebTemplate.Core.Features.ExceptionHandlingModule                            0%
+  WebTemplate.Core.Features.FeatureHost                                        0%
+  WebTemplate.Core.Features.HealthChecksModule                                 0%
+  WebTemplate.Core.Features.RateLimitingModule                                 0%
+  WebTemplate.Core.Features.RefreshTokensModule                                0%
+  WebTemplate.Core.Features.SecurityHeadersModule                              0%
+  WebTemplate.Core.Features.SerilogModule                                      0%
+  WebTemplate.Core.Features.SwaggerModule                                      0%
+  WebTemplate.Core.Services.AuthService                                     90.1%
+  WebTemplate.Core.Services.NoOpEmailSender                                  100%
+  WebTemplate.Core.Services.RefreshTokenCleanupService                      97.2%
+  WebTemplate.Core.Services.SmtpEmailSender                                 17.3%
+  WebTemplate.Core.Services.TokenService                                    98.6%
+
+WebTemplate.Data                                                            28.3%
+  WebTemplate.Data.Context.ApplicationDbContext                              100%
+  WebTemplate.Data.Repositories.RefreshTokenRepository                       100%
+  WebTemplate.Data.Repositories.UserTypeRepository                           100%
+  WebTemplate.Data.Validation.DbContextValidator                               0%
+  WebTemplate.Data.Validation.ValidateDbContextTool                            0%
+  WebTemplate.Data.Validation.ValidationIssue                                  0%
+  WebTemplate.Data.Validation.ValidationResult                                 0%

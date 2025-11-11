@@ -1,11 +1,11 @@
-using Microsoft.Extensions.Options;
-using System.Net;
-using System.Net.Mail;
-using WebTemplate.Core.Configuration;
-using WebTemplate.Core.Interfaces;
-
 namespace WebTemplate.Core.Services
 {
+    using Microsoft.Extensions.Options;
+    using System.Net;
+    using System.Net.Mail;
+    using WebTemplate.Core.Configuration;
+    using WebTemplate.Core.Interfaces;
+
     public class SmtpEmailSender : IEmailSender
     {
         private readonly EmailSettings _settings;

@@ -1,7 +1,7 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace WebTemplate.Core.Entities
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class UserType
     {
         [Key]

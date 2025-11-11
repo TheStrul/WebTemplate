@@ -1,9 +1,9 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using WebTemplate.Data.Context;
-
 namespace WebTemplate.Data.Validation
 {
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using WebTemplate.Data.Context;
+
     /// <summary>
     /// Standalone tool to validate DbContext configuration
     /// Run this to ensure 100% match between entity definitions and DbContext

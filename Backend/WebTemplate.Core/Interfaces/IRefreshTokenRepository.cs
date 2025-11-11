@@ -1,7 +1,7 @@
-using WebTemplate.Core.Entities;
-
 namespace WebTemplate.Core.Interfaces
 {
+    using WebTemplate.Core.Entities;
+
     /// <summary>
     /// Refresh token repository interface
     /// Handles CRUD operations for refresh tokens

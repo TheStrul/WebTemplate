@@ -1,7 +1,7 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace WebTemplate.Core.DTOs
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class UserProfileDto
     {
         public string Id { get; set; } = string.Empty;
@@ -19,7 +19,7 @@ namespace WebTemplate.Core.DTOs
         public bool IsActive { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? LastLoginAt { get; set; }
-        public UserTypeDto UserType { get; set; } = null!;
+        public UserTypeDto? UserType { get; set; }
         public List<string> Roles { get; set; } = new List<string>();
     }
 
@@ -86,7 +86,7 @@ namespace WebTemplate.Core.DTOs
         public bool IsActive { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? LastLoginAt { get; set; }
-        public UserTypeDto UserType { get; set; } = null!;
+        public UserTypeDto? UserType { get; set; }
         public List<string> Roles { get; set; } = new List<string>();
     }
 

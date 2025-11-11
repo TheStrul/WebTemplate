@@ -1,9 +1,9 @@
-using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace WebTemplate.Core.Entities
 {
+    using Microsoft.AspNetCore.Identity;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public class ApplicationUser : IdentityUser
     {
         [Required]
@@ -33,7 +33,7 @@ namespace WebTemplate.Core.Entities
 
         // Navigation property
         [ForeignKey("UserTypeId")]
-        public virtual UserType UserType { get; set; } = null!;
+        public virtual UserType? UserType { get; set; }
 
         // Profile image URL (optional)
         [StringLength(500)]
