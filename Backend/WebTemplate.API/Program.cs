@@ -2,6 +2,119 @@ using WebTemplate.UserModule;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using WebTemplate.Core.Features;
 using WebTemplate.Core.Configuration.Features;
+using System.Diagnostics;
+
+// Check for required user secrets in Development environment
+if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+{
+    var requiredSecrets = new[] { "JwtSettings:SecretKey", "AdminSeed:Password" };
+    var missingSecrets = new List<string>();
+
+    var tempConfig = new ConfigurationBuilder()
+        .SetBasePath(Directory.GetCurrentDirectory())
+        .AddJsonFile("appsettings.json", optional: false)
+        .AddJsonFile("appsettings.Development.json", optional: true)
+        .AddUserSecrets<Program>(optional: true)
+        .Build();
+
+    foreach (var secret in requiredSecrets)
+    {
+        var value = tempConfig[secret];
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            missingSecrets.Add(secret);
+        }
+    }
+
+    if (missingSecrets.Any())
+    {
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine();
+        Console.WriteLine("═══════════════════════════════════════════════════════════════");
+        Console.WriteLine("  ⚠  MISSING REQUIRED USER SECRETS");
+        Console.WriteLine("═══════════════════════════════════════════════════════════════");
+        Console.ResetColor();
+        Console.WriteLine();
+        Console.WriteLine("The following required secrets are not configured:");
+        foreach (var secret in missingSecrets)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"  ✗ {secret}");
+            Console.ResetColor();
+        }
+        Console.WriteLine();
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.WriteLine("Would you like to run the setup script now? (Y/n)");
+        Console.ResetColor();
+
+        var response = Console.ReadLine()?.Trim().ToLowerInvariant();
+        if (string.IsNullOrEmpty(response) || response == "y" || response == "yes")
+        {
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Running setup-user-secrets.ps1...");
+            Console.ResetColor();
+            Console.WriteLine();
+
+            var scriptPath = Path.Combine(Directory.GetCurrentDirectory(), "setup-user-secrets.ps1");
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = "pwsh",
+                Arguments = $"-NoProfile -ExecutionPolicy Bypass -File \"{scriptPath}\"",
+                UseShellExecute = false,
+                WorkingDirectory = Directory.GetCurrentDirectory()
+            };
+
+            try
+            {
+                var process = Process.Start(startInfo);
+                if (process is not null)
+                {
+                    await process.WaitForExitAsync();
+                }
+
+                if (process?.ExitCode == 0)
+                {
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("✓ User secrets configured successfully!");
+                    Console.WriteLine("  Please restart the application.");
+                    Console.ResetColor();
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("✗ Setup script failed. Please run it manually:");
+                    Console.WriteLine($"  pwsh {scriptPath}");
+                    Console.ResetColor();
+                    Environment.Exit(1);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"✗ Error running setup script: {ex.Message}");
+                Console.WriteLine();
+                Console.WriteLine("Please run the setup script manually:");
+                Console.WriteLine($"  pwsh {scriptPath}");
+                Console.ResetColor();
+                Environment.Exit(1);
+            }
+        }
+        else
+        {
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Application startup cancelled.");
+            Console.WriteLine();
+            Console.WriteLine("To configure secrets manually, run:");
+            Console.WriteLine($"  pwsh setup-user-secrets.ps1");
+            Console.ResetColor();
+            Environment.Exit(1);
+        }
+    }
+}
 
 var builder = WebApplication.CreateBuilder(args);
 
