@@ -1,0 +1,9 @@
+* text=auto eol=lf
+
+# Treat C# and JSON as text
+*.cs text diff=csharp
+*.csproj text
+*.sln text eol=crlf
+*.json text
+*.md text
+*.yml text
