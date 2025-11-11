@@ -1,7 +1,7 @@
 namespace WebTemplate.UnitTests.Services
 {
     using FluentAssertions;
-    using Microsoft.Extensions.Options;
+    using Moq;
     using WebTemplate.Core.Configuration;
     using WebTemplate.Core.Services;
     using WebTemplate.UnitTests.Fixtures;
@@ -10,6 +10,7 @@ namespace WebTemplate.UnitTests.Services
     public class SmtpEmailSenderTests : BaseTestFixture
     {
         private readonly EmailSettings _emailSettings;
+        private readonly Mock<ICoreConfiguration> _configMock;
         private readonly SmtpEmailSender _emailSender;
 
         public SmtpEmailSenderTests()
@@ -25,8 +26,9 @@ namespace WebTemplate.UnitTests.Services
                 FromName = "Test Application"
             };
 
-            var options = Options.Create(_emailSettings);
-            _emailSender = new SmtpEmailSender(options);
+            _configMock = new Mock<ICoreConfiguration>();
+            _configMock.Setup(c => c.Email).Returns(_emailSettings);
+            _emailSender = new SmtpEmailSender(_configMock.Object);
         }
 
         [Fact]
@@ -43,10 +45,11 @@ namespace WebTemplate.UnitTests.Services
                 From = "from@test.com",
                 FromName = "Test"
             };
-            var options = Options.Create(settings);
+            var configMock = new Mock<ICoreConfiguration>();
+            configMock.Setup(c => c.Email).Returns(settings);
 
             // Act
-            var sender = new SmtpEmailSender(options);
+            var sender = new SmtpEmailSender(configMock.Object);
 
             // Assert
             sender.Should().NotBeNull();
@@ -66,10 +69,11 @@ namespace WebTemplate.UnitTests.Services
                 From = "",
                 FromName = "Test"
             };
-            var options = Options.Create(settings);
+            var configMock = new Mock<ICoreConfiguration>();
+            configMock.Setup(c => c.Email).Returns(settings);
 
             // Act
-            var sender = new SmtpEmailSender(options);
+            var sender = new SmtpEmailSender(configMock.Object);
 
             // Assert
             sender.Should().NotBeNull();

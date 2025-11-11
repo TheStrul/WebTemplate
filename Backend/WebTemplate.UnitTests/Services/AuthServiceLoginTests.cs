@@ -1,9 +1,9 @@
+using Microsoft.Extensions.Options;
 namespace WebTemplate.UnitTests.Services
 {
     using FluentAssertions;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.Logging;
-    using Microsoft.Extensions.Options;
     using Moq;
     using WebTemplate.Core.Configuration;
     using WebTemplate.Core.Entities;
@@ -24,10 +24,7 @@ namespace WebTemplate.UnitTests.Services
         private readonly Mock<IUserTypeRepository> _userTypeRepoMock;
         private readonly Mock<IEmailSender> _emailSenderMock;
         private readonly Mock<ILogger<AuthService>> _loggerMock;
-        private readonly IOptions<AuthSettings> _authSettings;
-        private readonly IOptions<JwtSettings> _jwtSettings;
-        private readonly IOptions<UserModuleFeatures> _features;
-        private readonly IOptions<AppUrls> _appUrls;
+        private readonly Mock<ICoreConfiguration> _configMock;
         private readonly AuthService _authService;
 
         public AuthServiceLoginTests()
@@ -51,7 +48,8 @@ namespace WebTemplate.UnitTests.Services
             _emailSenderMock = new Mock<IEmailSender>();
             _loggerMock = new Mock<ILogger<AuthService>>();
 
-            _authSettings = Options.Create(new AuthSettings
+            _configMock = new Mock<ICoreConfiguration>();
+            _configMock.Setup(c => c.Auth).Returns(new AuthSettings
             {
                 User = new UserSettings
                 {
@@ -59,7 +57,7 @@ namespace WebTemplate.UnitTests.Services
                 }
             });
 
-            _jwtSettings = Options.Create(new JwtSettings
+            _configMock.Setup(c => c.Jwt).Returns(new JwtSettings
             {
                 SecretKey = "test-secret-key-for-unit-tests-at-least-32-chars",
                 Issuer = "TestIssuer",
@@ -68,12 +66,12 @@ namespace WebTemplate.UnitTests.Services
                 RefreshTokenExpiryDays = 7
             });
 
-            _features = Options.Create(new UserModuleFeatures
+            _configMock.Setup(c => c.UserModuleFeatures).Returns(new UserModuleFeatures
             {
                 IncludeUserTypePermissionsInResponses = false
             });
 
-            _appUrls = Options.Create(new AppUrls
+            _configMock.Setup(c => c.AppUrls).Returns(new AppUrls
             {
                 FrontendBaseUrl = "http://localhost:3000"
             });
@@ -83,12 +81,9 @@ namespace WebTemplate.UnitTests.Services
                 _signInManagerMock.Object,
                 _tokenServiceMock.Object,
                 _loggerMock.Object,
-                _authSettings,
-                _jwtSettings,
-                _features,
+                _configMock.Object,
                 _userTypeRepoMock.Object,
-                _emailSenderMock.Object,
-                _appUrls
+                _emailSenderMock.Object
             );
         }
 
@@ -234,17 +229,20 @@ namespace WebTemplate.UnitTests.Services
         public async Task Login_WithPermissionsEnabled_IncludesUserTypePermissions()
         {
             // Arrange - Create AuthService with permissions enabled
+            var configMock = new Mock<ICoreConfiguration>();
+            configMock.Setup(c => c.Auth).Returns(new AuthSettings { User = new UserSettings { RequireConfirmedEmail = false } });
+            configMock.Setup(c => c.Jwt).Returns(new JwtSettings { SecretKey = "test-key", Issuer = "test", Audience = "test", AccessTokenExpiryMinutes = 15, RefreshTokenExpiryDays = 7 });
+            configMock.Setup(c => c.UserModuleFeatures).Returns(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true });
+            configMock.Setup(c => c.AppUrls).Returns(new AppUrls { FrontendBaseUrl = "http://localhost:3000" });
+
             var authService = new AuthService(
                 _userManagerMock.Object,
                 _signInManagerMock.Object,
                 _tokenServiceMock.Object,
                 _loggerMock.Object,
-                _authSettings,
-                _jwtSettings,
-                Options.Create(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true }),
+                configMock.Object,
                 _userTypeRepoMock.Object,
-                _emailSenderMock.Object,
-                _appUrls
+                _emailSenderMock.Object
             );
 
             var loginDto = new LoginDtoBuilder().Build();
@@ -297,17 +295,20 @@ namespace WebTemplate.UnitTests.Services
         public async Task Login_WithPermissionsEnabled_InvalidJson_ReturnsEmptyPermissions()
         {
             // Arrange - Create AuthService with permissions enabled
+            var configMock = new Mock<ICoreConfiguration>();
+            configMock.Setup(c => c.Auth).Returns(new AuthSettings { User = new UserSettings { RequireConfirmedEmail = false } });
+            configMock.Setup(c => c.Jwt).Returns(new JwtSettings { SecretKey = "test-key", Issuer = "test", Audience = "test", AccessTokenExpiryMinutes = 15, RefreshTokenExpiryDays = 7 });
+            configMock.Setup(c => c.UserModuleFeatures).Returns(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true });
+            configMock.Setup(c => c.AppUrls).Returns(new AppUrls { FrontendBaseUrl = "http://localhost:3000" });
+
             var authService = new AuthService(
                 _userManagerMock.Object,
                 _signInManagerMock.Object,
                 _tokenServiceMock.Object,
                 _loggerMock.Object,
-                _authSettings,
-                _jwtSettings,
-                Options.Create(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true }),
+                configMock.Object,
                 _userTypeRepoMock.Object,
-                _emailSenderMock.Object,
-                _appUrls
+                _emailSenderMock.Object
             );
 
             var loginDto = new LoginDtoBuilder().Build();
@@ -405,17 +406,20 @@ namespace WebTemplate.UnitTests.Services
         public async Task Login_WithPermissionsEnabled_UserTypeNull_IncludesUserId()
         {
             // Arrange - Permissions enabled but UserType not found
+            var configMock = new Mock<ICoreConfiguration>();
+            configMock.Setup(c => c.Auth).Returns(new AuthSettings { User = new UserSettings { RequireConfirmedEmail = false } });
+            configMock.Setup(c => c.Jwt).Returns(new JwtSettings { SecretKey = "test-key", Issuer = "test", Audience = "test", AccessTokenExpiryMinutes = 15, RefreshTokenExpiryDays = 7 });
+            configMock.Setup(c => c.UserModuleFeatures).Returns(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true });
+            configMock.Setup(c => c.AppUrls).Returns(new AppUrls { FrontendBaseUrl = "http://localhost:3000" });
+
             var authService = new AuthService(
                 _userManagerMock.Object,
                 _signInManagerMock.Object,
                 _tokenServiceMock.Object,
                 _loggerMock.Object,
-                _authSettings,
-                _jwtSettings,
-                Options.Create(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true }),
+                configMock.Object,
                 _userTypeRepoMock.Object,
-                _emailSenderMock.Object,
-                _appUrls
+                _emailSenderMock.Object
             );
 
             var loginDto = new LoginDtoBuilder().Build();
@@ -458,17 +462,20 @@ namespace WebTemplate.UnitTests.Services
         public async Task Login_WithPermissionsEnabled_UserTypeFound_IncludesFullUserType()
         {
             // Arrange - Permissions enabled and UserType IS found
+            var configMock = new Mock<ICoreConfiguration>();
+            configMock.Setup(c => c.Auth).Returns(new AuthSettings { User = new UserSettings { RequireConfirmedEmail = false } });
+            configMock.Setup(c => c.Jwt).Returns(new JwtSettings { SecretKey = "test-key", Issuer = "test", Audience = "test", AccessTokenExpiryMinutes = 15, RefreshTokenExpiryDays = 7 });
+            configMock.Setup(c => c.UserModuleFeatures).Returns(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true });
+            configMock.Setup(c => c.AppUrls).Returns(new AppUrls { FrontendBaseUrl = "http://localhost" });
+
             var authService = new AuthService(
                 _userManagerMock.Object,
                 _signInManagerMock.Object,
                 _tokenServiceMock.Object,
                 _loggerMock.Object,
-                Options.Create(new AuthSettings { User = new UserSettings { RequireConfirmedEmail = false } }),
-                _jwtSettings,
-                Options.Create(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true }),
+                configMock.Object,
                 _userTypeRepoMock.Object,
-                _emailSenderMock.Object,
-                Options.Create(new AppUrls { FrontendBaseUrl = "http://localhost" })
+                _emailSenderMock.Object
             );
 
             var loginDto = new LoginDtoBuilder()
@@ -528,17 +535,20 @@ namespace WebTemplate.UnitTests.Services
         public async Task Login_WithNullPermissionsJson_ReturnsEmptyList()
         {
             // Arrange - UserType with null permissions JSON
+            var configMock = new Mock<ICoreConfiguration>();
+            configMock.Setup(c => c.Auth).Returns(new AuthSettings { User = new UserSettings { RequireConfirmedEmail = false } });
+            configMock.Setup(c => c.Jwt).Returns(new JwtSettings { SecretKey = "test-key", Issuer = "test", Audience = "test", AccessTokenExpiryMinutes = 15, RefreshTokenExpiryDays = 7 });
+            configMock.Setup(c => c.UserModuleFeatures).Returns(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true });
+            configMock.Setup(c => c.AppUrls).Returns(new AppUrls { FrontendBaseUrl = "http://localhost" });
+
             var authService = new AuthService(
                 _userManagerMock.Object,
                 _signInManagerMock.Object,
                 _tokenServiceMock.Object,
                 _loggerMock.Object,
-                Options.Create(new AuthSettings { User = new UserSettings { RequireConfirmedEmail = false } }),
-                _jwtSettings,
-                Options.Create(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true }),
+                configMock.Object,
                 _userTypeRepoMock.Object,
-                _emailSenderMock.Object,
-                Options.Create(new AppUrls { FrontendBaseUrl = "http://localhost" })
+                _emailSenderMock.Object
             );
 
             var loginDto = new LoginDtoBuilder()

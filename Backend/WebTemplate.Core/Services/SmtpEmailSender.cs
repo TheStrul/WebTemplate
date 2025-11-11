@@ -1,6 +1,5 @@
 namespace WebTemplate.Core.Services
 {
-    using Microsoft.Extensions.Options;
     using System.Net;
     using System.Net.Mail;
     using WebTemplate.Core.Configuration;
@@ -9,9 +8,9 @@ namespace WebTemplate.Core.Services
     public class SmtpEmailSender : IEmailSender
     {
         private readonly EmailSettings _settings;
-        public SmtpEmailSender(IOptions<EmailSettings> options)
+        public SmtpEmailSender(ICoreConfiguration configuration)
         {
-            _settings = options.Value;
+            _settings = configuration.Email;
         }
 
         public async Task SendAsync(string toEmail, string subject, string htmlBody, string? plainTextBody = null, CancellationToken cancellationToken = default)

@@ -26,6 +26,19 @@ namespace WebTemplate.Core.Features
         {
             if (!_options.AdminSeed.Enabled) return;
 
+            // Validate required settings - NO FALLBACKS!
+            if (string.IsNullOrWhiteSpace(_options.AdminSeed.Email))
+                throw new InvalidOperationException("Features:AdminSeed:Email is required when Features:AdminSeed:Enabled is true. Please configure in appsettings.json or user secrets.");
+
+            if (string.IsNullOrWhiteSpace(_options.AdminSeed.Password))
+                throw new InvalidOperationException("Features:AdminSeed:Password is required when Features:AdminSeed:Enabled is true. Please configure in user secrets.");
+
+            if (string.IsNullOrWhiteSpace(_options.AdminSeed.FirstName))
+                throw new InvalidOperationException("Features:AdminSeed:FirstName is required when Features:AdminSeed:Enabled is true.");
+
+            if (string.IsNullOrWhiteSpace(_options.AdminSeed.LastName))
+                throw new InvalidOperationException("Features:AdminSeed:LastName is required when Features:AdminSeed:Enabled is true.");
+
             _ = Task.Run(async () =>
             {
                 using var scope = app.ApplicationServices.CreateScope();
@@ -63,11 +76,11 @@ namespace WebTemplate.Core.Features
                         if (result.Succeeded)
                         {
                             await userManager.AddToRoleAsync(user, "Admin");
-                            logger.LogInformation("Default admin created: {email}", email);
+                            logger.LogInformation("Admin user created: {email}", email);
                         }
                         else
                         {
-                            logger.LogWarning("Failed to create admin: {errors}", string.Join(", ", result.Errors.Select(e => e.Description)));
+                            logger.LogError("Failed to create admin: {errors}", string.Join(", ", result.Errors.Select(e => e.Description)));
                         }
                     }
                 }

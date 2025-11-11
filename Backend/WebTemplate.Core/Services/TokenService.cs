@@ -1,6 +1,5 @@
 namespace WebTemplate.Core.Services
 {
-    using Microsoft.Extensions.Options;
     using Microsoft.IdentityModel.Tokens;
     using System.IdentityModel.Tokens.Jwt;
     using System.Security.Claims;
@@ -12,7 +11,7 @@ namespace WebTemplate.Core.Services
 
     /// <summary>
     /// JWT Token service implementation
-    /// NO hard-coded values - all configuration from settings!
+    /// NO hard-coded values - all configuration from ICoreConfiguration singleton!
     /// </summary>
     public class TokenService : ITokenService
     {
@@ -21,10 +20,10 @@ namespace WebTemplate.Core.Services
         private readonly TokenValidationParameters _tokenValidationParameters;
 
         public TokenService(
-            IOptions<JwtSettings> jwtSettings,
+            ICoreConfiguration configuration,
             IRefreshTokenRepository refreshTokenRepository)
         {
-            _jwtSettings = jwtSettings.Value;
+            _jwtSettings = configuration.Jwt;
             _refreshTokenRepository = refreshTokenRepository;
 
             // Create token validation parameters from settings

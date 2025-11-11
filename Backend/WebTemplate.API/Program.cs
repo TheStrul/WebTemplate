@@ -118,6 +118,16 @@ if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Register hierarchical configuration singleton as the ONLY source of configuration
+// This validates all configuration on startup - NO FALLBACKS allowed
+var apiConfig = new WebTemplate.API.Configuration.ApiConfiguration(builder.Configuration);
+builder.Services.AddSingleton<WebTemplate.API.Configuration.IApiConfiguration>(apiConfig);
+builder.Services.AddSingleton<WebTemplate.Data.Configuration.IDataConfiguration>(apiConfig);
+builder.Services.AddSingleton<WebTemplate.Core.Configuration.ICoreConfiguration>(apiConfig);
+
+// Register FeaturesOptions as singleton for services that need it directly
+builder.Services.AddSingleton(apiConfig.Features);
+
 // Bind and discover feature modules
 builder.Services.Configure<FeaturesOptions>(builder.Configuration.GetSection(FeaturesOptions.SectionName));
 var featureHost = new FeatureHost(builder.Configuration).Discover();
@@ -125,15 +135,6 @@ featureHost.ConfigureOptions(builder.Services);
 
 // Core services
 builder.Services.AddControllers();
-
-// Existing options binding
-builder.Services.Configure<WebTemplate.Core.Configuration.JwtSettings>(builder.Configuration.GetSection(WebTemplate.Core.Configuration.JwtSettings.SectionName));
-builder.Services.Configure<WebTemplate.Core.Configuration.AuthSettings>(builder.Configuration.GetSection(WebTemplate.Core.Configuration.AuthSettings.SectionName));
-builder.Services.Configure<WebTemplate.Core.Configuration.EmailSettings>(builder.Configuration.GetSection(WebTemplate.Core.Configuration.EmailSettings.SectionName));
-builder.Services.Configure<WebTemplate.Core.Configuration.UserModuleFeatures>(builder.Configuration.GetSection("UserModule:Features"));
-builder.Services.Configure<WebTemplate.Core.Configuration.ResponseMessages>(builder.Configuration.GetSection("ResponseMessages"));
-builder.Services.Configure<WebTemplate.Core.Configuration.AppUrls>(builder.Configuration.GetSection(WebTemplate.Core.Configuration.AppUrls.SectionName));
-builder.Services.Configure<WebTemplate.Core.Configuration.AdminSeedSettings>(builder.Configuration.GetSection(WebTemplate.Core.Configuration.AdminSeedSettings.SectionName));
 
 // Register core services (TryAdd to avoid duplicates when modules register)
 builder.Services.TryAddScoped<WebTemplate.Core.Interfaces.IRefreshTokenRepository, WebTemplate.Data.Repositories.RefreshTokenRepository>();

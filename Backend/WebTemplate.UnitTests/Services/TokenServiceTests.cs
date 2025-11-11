@@ -1,7 +1,6 @@
 namespace WebTemplate.UnitTests.Services
 {
     using FluentAssertions;
-    using Microsoft.Extensions.Options;
     using Moq;
     using System.IdentityModel.Tokens.Jwt;
     using System.Security.Claims;
@@ -15,6 +14,7 @@ namespace WebTemplate.UnitTests.Services
     public class TokenServiceTests : BaseTestFixture
     {
         private readonly Mock<IRefreshTokenRepository> _mockRefreshTokenRepository;
+        private readonly Mock<ICoreConfiguration> _configMock;
         private readonly JwtSettings _jwtSettings;
         private readonly TokenService _tokenService;
 
@@ -37,9 +37,10 @@ namespace WebTemplate.UnitTests.Services
                 ClockSkewMinutes = 5
             };
 
-            var jwtOptions = Options.Create(_jwtSettings);
+            _configMock = new Mock<ICoreConfiguration>();
+            _configMock.Setup(c => c.Jwt).Returns(_jwtSettings);
 
-            _tokenService = new TokenService(jwtOptions, _mockRefreshTokenRepository.Object);
+            _tokenService = new TokenService(_configMock.Object, _mockRefreshTokenRepository.Object);
         }
 
         #region GenerateAccessTokenAsync Tests

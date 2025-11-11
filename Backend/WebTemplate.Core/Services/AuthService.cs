@@ -2,7 +2,6 @@ namespace WebTemplate.Core.Services
 {
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.Logging;
-    using Microsoft.Extensions.Options;
     using System.Text.Json;
     using System.Web;
     using WebTemplate.Core.DTOs;
@@ -14,7 +13,7 @@ namespace WebTemplate.Core.Services
     /// <summary>
     /// Authentication service implementation
     /// Handles user authentication, registration, and token management
-    /// NO hard-coded values - all configuration from settings!
+    /// NO hard-coded values - all configuration from ICoreConfiguration singleton!
     /// </summary>
     public class AuthService : IAuthService
     {
@@ -34,23 +33,20 @@ namespace WebTemplate.Core.Services
             SignInManager<ApplicationUser> signInManager,
             ITokenService tokenService,
             ILogger<AuthService> logger,
-            IOptions<AuthSettings> authSettings,
-            IOptions<JwtSettings> jwtSettings,
-            IOptions<UserModuleFeatures> features,
+            ICoreConfiguration configuration,
             IUserTypeRepository userTypeRepository,
-            IEmailSender emailSender,
-            IOptions<AppUrls> appUrls)
+            IEmailSender emailSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _tokenService = tokenService;
             _logger = logger;
-            _authSettings = authSettings.Value;
-            _jwtSettings = jwtSettings.Value;
-            _features = features.Value;
+            _authSettings = configuration.Auth;
+            _jwtSettings = configuration.Jwt;
+            _features = configuration.UserModuleFeatures;
             _userTypeRepository = userTypeRepository;
             _emailSender = emailSender;
-            _appUrls = appUrls.Value;
+            _appUrls = configuration.AppUrls;
         }
 
         private static List<string> ParsePermissions(string? permissionsJson)

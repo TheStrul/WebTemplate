@@ -59,11 +59,11 @@ namespace WebTemplate.Core.Configuration.Features
     }
     public class AdminSeedFeatureOptions
     {
-        public bool Enabled { get; set; } = true;
-        public string Email { get; set; } = "admin@WebTemplate.com";
-        public string Password { get; set; } = "Admin123!";
-        public string FirstName { get; set; } = "System";
-        public string LastName { get; set; } = "Administrator";
+        public bool Enabled { get; set; } = false;
+        public string Email { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+        public string FirstName { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
     }
     public class ExceptionHandlingFeatureOptions { public bool Enabled { get; set; } = true; public bool UseProblemDetails { get; set; } = true; }
     public class SerilogFeatureOptions { public bool Enabled { get; set; } = false; public string? MinimumLevel { get; set; } = "Information"; }

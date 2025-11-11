@@ -3,7 +3,6 @@ namespace WebTemplate.Core.Services
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Options;
     using WebTemplate.Core.Interfaces;
     using WebTemplate.Core.Configuration.Features;
 
@@ -16,13 +15,12 @@ namespace WebTemplate.Core.Services
         public RefreshTokenCleanupService(
             ILogger<RefreshTokenCleanupService> logger,
             IServiceProvider serviceProvider,
-            IOptions<FeaturesOptions> features
+            FeaturesOptions features
         )
         {
             _logger = logger;
             _serviceProvider = serviceProvider;
-            var minutes = features.Value?.RateLimiting?.WindowSeconds > 0 ? (double?)null : null; // placeholder to force load options
-            var cleanupMinutes = features.Value?.RefreshTokens?.CleanupIntervalMinutes ?? 360;
+            var cleanupMinutes = features?.RefreshTokens?.CleanupIntervalMinutes ?? 360;
             _interval = TimeSpan.FromMinutes(cleanupMinutes);
         }
 

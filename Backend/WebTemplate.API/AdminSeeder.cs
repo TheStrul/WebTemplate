@@ -3,7 +3,6 @@ namespace WebTemplate.API
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
-    using Microsoft.Extensions.Options;
     using WebTemplate.Core.Configuration;
     using WebTemplate.Core.Entities;
     using WebTemplate.Core.Interfaces;
@@ -13,10 +12,30 @@ namespace WebTemplate.API
         public static async Task SeedAsync(IServiceProvider services)
         {
             var logger = services.GetRequiredService<ILoggerFactory>().CreateLogger("AdminSeeder");
-            var settings = services.GetRequiredService<IOptions<AdminSeedSettings>>().Value;
+            var coreConfig = services.GetRequiredService<ICoreConfiguration>();
+            var settings = coreConfig.AdminSeed;
             if (!settings.Enabled)
             {
                 logger.LogInformation("Admin seeding disabled.");
+                return;
+            }
+
+            logger.LogInformation("AdminSeed settings - Email: {Email}, Password length: {Length}, FirstName: {FirstName}, LastName: {LastName}",
+                settings.Email,
+                settings.Password?.Length ?? 0,
+                settings.FirstName,
+                settings.LastName);
+
+            // Validate password before attempting to create user
+            if (string.IsNullOrWhiteSpace(settings.Password))
+            {
+                logger.LogError("AdminSeed:Password is null or empty. Cannot create admin user.");
+                return;
+            }
+
+            if (settings.Password.Length < 8)
+            {
+                logger.LogError("AdminSeed:Password is too short ({Length} characters). Minimum is 8 characters.", settings.Password.Length);
                 return;
             }
 

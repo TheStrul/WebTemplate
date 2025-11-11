@@ -3,7 +3,6 @@ namespace WebTemplate.UnitTests.Services
     using FluentAssertions;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
-    using Microsoft.Extensions.Options;
     using Moq;
     using WebTemplate.Core.Configuration.Features;
     using WebTemplate.Core.Interfaces;
@@ -40,14 +39,11 @@ namespace WebTemplate.UnitTests.Services
         [Fact]
         public void Constructor_WithValidParameters_CreatesInstance()
         {
-            // Arrange
-            var options = Options.Create(_featuresOptions);
-
             // Act
             var service = new RefreshTokenCleanupService(
                 _mockLogger.Object,
                 _serviceProvider,
-                options
+                _featuresOptions
             );
 
             // Assert
@@ -59,13 +55,12 @@ namespace WebTemplate.UnitTests.Services
         {
             // Arrange
             var defaultFeatures = new FeaturesOptions();
-            var options = Options.Create(defaultFeatures);
 
             // Act
             var service = new RefreshTokenCleanupService(
                 _mockLogger.Object,
                 _serviceProvider,
-                options
+                defaultFeatures
             );
 
             // Assert
@@ -79,11 +74,10 @@ namespace WebTemplate.UnitTests.Services
             _mockTokenService.Setup(ts => ts.CleanupExpiredTokensAsync())
                 .ReturnsAsync(5); // Simulate 5 tokens cleaned
 
-            var options = Options.Create(_featuresOptions);
             var service = new RefreshTokenCleanupService(
                 _mockLogger.Object,
                 _serviceProvider,
-                options
+                _featuresOptions
             );
 
             using var cts = new CancellationTokenSource();
@@ -113,11 +107,10 @@ namespace WebTemplate.UnitTests.Services
             _mockTokenService.Setup(ts => ts.CleanupExpiredTokensAsync())
                 .ReturnsAsync(3); // Simulate 3 tokens cleaned
 
-            var options = Options.Create(_featuresOptions);
             var service = new RefreshTokenCleanupService(
                 _mockLogger.Object,
                 _serviceProvider,
-                options
+                _featuresOptions
             );
 
             using var cts = new CancellationTokenSource();
@@ -154,11 +147,10 @@ namespace WebTemplate.UnitTests.Services
             _mockTokenService.Setup(ts => ts.CleanupExpiredTokensAsync())
                 .ReturnsAsync(0); // No tokens cleaned
 
-            var options = Options.Create(_featuresOptions);
             var service = new RefreshTokenCleanupService(
                 _mockLogger.Object,
                 _serviceProvider,
-                options
+                _featuresOptions
             );
 
             using var cts = new CancellationTokenSource();
@@ -195,11 +187,10 @@ namespace WebTemplate.UnitTests.Services
             _mockTokenService.Setup(ts => ts.CleanupExpiredTokensAsync())
                 .ThrowsAsync(new InvalidOperationException("Database error"));
 
-            var options = Options.Create(_featuresOptions);
             var service = new RefreshTokenCleanupService(
                 _mockLogger.Object,
                 _serviceProvider,
-                options
+                _featuresOptions
             );
 
             using var cts = new CancellationTokenSource();
@@ -245,11 +236,10 @@ namespace WebTemplate.UnitTests.Services
                     return 2; // Second call succeeds
                 });
 
-            var options = Options.Create(_featuresOptions);
             var service = new RefreshTokenCleanupService(
                 _mockLogger.Object,
                 _serviceProvider,
-                options
+                _featuresOptions
             );
 
             using var cts = new CancellationTokenSource();
@@ -288,11 +278,10 @@ namespace WebTemplate.UnitTests.Services
             _mockTokenService.Setup(ts => ts.CleanupExpiredTokensAsync())
                 .ReturnsAsync(0);
 
-            var options = Options.Create(_featuresOptions);
             var service = new RefreshTokenCleanupService(
                 _mockLogger.Object,
                 _serviceProvider,
-                options
+                _featuresOptions
             );
 
             using var cts = new CancellationTokenSource();

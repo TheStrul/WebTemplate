@@ -3,7 +3,6 @@ namespace WebTemplate.UnitTests.Services
     using FluentAssertions;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.Logging;
-    using Microsoft.Extensions.Options;
     using Moq;
     using WebTemplate.Core.Configuration;
     using WebTemplate.Core.Entities;
@@ -24,6 +23,7 @@ namespace WebTemplate.UnitTests.Services
         private readonly Mock<IUserTypeRepository> _userTypeRepoMock;
         private readonly Mock<IEmailSender> _emailSenderMock;
         private readonly Mock<ILogger<AuthService>> _loggerMock;
+        private readonly Mock<ICoreConfiguration> _configMock;
         private readonly AuthService _authService;
         private readonly AuthSettings _authSettings;
         private readonly JwtSettings _jwtSettings;
@@ -64,17 +64,20 @@ namespace WebTemplate.UnitTests.Services
                 RefreshTokenExpiryDays = 7
             };
 
+            _configMock = new Mock<ICoreConfiguration>();
+            _configMock.Setup(c => c.Auth).Returns(_authSettings);
+            _configMock.Setup(c => c.Jwt).Returns(_jwtSettings);
+            _configMock.Setup(c => c.UserModuleFeatures).Returns(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = false });
+            _configMock.Setup(c => c.AppUrls).Returns(new AppUrls { FrontendBaseUrl = "http://localhost:3000", ConfirmEmailPath = "/confirm-email" });
+
             _authService = new AuthService(
                 _userManagerMock.Object,
                 _signInManagerMock.Object,
                 _tokenServiceMock.Object,
                 _loggerMock.Object,
-                Options.Create(_authSettings),
-                Options.Create(_jwtSettings),
-                Options.Create(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = false }),
+                _configMock.Object,
                 _userTypeRepoMock.Object,
-                _emailSenderMock.Object,
-                Options.Create(new AppUrls { FrontendBaseUrl = "http://localhost:3000", ConfirmEmailPath = "/confirm-email" })
+                _emailSenderMock.Object
             );
         }
 
@@ -265,17 +268,20 @@ namespace WebTemplate.UnitTests.Services
         public async Task RegisterAsync_WithEmptyFrontendBaseUrl_BuildsConfirmUrlWithoutBase()
         {
             // Arrange - Create AuthService with empty FrontendBaseUrl
+            var configMock = new Mock<ICoreConfiguration>();
+            configMock.Setup(c => c.Auth).Returns(new AuthSettings { User = new UserSettings { RequireConfirmedEmail = true } });
+            configMock.Setup(c => c.Jwt).Returns(_jwtSettings);
+            configMock.Setup(c => c.UserModuleFeatures).Returns(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = false });
+            configMock.Setup(c => c.AppUrls).Returns(new AppUrls { FrontendBaseUrl = "", ConfirmEmailPath = "/confirm" });
+
             var authService = new AuthService(
                 _userManagerMock.Object,
                 _signInManagerMock.Object,
                 _tokenServiceMock.Object,
                 _loggerMock.Object,
-                Options.Create(new AuthSettings { User = new UserSettings { RequireConfirmedEmail = true } }),
-                Options.Create(_jwtSettings),
-                Options.Create(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = false }),
+                configMock.Object,
                 _userTypeRepoMock.Object,
-                _emailSenderMock.Object,
-                Options.Create(new AppUrls { FrontendBaseUrl = "", ConfirmEmailPath = "/confirm" })
+                _emailSenderMock.Object
             );
 
             var registerDto = new RegisterDtoBuilder().Build();
@@ -309,17 +315,20 @@ namespace WebTemplate.UnitTests.Services
         public async Task RegisterAsync_WithPermissionsEnabled_UserTypeNull_ReturnsWithoutUserType()
         {
             // Arrange - Permissions enabled but UserType not found
+            var configMock = new Mock<ICoreConfiguration>();
+            configMock.Setup(c => c.Auth).Returns(new AuthSettings { User = new UserSettings { RequireConfirmedEmail = false } });
+            configMock.Setup(c => c.Jwt).Returns(_jwtSettings);
+            configMock.Setup(c => c.UserModuleFeatures).Returns(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true });
+            configMock.Setup(c => c.AppUrls).Returns(new AppUrls { FrontendBaseUrl = "http://localhost" });
+
             var authService = new AuthService(
                 _userManagerMock.Object,
                 _signInManagerMock.Object,
                 _tokenServiceMock.Object,
                 _loggerMock.Object,
-                Options.Create(new AuthSettings { User = new UserSettings { RequireConfirmedEmail = false } }),
-                Options.Create(_jwtSettings),
-                Options.Create(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true }),
+                configMock.Object,
                 _userTypeRepoMock.Object,
-                _emailSenderMock.Object,
-                Options.Create(new AppUrls { FrontendBaseUrl = "http://localhost" })
+                _emailSenderMock.Object
             );
 
             var registerDto = new RegisterDtoBuilder().Build();
@@ -356,17 +365,20 @@ namespace WebTemplate.UnitTests.Services
         public async Task RegisterAsync_WithCustomConfirmEmailPath_BuildsUrlWithCustomPath()
         {
             // Arrange - Create AuthService with custom ConfirmEmailPath
+            var configMock = new Mock<ICoreConfiguration>();
+            configMock.Setup(c => c.Auth).Returns(new AuthSettings { User = new UserSettings { RequireConfirmedEmail = true } });
+            configMock.Setup(c => c.Jwt).Returns(_jwtSettings);
+            configMock.Setup(c => c.UserModuleFeatures).Returns(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = false });
+            configMock.Setup(c => c.AppUrls).Returns(new AppUrls { FrontendBaseUrl = "http://localhost:3000", ConfirmEmailPath = "/custom/verify" });
+
             var authService = new AuthService(
                 _userManagerMock.Object,
                 _signInManagerMock.Object,
                 _tokenServiceMock.Object,
                 _loggerMock.Object,
-                Options.Create(new AuthSettings { User = new UserSettings { RequireConfirmedEmail = true } }),
-                Options.Create(_jwtSettings),
-                Options.Create(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = false }),
+                configMock.Object,
                 _userTypeRepoMock.Object,
-                _emailSenderMock.Object,
-                Options.Create(new AppUrls { FrontendBaseUrl = "http://localhost:3000", ConfirmEmailPath = "/custom/verify" })
+                _emailSenderMock.Object
             );
 
             var registerDto = new RegisterDtoBuilder()
@@ -411,17 +423,20 @@ namespace WebTemplate.UnitTests.Services
         public async Task RegisterAsync_WithPermissionsEnabled_UserTypeFound_IncludesFullUserType()
         {
             // Arrange - Permissions enabled and UserType IS found
+            var configMock = new Mock<ICoreConfiguration>();
+            configMock.Setup(c => c.Auth).Returns(new AuthSettings { User = new UserSettings { RequireConfirmedEmail = false } });
+            configMock.Setup(c => c.Jwt).Returns(_jwtSettings);
+            configMock.Setup(c => c.UserModuleFeatures).Returns(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true });
+            configMock.Setup(c => c.AppUrls).Returns(new AppUrls { FrontendBaseUrl = "http://localhost" });
+
             var authService = new AuthService(
                 _userManagerMock.Object,
                 _signInManagerMock.Object,
                 _tokenServiceMock.Object,
                 _loggerMock.Object,
-                Options.Create(new AuthSettings { User = new UserSettings { RequireConfirmedEmail = false } }),
-                Options.Create(_jwtSettings),
-                Options.Create(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true }),
+                configMock.Object,
                 _userTypeRepoMock.Object,
-                _emailSenderMock.Object,
-                Options.Create(new AppUrls { FrontendBaseUrl = "http://localhost" })
+                _emailSenderMock.Object
             );
 
             var registerDto = new RegisterDtoBuilder()

@@ -6,7 +6,6 @@ namespace WebTemplate.API.Controllers
     using WebTemplate.Core.DTOs.Auth;
     using WebTemplate.Core.Interfaces;
     using WebTemplate.Core.Configuration;
-    using Microsoft.Extensions.Options;
 
     /// <summary>
     /// Authentication controller - handles all authentication endpoints
@@ -24,13 +23,13 @@ namespace WebTemplate.API.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ResponseMessages _messages;
 
-        public AuthController(IAuthService authService, ITokenService tokenService, IOptions<UserModuleFeatures> features, IEmailSender emailSender, IOptions<ResponseMessages> messages, ILogger<AuthController> logger)
+        public AuthController(IAuthService authService, ITokenService tokenService, ICoreConfiguration configuration, IEmailSender emailSender, ILogger<AuthController> logger)
         {
             _authService = authService;
             _tokenService = tokenService;
-            _features = features.Value;
+            _features = configuration.UserModuleFeatures;
             _emailSender = emailSender;
-            _messages = messages.Value;
+            _messages = configuration.ResponseMessages;
             _logger = logger;
         }
 
