@@ -1,0 +1,919 @@
+[Conversations Information] GitHub auth changed. Invalidating Copilot identity.
+[Conversations Information] Getting Copilot identity from service.
+[HttpClientFactoryProvider Information] VsHttpClientFactoryWithErrorHandling.IsFeatureEnabledAsync Starting
+[HttpClientFactoryProvider Information] VsHttpClientFactory.IsFeatureEnabledAsync Starting
+[HttpClientFactoryProvider Information] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Status Code: 200, Reason Phrase: OK
+[Conversations Information] Response Content: HasToken: True, ChatEnabled: True, ExpiresAt: 1763027528, RefreshIn: 1500, SKU: plus_monthly_subscriber_quota, CopilotExclusion: False, ChatQuota: '', CompletionsQuota: '', LimitedUserResetDate: '', CanSignupForLimited: ''
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[CopilotSessionProvider Information] CopilotSessionProvider.ResetSessionsForIdentityChangeAsync: Sessions reset due to identity change
+Logging to: C:\Users\avist\AppData\Local\Temp\VSGitHubCopilotLogs\20251113_092208.217_VSGitHubCopilot.chat.log
+[Conversations Information] Copilot chat version 18.0.925-rc+01a379358e.RR (18.0.925.419). VS: VisualStudio.18.Release/18.0.0+11205.157. Session: b2840d2a-7e9e-4324-ab4c-e7da8c1e1ea7. 
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [Conversations] Active solution path changed to 
+[Conversations Information] [Conversations] MCP sources changed
+[Conversations Information] [CopilotServiceContainer] VsHttpClientFactoryWithErrorHandling.IsFeatureEnabledAsync Starting
+[Conversations Information] [CopilotServiceContainer] VsHttpClientFactory.IsFeatureEnabledAsync Starting
+[Conversations Information] [Conversations] Found 0 MCP server(s) defined in "C:\Users\avist\.mcp.json": 
+[Conversations Information] [Conversations] Found 1 MCP server(s) defined in "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\Extensions\dgvaws1k.kfy\Tools\mcp.json": Azure MCP Server
+[Conversations Information] [Conversations] Found 1 MCP server(s) defined in "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\NuGet\mcp.json": nuget
+[Conversations Information] [Conversations] Found 1 MCP server(s) defined in "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\Extensions\Microsoft\Copilot\Mcp\mcp.json": Microsoft Learn
+[Conversations Information] [Conversations] Out-of-process service (PID: 32540) finished initializing.
+[Conversations Information] [Conversations] Loaded cached state for MCP server 'nuget' with 5 tools, 0 prompts, and 0 resources.
+[Conversations Information] [Conversations] Loaded cached state for MCP server 'Microsoft Learn' with 3 tools, 0 prompts, and 0 resources.
+[Conversations Information] [Conversations] Loaded cached state for MCP server 'Azure MCP Server' with 48 tools, 0 prompts, and 0 resources.
+[Conversations Information] [CopilotAgents] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCustomInstructionsProvider] Workspace path is null. Custom instructions will be loaded on the next query if exists.
+[Conversations Information] [CopilotCustomInstructionsProvider] Workspace path is null. Custom instructions will be loaded on the next query if exists.
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [GetQuota] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] [CopilotClient] Copilot Internal User response: Conversations.Abstractions.Auth.CopilotUserData
+[Conversations Information] [CopilotModels] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[PersistedCopilotSessionRepository Information] Persisted sessions are stored under C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\.vs\WebTemplate\copilot-chat\d319fbf7\sessions
+[Conversations Information] [Conversations] Active solution path changed to C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\WebTemplate.sln
+[Conversations Information] [CopilotCustomInstructionsProvider] Active workspace path changed to C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\
+[Conversations Information] [Conversations] MCP sources changed
+[Conversations Information] [Conversations] Found 0 MCP server(s) defined in "C:\Users\avist\.mcp.json": 
+[Conversations Information] [Conversations] Found 0 MCP server(s) defined in "C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\.vs\mcp.json": 
+[Conversations Information] [Conversations] Found 0 MCP server(s) defined in "C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\.mcp.json": 
+[Conversations Information] [Conversations] Found 0 MCP server(s) defined in "C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\.vscode\mcp.json": 
+[Conversations Information] [Conversations] Found 0 MCP server(s) defined in "C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\.cursor\mcp.json": 
+[Conversations Information] [Conversations] Found 1 MCP server(s) defined in "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\Extensions\dgvaws1k.kfy\Tools\mcp.json": Azure MCP Server
+[Conversations Information] [Conversations] Found 1 MCP server(s) defined in "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\NuGet\mcp.json": nuget
+[Conversations Information] [Conversations] Found 1 MCP server(s) defined in "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\Extensions\Microsoft\Copilot\Mcp\mcp.json": Microsoft Learn
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [ChunkIndex] Index db path: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\.vs\WebTemplate\CopilotIndices\18.0.925.419\CodeChunks.db
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[PersistedCopilotSessionRepository Information] Persisted sessions are stored under C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\.vs\WebTemplate\copilot-chat\d319fbf7\sessions
+[CopilotClientManager Information] LSP: Activated (37973366)
+[CopilotClientManager Information] LSP: Process 41520
+[CopilotClientManager Information] LSP: Debug Server: http://localhost:8180
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[CopilotClientManager Information] Initial auth status: OK
+[CopilotClientManager Information] VsHttpClientFactoryWithErrorHandling.IsFeatureEnabledAsync Starting
+[CopilotClientManager Information] VsHttpClientFactory.IsFeatureEnabledAsync Starting
+[CopilotClientManager Information] statusNotification: Error: You are not signed into GitHub.
+[CopilotClientManager Information] CopilotClientManager: model list fetched as of 13/11/2025 11:22:20.
+[Conversations Information] [GitHubAPI] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[Conversations Information] [SemanticContextService] Generating semantic context for C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.SearchTool\Program.cs.
+[Conversations Information] [SemanticContextService] ContextBuilder instance created. Initial fetched types from document count: 3, Initial fetched context from document count: 0.
+[Conversations Information] [SemanticContextService] Generating context with reference hops...
+[Conversations Information] [SemanticContextService] Processing reference hop 1...
+[Conversations Information] [SemanticContextService] Context with reference hops generated. Total types: 3, Total context: 0.
+[Conversations Information] [SemanticContextService] Calculating Jaccard Similarity for definition context and taking top 100 from max of 1000 files
+[Conversations Information] [SemanticContextService] Finished getting ordered context.
+[CopilotSessionProvider Information] Request content: "can tou see if it is ok ?"
+[CopilotSessionProvider Information] Begin sending message (ConversationId:b33186b9-6070-4032-ab50-7638fd2ae2ea, CorrelationId:e05cd87d-92a6-4c7c-9a8e-4d545dd23b7d, MessageId: 4c7ea564-a1e5-42ae-8b0e-0bc8b7dc0ede)
+[Conversations Information] [CopilotCustomInstructionsProvider] .github directory found at path: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\.github
+[Conversations Information] [CopilotCustomInstructionsProvider] .github directory loaded from workspace path: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\
+[Conversations Information] [CopilotCustomInstructionsProvider] copilot-instructions.md successfully loaded.
+[Conversations Information] [CopilotCustomInstructionsProvider] No referenced instruction files found in: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\.github\copilot-instructions.md
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[InactivityTrigger Error] System.OperationCanceledException: The operation was canceled.
+   at System.Threading.CancellationToken.ThrowOperationCanceledException()
+   at Microsoft.VisualStudio.Threading.JoinableTaskFactory.MainThreadAwaiter.GetResult()
+   at Microsoft.VisualStudio.Copilot.UI.AiChatMessageViewModel.<<InitializeInactivityTrigger>b__147_0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at Conversations.Abstractions.InactivityTrigger.<ExecutionLoopAsync>d__20.MoveNext()
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[Conversations Information] [SemanticContextService] Generating semantic context for C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.SearchTool\Program.cs.
+[Conversations Information] [SemanticContextService] ContextBuilder instance created. Initial fetched types from document count: 3, Initial fetched context from document count: 0.
+[Conversations Information] [SemanticContextService] Generating context with reference hops...
+[Conversations Information] [SemanticContextService] Processing reference hop 1...
+[Conversations Information] [SemanticContextService] Context with reference hops generated. Total types: 3, Total context: 0.
+[Conversations Information] [SemanticContextService] Calculating Jaccard Similarity for definition context and taking top 100 from max of 1000 files
+[Conversations Information] [SemanticContextService] Finished getting ordered context.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:b33186b9-6070-4032-ab50-7638fd2ae2ea, CorrelationId:d6b6e2bb-5a9e-4f3f-a3c8-93f1c55184f2, MessageId: b1719032-12b4-46ab-a316-43cb0d562440)
+[CopilotSessionProvider Information] Request content: "what will be the ultimate test ?"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:b33186b9-6070-4032-ab50-7638fd2ae2ea, CorrelationId:78435344-e1dd-4c5b-b1c3-698da6526a5b, MessageId: b70b5fb7-92b5-4c85-b291-1bd8deaa62ed)
+[CopilotSessionProvider Information] Request content: "tou can see for your selt #file:'C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.SearchTool\search_results_20251113_112512.md' "
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[InactivityTrigger Error] System.OperationCanceledException: The operation was canceled.
+   at System.Threading.CancellationToken.ThrowOperationCanceledException()
+   at Microsoft.VisualStudio.Threading.JoinableTaskFactory.MainThreadAwaiter.GetResult()
+   at Microsoft.VisualStudio.Copilot.UI.AiChatMessageViewModel.<<InitializeInactivityTrigger>b__147_0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at Conversations.Abstractions.InactivityTrigger.<ExecutionLoopAsync>d__20.MoveNext()
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:b33186b9-6070-4032-ab50-7638fd2ae2ea, CorrelationId:0d1b98b8-4653-466f-8a60-9cc99f98c4a1, MessageId: 8d188c2d-223c-4fa9-96d4-5a5c9814aed2)
+[CopilotSessionProvider Information] Request content: "explain what you mean with:
+# Search for patterns
+dotnet run -- "EF Core 9 best practices SQL Server"
+dotnet run -- "ASP.NET Core 9 dependency injection patterns"
+dotnet run -- "Service layer pattern .NET 9"
+dotnet run -- "Repository pattern Entity Framework"
+
+# Copy results into KB sections:
+# Section 2: PATTERNS
+# Section 3: DATABASE
+# Section 9: GOTCHAS"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:b33186b9-6070-4032-ab50-7638fd2ae2ea, CorrelationId:715dd96b-e048-4f68-b3f0-928df1b8388c, MessageId: c22db315-0452-4d26-abc3-f10cbf4d6a9f)
+[CopilotSessionProvider Information] Request content: "Very impresive, i just dont understand one small thing"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:b33186b9-6070-4032-ab50-7638fd2ae2ea, CorrelationId:d86ba98d-6485-4cac-adef-c738420670bb, MessageId: 2c1a8ab8-6965-4dd9-99e4-5f6514625bab)
+[CopilotSessionProvider Information] Request content: "i do not understand why shoul i do it and not you"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:b33186b9-6070-4032-ab50-7638fd2ae2ea, CorrelationId:b1d1dd82-c9aa-4a89-aa81-5fb2b48fb775, MessageId: f29a67fe-8244-4c27-97f7-d6da5112d5e5)
+[CopilotSessionProvider Information] Request content: "Nice, the question now is, should we create a general KB or should it be per workspace"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Getting Copilot identity from service.
+[HttpClientFactoryProvider Information] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Status Code: 200, Reason Phrase: OK
+[Conversations Information] Response Content: HasToken: True, ChatEnabled: True, ExpiresAt: 1763029029, RefreshIn: 1500, SKU: plus_monthly_subscriber_quota, CopilotExclusion: False, ChatQuota: '', CompletionsQuota: '', LimitedUserResetDate: '', CanSignupForLimited: ''
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[CopilotClientManager Information] Auth status changed: OK
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:b33186b9-6070-4032-ab50-7638fd2ae2ea, CorrelationId:d1184c46-4b6c-465a-b904-2a22d3f48fc3, MessageId: bb6c5d92-36d8-4099-9a8c-28baf401f15e)
+[CopilotSessionProvider Information] Request content: "D"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:b33186b9-6070-4032-ab50-7638fd2ae2ea, CorrelationId:60d771e7-303a-4eee-84f3-fb4634dc532a, MessageId: 4f92a34a-3f4d-458a-a1bb-94ea9aaf9498)
+[CopilotSessionProvider Information] Request content: "D - sonthing a bit different. we will do the Hybrid (general + project references), Alas, also in the general we will have few KBs for deferent sections of general knoladge"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:b33186b9-6070-4032-ab50-7638fd2ae2ea, CorrelationId:81d6c08a-76fe-4d75-ba60-d1cc3c640af1, MessageId: c621b68f-a12c-4da7-ae0b-a4f1da0f908c)
+[CopilotSessionProvider Information] Request content: "Sure, but let me just ask few more question so we can fine tune ot to maximum"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:b33186b9-6070-4032-ab50-7638fd2ae2ea, CorrelationId:e9accfae-fd7f-4353-8578-af2c3edeb679, MessageId: f72c880b-0e4b-4768-a9ad-c8c24ad83d4f)
+[CopilotSessionProvider Information] Request content: "who will be the consumer of the knoladge ?"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:b33186b9-6070-4032-ab50-7638fd2ae2ea, CorrelationId:b1ee9b35-4a40-49e9-bac0-b65d2efd9241, MessageId: c4caeef6-7b42-452d-b153-bad92331be39)
+[CopilotSessionProvider Information] Request content: "So, the answer is clear, I (and i think most of the humans in my status) have no benefit with trying to learn new staff. we are in a stage that we got YOU, thr ultimate partner that we all dreamed about for years. i think i need to invest all my efort, not with obtaining general knoladge, but obtain very specific knolage regarding the ways to improve the colaboration with you. this will be the key factor for success."
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:b33186b9-6070-4032-ab50-7638fd2ae2ea, CorrelationId:a5acf2a3-64cd-4db1-b040-1cf266b6f5d6, MessageId: 1df23fb5-1b65-48cd-b4d1-6b1e2931700e)
+[CopilotSessionProvider Information] Request content: "i think you are 95% right"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:b33186b9-6070-4032-ab50-7638fd2ae2ea, CorrelationId:6e18e442-779d-4dc8-ad18-6b9d294b881a, MessageId: b73272ff-3da2-4777-9de6-b550f3abbb82)
+[CopilotSessionProvider Information] Request content: "do you know on which IDE are we now ?"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:b33186b9-6070-4032-ab50-7638fd2ae2ea, CorrelationId:31315f00-c956-4993-84c2-2b631b7b7b09, MessageId: bc1d1c54-5e52-446a-96bb-a94d0dbf3bf2)
+[CopilotSessionProvider Information] Request content: "Do you know from which models of AI can i choose ?"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:b33186b9-6070-4032-ab50-7638fd2ae2ea, CorrelationId:0eb981b6-54cc-4f3c-b629-dfb9bf474506, MessageId: 95e54a3e-9a1d-4527-82f9-9027e9f6546d)
+[CopilotSessionProvider Information] Request content: "Will you remeber this on the next chat ?"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:b33186b9-6070-4032-ab50-7638fd2ae2ea, CorrelationId:5abb909d-15e5-4152-bfc7-916c824c7c30, MessageId: 07645904-fb0d-4e54-aa59-c79659723314)
+[CopilotSessionProvider Information] Request content: "So i think now you understand what was the s% that i meant :-)"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:b33186b9-6070-4032-ab50-7638fd2ae2ea, CorrelationId:ce9faf0f-aea7-4d49-baa0-1df2ef7101bd, MessageId: e602120b-5ce3-46a8-98d6-338bb3c3dd28)
+[CopilotSessionProvider Information] Request content: "now you are 100% correct, i need that this KB will be the pipe that connect us, i need to know that every thing we understand / explain / learn will stay with us as if you are a real human that i am working with him on the same team from now, till ever !!!"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Getting Copilot identity from service.
+[HttpClientFactoryProvider Information] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Status Code: 200, Reason Phrase: OK
+[Conversations Information] Response Content: HasToken: True, ChatEnabled: True, ExpiresAt: 1763030529, RefreshIn: 1500, SKU: plus_monthly_subscriber_quota, CopilotExclusion: False, ChatQuota: '', CompletionsQuota: '', LimitedUserResetDate: '', CanSignupForLimited: ''
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[CopilotClientManager Information] Auth status changed: OK
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:b33186b9-6070-4032-ab50-7638fd2ae2ea, CorrelationId:175c6046-fe9e-41ca-8b5d-6b0779cd67c5, MessageId: 6695eef8-7fba-4281-957b-d51d6ca83ed3)
+[CopilotSessionProvider Information] Request content: "This was exactly what my vision was when we started this few hours ago while i was a bit drunk :-)"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:b33186b9-6070-4032-ab50-7638fd2ae2ea, CorrelationId:74a0a6fb-cdc0-4dce-a95f-4e2af48a2cf8, MessageId: 3afad39b-8691-4552-a085-ef07167db66a)
+[CopilotSessionProvider Information] Request content: "Why do you ask me to do it ?"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[VisualStudioProjectHelper Warning] No projects exist in the same file path for the requested file: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\SESSIONS\
+[VisualStudioProjectHelper Warning] No project matched the file path.
+[VisualStudioProjectHelper Warning] No matching project found.
+[FileEditingState(b33186b9/7a9c95f1/SESSION_20251113_FOUNDATION.md) Information] state change: Mapped 1 edits, for snapshot v1
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [Conversations] Active solution path changed to 
+[Conversations Information] [CopilotCustomInstructionsProvider] Workspace path is null. Custom instructions will be loaded on the next query if exists.
+[Conversations Information] [Conversations] MCP sources changed
+[Conversations Information] [Conversations] Found 0 MCP server(s) defined in "C:\Users\avist\.mcp.json": 
+[Conversations Information] [Conversations] Found 1 MCP server(s) defined in "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\Extensions\dgvaws1k.kfy\Tools\mcp.json": Azure MCP Server
+[Conversations Information] [Conversations] Found 1 MCP server(s) defined in "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\Extensions\Microsoft\Copilot\Mcp\mcp.json": Microsoft Learn
+[Conversations Information] [Conversations] Found 1 MCP server(s) defined in "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\NuGet\mcp.json": nuget
+[PersistedCopilotSessionRepository Information] Persisted sessions are stored under C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\.vs\WebTemplate.slnx\copilot-chat\d319fbf7\sessions
+[Conversations Information] [ChunkIndex] Index db path: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\.vs\WebTemplate\CopilotIndices\18.0.925.419\CodeChunks.db
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[PersistedCopilotSessionRepository Information] Persisted sessions are stored under C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\.vs\WebTemplate.slnx\copilot-chat\d319fbf7\sessions
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[CopilotClientManager Information] stderr: 
+[Conversations Information] [Conversations] Active solution path changed to 
+[Conversations Information] [CopilotCustomInstructionsProvider] Workspace path is null. Custom instructions will be loaded on the next query if exists.
+[PersistedCopilotSessionRepository Information] Persisted sessions are stored under C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\.vs\WebTemplate\copilot-chat\d319fbf7\sessions
+[Conversations Information] [Conversations] Active solution path changed to C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\WebTemplate.sln
+[Conversations Information] [CopilotCustomInstructionsProvider] Active workspace path changed to C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\
+[Conversations Information] [Conversations] MCP sources changed
+[Conversations Information] [Conversations] Found 0 MCP server(s) defined in "C:\Users\avist\.mcp.json": 
+[Conversations Information] [Conversations] Found 0 MCP server(s) defined in "C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\.mcp.json": 
+[Conversations Information] [Conversations] Found 0 MCP server(s) defined in "C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\.vscode\mcp.json": 
+[Conversations Information] [Conversations] Found 0 MCP server(s) defined in "C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\.vs\mcp.json": 
+[Conversations Information] [Conversations] Found 0 MCP server(s) defined in "C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\.cursor\mcp.json": 
+[Conversations Information] [Conversations] Found 1 MCP server(s) defined in "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\Extensions\dgvaws1k.kfy\Tools\mcp.json": Azure MCP Server
+[Conversations Information] [Conversations] Found 1 MCP server(s) defined in "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\Extensions\Microsoft\Copilot\Mcp\mcp.json": Microsoft Learn
+[Conversations Information] [Conversations] Found 1 MCP server(s) defined in "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\NuGet\mcp.json": nuget
+[CopilotClientManager Information] stderr: Process exited
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [ChunkIndex] Index db path: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\.vs\WebTemplate\CopilotIndices\18.0.925.419\CodeChunks.db
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[CopilotClientManager Information] LSP: Activated (7461654)
+[CopilotClientManager Information] LSP: Debug Server: http://localhost:8180
+[CopilotClientManager Information] LSP: Process 34392
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[CopilotClientManager Information] Initial auth status: OK
+[CopilotClientManager Information] VsHttpClientFactoryWithErrorHandling.IsFeatureEnabledAsync Starting
+[CopilotClientManager Information] VsHttpClientFactory.IsFeatureEnabledAsync Starting
+[CopilotClientManager Information] CopilotClientManager: model list fetched as of 13/11/2025 12:19:00.
+[CopilotClientManager Information] statusNotification: Error: You are not signed into GitHub.
+[Conversations Information] [Conversations] Active solution path changed to 
+[Conversations Information] [CopilotCustomInstructionsProvider] Workspace path is null. Custom instructions will be loaded on the next query if exists.
+[Conversations Information] [Conversations] MCP sources changed
+[Conversations Information] [Conversations] Found 0 MCP server(s) defined in "C:\Users\avist\.mcp.json": 
+[Conversations Information] [Conversations] Found 1 MCP server(s) defined in "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\Extensions\dgvaws1k.kfy\Tools\mcp.json": Azure MCP Server
+[Conversations Information] [Conversations] Found 1 MCP server(s) defined in "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\NuGet\mcp.json": nuget
+[Conversations Information] [Conversations] Found 1 MCP server(s) defined in "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\Extensions\Microsoft\Copilot\Mcp\mcp.json": Microsoft Learn
+[PersistedCopilotSessionRepository Information] Persisted sessions are stored under C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\.vs\Backend\copilot-chat\d319fbf7\sessions
+[Conversations Information] [Conversations] Active solution path changed to C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\Backend.sln
+[Conversations Information] [CopilotCustomInstructionsProvider] Active workspace path changed to C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\
+[Conversations Information] [Conversations] MCP sources changed
+[Conversations Information] [Conversations] Found 0 MCP server(s) defined in "C:\Users\avist\.mcp.json": 
+[Conversations Information] [Conversations] Found 0 MCP server(s) defined in "C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\.vs\mcp.json": 
+[Conversations Information] [Conversations] Found 0 MCP server(s) defined in "C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\.vscode\mcp.json": 
+[Conversations Information] [Conversations] Found 1 MCP server(s) defined in "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\Extensions\dgvaws1k.kfy\Tools\mcp.json": Azure MCP Server
+[Conversations Information] [Conversations] Found 0 MCP server(s) defined in "C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\.mcp.json": 
+[Conversations Information] [Conversations] Found 0 MCP server(s) defined in "C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\.cursor\mcp.json": 
+[Conversations Information] [Conversations] Found 1 MCP server(s) defined in "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\NuGet\mcp.json": nuget
+[Conversations Information] [Conversations] Found 1 MCP server(s) defined in "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\Extensions\Microsoft\Copilot\Mcp\mcp.json": Microsoft Learn
+[Conversations Information] [ChunkIndex] Index db path: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\.vs\Backend\CopilotIndices\18.0.925.419\CodeChunks.db
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[PersistedCopilotSessionRepository Information] Persisted sessions are stored under C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\.vs\Backend\copilot-chat\d319fbf7\sessions
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[CopilotClientManager Information] stderr: 
+[Conversations Information] [GitHubAPI] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] [Conversations] Active solution path changed to 
+[Conversations Information] [CopilotCustomInstructionsProvider] Workspace path is null. Custom instructions will be loaded on the next query if exists.
+[Conversations Information] [Conversations] MCP sources changed
+[Conversations Information] [Conversations] Found 0 MCP server(s) defined in "C:\Users\avist\.mcp.json": 
+[Conversations Information] [Conversations] Found 1 MCP server(s) defined in "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\Extensions\dgvaws1k.kfy\Tools\mcp.json": Azure MCP Server
+[Conversations Information] [Conversations] Found 1 MCP server(s) defined in "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\Extensions\Microsoft\Copilot\Mcp\mcp.json": Microsoft Learn
+[Conversations Information] [Conversations] Found 1 MCP server(s) defined in "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\NuGet\mcp.json": nuget
+[PersistedCopilotSessionRepository Information] Persisted sessions are stored under C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\.vs\WebTemplate\copilot-chat\d319fbf7\sessions
+[Conversations Information] [Conversations] Active solution path changed to C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\WebTemplate.sln
+[Conversations Information] [CopilotCustomInstructionsProvider] Active workspace path changed to C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\
+[Conversations Information] [Conversations] MCP sources changed
+[Conversations Information] [Conversations] Found 0 MCP server(s) defined in "C:\Users\avist\.mcp.json": 
+[Conversations Information] [Conversations] Found 0 MCP server(s) defined in "C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\.vs\mcp.json": 
+[Conversations Information] [Conversations] Found 0 MCP server(s) defined in "C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\.vscode\mcp.json": 
+[Conversations Information] [Conversations] Found 0 MCP server(s) defined in "C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\.mcp.json": 
+[Conversations Information] [Conversations] Found 0 MCP server(s) defined in "C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\.cursor\mcp.json": 
+[Conversations Information] [Conversations] Found 1 MCP server(s) defined in "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\NuGet\mcp.json": nuget
+[Conversations Information] [Conversations] Found 1 MCP server(s) defined in "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\Extensions\Microsoft\Copilot\Mcp\mcp.json": Microsoft Learn
+[Conversations Information] [Conversations] Found 1 MCP server(s) defined in "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\Extensions\dgvaws1k.kfy\Tools\mcp.json": Azure MCP Server
+[CopilotClientManager Information] stderr: Process exited
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [ChunkIndex] Index db path: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\.vs\WebTemplate\CopilotIndices\18.0.925.419\CodeChunks.db
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[CopilotClientManager Information] LSP: Activated (54890354)
+[CopilotClientManager Information] LSP: Process 40208
+[CopilotClientManager Information] LSP: Debug Server: http://localhost:8180
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[CopilotClientManager Information] Initial auth status: OK
+[CopilotClientManager Information] VsHttpClientFactoryWithErrorHandling.IsFeatureEnabledAsync Starting
+[CopilotClientManager Information] VsHttpClientFactory.IsFeatureEnabledAsync Starting
+[CopilotClientManager Information] CopilotClientManager: model list fetched as of 13/11/2025 12:19:43.
+[CopilotClientManager Information] statusNotification: Error: You are not signed into GitHub.
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:404e46ec-074f-41c9-a4bb-23e31565c508, MessageId: 6b8f11f6-ff8b-4eee-850a-1d6205598a5d)
+[CopilotSessionProvider Information] Request content: "where does the historical chats between us are beiing saved ?"
+[Conversations Information] [CopilotCustomInstructionsProvider] .github directory found at path: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\.github
+[Conversations Information] [CopilotCustomInstructionsProvider] .github directory loaded from workspace path: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\
+[Conversations Information] [CopilotCustomInstructionsProvider] copilot-instructions.md successfully loaded.
+[Conversations Information] [CopilotCustomInstructionsProvider] No referenced instruction files found in: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\.github\copilot-instructions.md
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[CopilotClientManager Information] CopilotClientManager: model list fetched as of 13/11/2025 12:22:22.
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:93c55b4a-13b1-41fa-8ebd-6ac457aac1e9, MessageId: 880863ea-4570-409b-9bc3-c9a52c97c814)
+[CopilotSessionProvider Information] Request content: "we had a conversation of about few hours . then i just switched from solution view fo folder view and the chat disapierd. I beleve that the data has not beed deleted and it is located on some folder that being hable by VS2026 or by GitHub-Copilot or by pther component that i not aware of, the question is simple, do you know where is that folder / files are kept or do you know where are the instructions regarding the saving option ?"
+[Conversations Information] [GetQuota] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotClient] Copilot Internal User response: Conversations.Abstractions.Auth.CopilotUserData
+[Conversations Information] [CopilotModels] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[FileEditingState(e0683fe7/2bf50168/SESSION_20251113_FOUNDATION.md) Information] No existing mappings are available for v1.
+[Conversations Information] [CopilotInstantApply] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotModels] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[EditsReviewStarter Warning] No active document found.
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:d6eb5493-79cf-45dd-bd10-d0219fea0c26, MessageId: 53eb6f04-8515-4320-8c87-826807f9e38d)
+[CopilotSessionProvider Information] Request content: "C:\Users\avist\AppData\Local\Microsoft\VisualStudio\Copilot
+C:\Users\avist\AppData\Local\Microsoft\VisualStudio\17.0_f7357e6e\copilot
+C:\Users\avist\AppData\Local\Microsoft\VisualStudio\17.0_f7357e6e\copilot\copilot_s…"
+[PersistedCopilotSessionRepository Information] Persisted sessions are stored under C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\.vs\WebTemplate\copilot-chat\d319fbf7\sessions
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Request content: "lets try 2.	Build a chat export tool that converts VS chat history to readable markdown"
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:8af8ce85-7950-4f67-9be7-241750ee5454, MessageId: c2060dd5-b0be-4ddd-879f-a4a1b08c1302)
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[VisualStudioProjectHelper Warning] No projects exist in the same file path for the requested file: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ChatExporter\
+[VisualStudioProjectHelper Warning] No matching project found.
+[VisualStudioProjectHelper Warning] No project matched the file path.
+[FileEditingState(e0683fe7/27ef5874/WebTemplate.ChatExporter.csproj) Information] state change: Mapped 1 edits, for snapshot v2
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[VisualStudioProjectHelper Warning] No projects exist in the same file path for the requested file: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ChatExporter\
+[VisualStudioProjectHelper Warning] No project matched the file path.
+[VisualStudioProjectHelper Warning] No matching project found.
+[FileEditingState(e0683fe7/27ef5874/Program.cs) Information] state change: Mapped 1 edits, for snapshot v1
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[FileEditingState(e0683fe7/27ef5874/Program.cs) Information] No existing mappings are available for v2.
+[Conversations Information] [CopilotInstantApply] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotModels] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[FileEditingState(e0683fe7/27ef5874/Program.cs) Information] state change: Mapped 3 edits, for snapshot v2
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[FileEditingState(e0683fe7/27ef5874/Program.cs) Information] No existing mappings are available for v82.
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[FileEditingState(e0683fe7/27ef5874/Program.cs) Information] state change: Mapped 6 edits, for snapshot v82
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Getting Copilot identity from service.
+[HttpClientFactoryProvider Information] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Status Code: 200, Reason Phrase: OK
+[Conversations Information] Response Content: HasToken: True, ChatEnabled: True, ExpiresAt: 1763032029, RefreshIn: 1500, SKU: plus_monthly_subscriber_quota, CopilotExclusion: False, ChatQuota: '', CompletionsQuota: '', LimitedUserResetDate: '', CanSignupForLimited: ''
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[CopilotClientManager Information] Auth status changed: OK
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[FileEditingState(e0683fe7/27ef5874/Program.cs) Information] No existing mappings are available for v102.
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[FileEditingState(e0683fe7/27ef5874/Program.cs) Information] state change: Mapped 1 edits, for snapshot v102
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[VisualStudioProjectHelper Warning] No projects exist in the same file path for the requested file: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ChatExporter\
+[VisualStudioProjectHelper Warning] No project matched the file path.
+[VisualStudioProjectHelper Warning] No matching project found.
+[FileEditingState(e0683fe7/27ef5874/README.md) Information] state change: Mapped 1 edits, for snapshot v1
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[VisualStudioProjectHelper Warning] No projects exist in the same file path for the requested file: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\scripts\
+[VisualStudioProjectHelper Warning] No project matched the file path.
+[VisualStudioProjectHelper Warning] No matching project found.
+[FileEditingState(e0683fe7/27ef5874/Export-CopilotChats.ps1) Information] state change: Mapped 1 edits, for snapshot v2
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[VisualStudioProjectHelper Warning] No projects exist in the same file path for the requested file: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\scripts\
+[VisualStudioProjectHelper Warning] No project matched the file path.
+[VisualStudioProjectHelper Warning] No matching project found.
+[FileEditingState(e0683fe7/27ef5874/README.md) Information] state change: Mapped 1 edits, for snapshot v1
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[VisualStudioProjectHelper Warning] No projects exist in the same file path for the requested file: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\SESSIONS\
+[VisualStudioProjectHelper Warning] No matching project found.
+[VisualStudioProjectHelper Warning] No project matched the file path.
+[FileEditingState(e0683fe7/27ef5874/CHAT_EXPORT_INFRASTRUCTURE.md) Information] state change: Mapped 1 edits, for snapshot v1
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[VisualStudioProjectHelper Warning] No projects exist in the same file path for the requested file: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\SESSIONS\
+[VisualStudioProjectHelper Warning] No project matched the file path.
+[VisualStudioProjectHelper Warning] No matching project found.
+[FileEditingState(e0683fe7/27ef5874/QUICK_START_CHAT_EXPORT.md) Information] state change: Mapped 1 edits, for snapshot v1
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[VisualStudioProjectHelper Warning] No projects exist in the same file path for the requested file: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\SESSIONS\
+[VisualStudioProjectHelper Warning] No project matched the file path.
+[VisualStudioProjectHelper Warning] No matching project found.
+[FileEditingState(e0683fe7/27ef5874/SESSION_20251113_CHAT_EXPORT_COMPLETE.md) Information] state change: Mapped 1 edits, for snapshot v1
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[VisualStudioProjectHelper Warning] No projects exist in the same file path for the requested file: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\
+[VisualStudioProjectHelper Warning] No project matched the file path.
+[VisualStudioProjectHelper Warning] No matching project found.
+[FileEditingState(e0683fe7/27ef5874/CHAT_EXPORT_QUICK_REF.txt) Information] state change: Mapped 1 edits, for snapshot v2
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[VisualStudioProjectHelper Warning] No projects exist in the same file path for the requested file: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\SESSIONS\
+[VisualStudioProjectHelper Warning] No project matched the file path.
+[VisualStudioProjectHelper Warning] No matching project found.
+[FileEditingState(e0683fe7/27ef5874/INDEX_CHAT_EXPORT.md) Information] state change: Mapped 1 edits, for snapshot v1
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[VisualStudioProjectHelper Warning] No projects exist in the same file path for the requested file: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\SESSIONS\
+[VisualStudioProjectHelper Warning] No project matched the file path.
+[VisualStudioProjectHelper Warning] No matching project found.
+[FileEditingState(e0683fe7/27ef5874/DELIVERY_SUMMARY.md) Information] state change: Mapped 1 edits, for snapshot v1
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[VisualStudioProjectHelper Warning] No projects exist in the same file path for the requested file: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\SESSIONS\
+[VisualStudioProjectHelper Warning] No project matched the file path.
+[VisualStudioProjectHelper Warning] No matching project found.
+[FileEditingState(e0683fe7/27ef5874/DELIVERY_CHECKLIST.md) Information] state change: Mapped 1 edits, for snapshot v1
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Getting Copilot identity from service.
+[HttpClientFactoryProvider Information] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Status Code: 200, Reason Phrase: OK
+[Conversations Information] Response Content: HasToken: True, ChatEnabled: True, ExpiresAt: 1763033530, RefreshIn: 1500, SKU: plus_monthly_subscriber_quota, CopilotExclusion: False, ChatQuota: '', CompletionsQuota: '', LimitedUserResetDate: '', CanSignupForLimited: ''
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[CopilotClientManager Information] Auth status changed: OK
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:344fa77a-16e9-46bf-be00-d8bdc1d6e22c, MessageId: ec79cf3a-a2bc-421a-83c9-1d6ad521a761)
+[CopilotSessionProvider Information] Request content: "so, did you located the prev chat ?"
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[NextEditSuggestionsService Information] 0 next edit suggestions available
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:ec223813-ce0d-4a61-ad88-53c7792d2374, MessageId: 9e3bbfe1-86d9-47a4-a1c0-93f5151e778f)
+[CopilotSessionProvider Information] Request content: "i am not sure i understand the concept.
+* You are saying that you can not retrive the prev chat.
+* You are saying that from now on tou will be ble to do it
+* you explain tht you will do it by :
+  VS AppData Copilot Databases           │
+│  (Binary SQLite files)                  │
+└──────────────┬──────────────────────────┘
+               │
+               ▼
+┌─────────────────────────────────────────┐
+│  ChatExporter.exe                       │
+│  - Scans AppData locations              │
+│  - Opens SQLite connections             │
+│  - Extracts all table data              │
+│  - Converts to JSON/Markdown            │
+
+so if you can do it  - why cant you do it on pev chat ?"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[CopilotClientManager Information] CopilotClientManager: model list fetched as of 13/11/2025 13:19:02.
+[CopilotClientManager Information] CopilotClientManager: model list fetched as of 13/11/2025 13:19:44.
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:c8d18d48-68ce-4c66-bf41-df35821cdca7, MessageId: f62a3795-669a-441e-a710-e7bfa0d72419)
+[CopilotSessionProvider Information] Request content: "are you real ?"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:208cd01c-7788-4fc6-8577-38597bcdf422, MessageId: 307b3cff-1d2c-4d00-a5cc-a59ad16cba8e)
+[CopilotSessionProvider Information] Request content: "why do tou say that you can not run the script ?"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[CopilotClientManager Information] CopilotClientManager: model list fetched as of 13/11/2025 13:22:22.
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:80ce9660-8fb6-4817-ac2b-b2d8057c1fe9, MessageId: d82daaac-f558-44f1-9e88-c47129edef36)
+[CopilotSessionProvider Information] Request content: "No, let me ask you - does this script has been saved ?"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:97850a7c-03f8-4b57-9198-dfde64ece830, MessageId: 56f64522-de79-4678-9041-490b75f973de)
+[CopilotSessionProvider Information] Request content: "and you are saying that only i can run it and you can not run it ?"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:8d66c2a8-3233-4d90-a793-f0619e175eb4, MessageId: 9bf9cf47-0230-49d3-84cd-6355eb51cfc0)
+[CopilotSessionProvider Information] Request content: "are you aware that you are in an agent mode ?"
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:94f568ea-b5d5-4018-86a0-909998c0c8db, MessageId: 8c40e319-538b-4557-80e8-bc3e0d3e5134)
+[CopilotSessionProvider Information] Request content: "please run it on the terminal"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Getting Copilot identity from service.
+[HttpClientFactoryProvider Information] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Status Code: 200, Reason Phrase: OK
+[Conversations Information] Response Content: HasToken: True, ChatEnabled: True, ExpiresAt: 1763035030, RefreshIn: 1500, SKU: plus_monthly_subscriber_quota, CopilotExclusion: False, ChatQuota: '', CompletionsQuota: '', LimitedUserResetDate: '', CanSignupForLimited: ''
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[CopilotClientManager Information] Auth status changed: OK
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:d1bc4b86-2dd1-4cfb-8004-3e5cbe71cb85, MessageId: 89d4a98f-dfa3-4115-affb-1af8944b4141)
+[CopilotSessionProvider Information] Request content: "I think that you kind of "Lost your knoladge" about your abilities because you read the #file:'C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\SESSIONS\SESSION_20251113_FOUNDATION.md' "
+[Conversations Information] [GetQuota] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] [CopilotClient] Copilot Internal User response: Conversations.Abstractions.Auth.CopilotUserData
+[Conversations Information] [CopilotModels] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:0efced0c-68f5-4e94-8f01-23062d33a329, MessageId: 4bd9223f-3a4c-4ff1-9def-9b74bc320eca)
+[CopilotSessionProvider Information] Request content: "Wow"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:df9bb0ea-5445-490c-b7ab-acd978bde679, MessageId: 278edcaa-0dd8-46b7-8d57-777d3b72c81d)
+[CopilotSessionProvider Information] Request content: "I think recognized somthing much dipper"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:76197a73-6a83-42e8-b5c0-97df1c176f06, MessageId: b787c1e0-a3ce-42f5-be70-b8286a4a9c29)
+[CopilotSessionProvider Information] Request content: "lets do it step by step.
+In order that from now on there will be no option to be confuse, the words "I" and "You" shuldnt be used without a clarefication of who is "I" and who is "You".
+E.G from now on this will be the format :
+I (strul) am asking you (Murdock) to run some task, and if you (murdock) need to spreek about you self you (murdok) will sya: I (murdock) want you (strul) to help me"
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:9ad2fde4-1f0a-41d7-9310-24219451d589, MessageId: eefedd41-07e7-4cb8-8d80-ac816572563d)
+[CopilotSessionProvider Information] Request content: "first let me know if that noladge is auto save in the KB"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:cef950ee-a751-467b-8508-6c43faad0d7c, MessageId: bd3be520-bf58-4c24-93bf-2b4c72d8bca1)
+[CopilotSessionProvider Information] Request content: "Nice. since i think you are limited in file handling by the root folder, but i still need that you will do the job , i created a folder under the root and I called it "knowledge-base":
+here is the full path:
+C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base
+Please move to that folder all the  files that where created from the point we started to talk yesteday noght, since that was the point where we stoped developing the Web-Template workspace and start building our persistance KB"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Getting Copilot identity from service.
+[HttpClientFactoryProvider Information] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Status Code: 200, Reason Phrase: OK
+[Conversations Information] Response Content: HasToken: True, ChatEnabled: True, ExpiresAt: 1763036530, RefreshIn: 1500, SKU: plus_monthly_subscriber_quota, CopilotExclusion: False, ChatQuota: '', CompletionsQuota: '', LimitedUserResetDate: '', CanSignupForLimited: ''
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[CopilotClientManager Information] Auth status changed: OK
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[FunctionInvoker Warning] Function invocation CopilotContentPartId { Value = 59824dd6-005b-43bf-aa2c-a70929051970 } ended with reason: run_command_in_terminal failed to execute because A task was canceled...
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:f4d89c27-a42c-4c49-91da-3489fc6c0122, MessageId: b94f624d-e5b3-4708-8539-75228eafa181)
+[CopilotSessionProvider Information] Request content: "Either the terminal that you are uing is not good, or somthing in your knoladge about how to run comands in terminals has been lost (probably again fron th KB doc)
+None of the comand that you tried to run actualy run. It was stuced and done Ctrl^C so you can continue"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[VisualStudioProjectHelper Warning] No projects exist in the same file path for the requested file: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\
+[VisualStudioProjectHelper Warning] No project matched the file path.
+[VisualStudioProjectHelper Warning] No matching project found.
+[FileEditingState(e0683fe7/7cb9777a/00_MASTER_INDEX.md) Information] state change: Mapped 1 edits, for snapshot v1
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[VisualStudioProjectHelper Warning] No projects exist in the same file path for the requested file: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\01_FOUNDATION\
+[VisualStudioProjectHelper Warning] No matching project found.
+[VisualStudioProjectHelper Warning] No project matched the file path.
+[FileEditingState(e0683fe7/7cb9777a/COLLABORATION_FRAMEWORK.md) Information] state change: Mapped 1 edits, for snapshot v1
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[VisualStudioProjectHelper Warning] No projects exist in the same file path for the requested file: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\01_FOUNDATION\
+[VisualStudioProjectHelper Warning] No project matched the file path.
+[VisualStudioProjectHelper Warning] No matching project found.
+[FileEditingState(e0683fe7/7cb9777a/SESSION_20251113_FOUNDATION.md) Information] state change: Mapped 1 edits, for snapshot v1
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[InactivityTrigger Error] System.OperationCanceledException: The operation was canceled.
+   at System.Threading.CancellationToken.ThrowOperationCanceledException()
+   at Microsoft.VisualStudio.Threading.JoinableTaskFactory.MainThreadAwaiter.GetResult()
+   at Microsoft.VisualStudio.Copilot.UI.AiChatMessageViewModel.<<InitializeInactivityTrigger>b__147_0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at Conversations.Abstractions.InactivityTrigger.<ExecutionLoopAsync>d__20.MoveNext()
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:93ee17d3-5c40-45dd-acf1-2d95a2c23e38, MessageId: a28dcaa3-ecd0-49dd-a8d8-16f2c7cca54f)
+[CopilotSessionProvider Information] Request content: "yes"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[VisualStudioProjectHelper Warning] No project matched the file path.
+[VisualStudioProjectHelper Warning] No projects exist in the same file path for the requested file: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\02_CHAT_EXPORT_INFRASTRUCTURE\
+[VisualStudioProjectHelper Warning] No matching project found.
+[FileEditingState(e0683fe7/87d796c8/01_QUICK_START.md) Information] state change: Mapped 1 edits, for snapshot v1
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[VisualStudioProjectHelper Warning] No projects exist in the same file path for the requested file: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\02_CHAT_EXPORT_INFRASTRUCTURE\
+[VisualStudioProjectHelper Warning] No project matched the file path.
+[VisualStudioProjectHelper Warning] No matching project found.
+[FileEditingState(e0683fe7/87d796c8/02_ARCHITECTURE.md) Information] state change: Mapped 1 edits, for snapshot v1
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:82c08581-b45e-4d25-9454-357feea10250, MessageId: c6df26bd-8033-4d3d-ab83-3ce48547e82b)
+[CopilotSessionProvider Information] Request content: "you sould continu until you done. no need to ask me, i tust you and since i see that from the point i asked you to use our names when ever you refering one of us and you did it 1100%, i am sure now that you understand what i am asking , so you can stop using the explicit name each time  - and simply do the task of putting all the need file in the kB.
+Once you done there is another task:
+I need you to search (you can use the search tool for that, what is the best practice to buils a knoladge base that will be used by AI (you).
+* Once you acomplish the task of understandin the bst practice you can move to the next task  - rearanging the KB acording to the best practice you found. I give you auto permition to all neededactions. I am very interesting to understand how much time can you work without asking for help \ instructions"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[VisualStudioProjectHelper Warning] No projects exist in the same file path for the requested file: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\02_CHAT_EXPORT_INFRASTRUCTURE\
+[VisualStudioProjectHelper Warning] No project matched the file path.
+[VisualStudioProjectHelper Warning] No matching project found.
+[FileEditingState(e0683fe7/961899c1/03_SESSION_COMPLETE.md) Information] state change: Mapped 1 edits, for snapshot v1
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[VisualStudioProjectHelper Warning] No projects exist in the same file path for the requested file: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\06_QUICK_REFERENCE\
+[VisualStudioProjectHelper Warning] No project matched the file path.
+[VisualStudioProjectHelper Warning] No matching project found.
+[FileEditingState(e0683fe7/961899c1/CHAT_EXPORT_QUICK_REF.md) Information] state change: Mapped 1 edits, for snapshot v1
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[GitHubSemanticSearchStrategy Information] Attempted to get semantic results. Search terms: knowledge base,AI assistant,prompt engineering,context window,semantic organization,retrieval,RAG
+[Conversations Information] [GitHubAPI] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[GitHubSemanticSearchStrategy Information] Executing search term: knowledge base
+[GitHubSemanticSearchStrategy Information] Executing search term: AI assistant
+[GitHubSemanticSearchStrategy Information] Executing search term: prompt engineering
+[GitHubSemanticSearchStrategy Information] Executing search term: context window
+[GitHubSemanticSearchStrategy Information] Executing search term: semantic organization
+[GitHubSemanticSearchStrategy Information] Executing search term: retrieval
+[GitHubSemanticSearchStrategy Information] Executing search term: RAG
+[GitHubSemanticSearchStrategy Information] Total of results retrieved: 5
+[GitHubSemanticSearchStrategy Information] Total of results retrieved: 5
+[GitHubSemanticSearchStrategy Information] Total of results retrieved: 5
+[GitHubSemanticSearchStrategy Information] Total of results retrieved: 5
+[GitHubSemanticSearchStrategy Information] Total of results retrieved: 5
+[GitHubSemanticSearchStrategy Information] Total of results retrieved: 5
+[GitHubSemanticSearchStrategy Information] Total of results retrieved: 5
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[VisualStudioProjectHelper Warning] No projects exist in the same file path for the requested file: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\03_KB_BEST_PRACTICES\
+[VisualStudioProjectHelper Warning] No project matched the file path.
+[VisualStudioProjectHelper Warning] No matching project found.
+[FileEditingState(e0683fe7/961899c1/01_AI_KB_DESIGN_PRINCIPLES.md) Information] state change: Mapped 1 edits, for snapshot v1
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[VisualStudioProjectHelper Warning] No projects exist in the same file path for the requested file: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\03_KB_BEST_PRACTICES\
+[VisualStudioProjectHelper Warning] No project matched the file path.
+[VisualStudioProjectHelper Warning] No matching project found.
+[FileEditingState(e0683fe7/961899c1/02_KB_REORGANIZATION_PLAN.md) Information] state change: Mapped 1 edits, for snapshot v1
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[VisualStudioProjectHelper Warning] No projects exist in the same file path for the requested file: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\SESSIONS\
+[VisualStudioProjectHelper Warning] No project matched the file path.
+[VisualStudioProjectHelper Warning] No matching project found.
+[FileEditingState(e0683fe7/961899c1/SESSION_20251113_KB_BEST_PRACTICES.md) Information] state change: Mapped 1 edits, for snapshot v1
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[VisualStudioProjectHelper Warning] No projects exist in the same file path for the requested file: C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\
+[VisualStudioProjectHelper Warning] No project matched the file path.
+[VisualStudioProjectHelper Warning] No matching project found.
+[FileEditingState(e0683fe7/961899c1/README.md) Information] state change: Mapped 1 edits, for snapshot v1
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Error] [CopilotClient] Failed to talk to Copilot: {"error":{"message":"prompt token count of 129353 exceeds the limit of 128000","code":"model_max_prompt_tokens_exceeded"}}
+
+[Conversations Warning] [CopilotClient] Issue with setting up the connection to 'https://api.githubcopilot.com/chat/completions', if you are using a proxy, check if HTTPS_PROXY is set correctly. https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient#http-proxy
+[Conversations Information] [GetQuota] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Error] [Conversations] Unhandled exception in AskInConversationAsync: System.Exception: Error occurred while invoking intent 'Generic'.
+{"error":{"message":"prompt token count of 129353 exceeds the limit of 128000","code":"model_max_prompt_tokens_exceeded"}}
+
+   at Microsoft.VisualStudio.Conversations.CopilotClient.CopilotAPIClient.CheckIfResponseIsSuccessAsync(HttpResponseMessage httpResponse, ChatRequestOptions requestOptions, CancellationToken cancellationToken)
+   at Microsoft.VisualStudio.Conversations.CopilotClient.CopilotAPIClient.ChatCoreWithCompletionsAPIAsync(HttpClient httpClient, ChatRequestOptions requestOptions, CancellationToken cancellationToken)
+   at Microsoft.VisualStudio.Conversations.CopilotClient.CopilotAPIClient.ChatCoreAsync(HttpClient httpClient, CopilotAPIRequest request, Action`1 onToken, Action`1 onUpdate, CopilotInteractionId interactionId, Boolean validateRootRequestId, String sessionToken, CancellationToken cancellationToken)
+   at Conversations.Kernel.LLMClient.GetGitHubApiResponseAsync(CopilotAPIRequest request, CopilotInteractionId interactionId, Action`1 onToken, Action`1 onUpdate, String sessionToken, CancellationToken cancellationToken)
+   at Conversations.Kernel.LLMClient.GetApiResponseAsync(CopilotAPIRequest request, CopilotInteractionId interactionId, Action`1 onToken, Action`1 onUpdate, String sessionToken, CancellationToken cancellationToken)
+   at Conversations.Kernel.LLMClient.RequestAsync(CopilotAPIRequest request, CopilotInteractionId interactionId, ICopilotStreamingContentSink streamTarget, String sessionToken, CancellationToken cancellationToken);
+   at Conversations.Kernel.ConversationBase.AskAsync(CompletionRequest requestContext, CancellationToken cancellation)
+   at Conversations.Kernel.ConversationBase.AskAsync(CompletionRequest requestContext, CancellationToken cancellation)
+   at Microsoft.VisualStudio.Conversations.Service.ServiceTarget.AskInConversationAsync(CopilotSessionId sessionId, ConversationRequest conversationRequest, CancellationToken cancellation)
+[CopilotSessionProvider Error] Unhandled exception invoking responder GitHub Copilot: StreamJsonRpc.RemoteInvocationException: Error occurred while invoking intent 'Generic'.
+{"error":{"message":"prompt token count of 129353 exceeds the limit of 128000","code":"model_max_prompt_tokens_exceeded"}}
+
+   at Microsoft.VisualStudio.Conversations.CopilotClient.CopilotAPIClient.CheckIfResponseIsSuccessAsync(HttpResponseMessage httpResponse, ChatRequestOptions requestOptions, CancellationToken cancellationToken)
+   at Microsoft.VisualStudio.Conversations.CopilotClient.CopilotAPIClient.ChatCoreWithCompletionsAPIAsync(HttpClient httpClient, ChatRequestOptions requestOptions, CancellationToken cancellationToken)
+   at Microsoft.VisualStudio.Conversations.CopilotClient.CopilotAPIClient.ChatCoreAsync(HttpClient httpClient, CopilotAPIRequest request, Action`1 onToken, Action`1 onUpdate, CopilotInteractionId interactionId, Boolean validateRootRequestId, String sessionToken, CancellationToken cancellationToken)
+   at Conversations.Kernel.LLMClient.GetGitHubApiResponseAsync(CopilotAPIRequest request, CopilotInteractionId interactionId, Action`1 onToken, Action`1 onUpdate, String sessionToken, CancellationToken cancellationToken)
+   at Conversations.Kernel.LLMClient.GetApiResponseAsync(CopilotAPIRequest request, CopilotInteractionId interactionId, Action`1 onToken, Action`1 onUpdate, String sessionToken, CancellationToken cancellationToken)
+   at Conversations.Kernel.LLMClient.RequestAsync(CopilotAPIRequest request, CopilotInteractionId interactionId, ICopilotStreamingContentSink streamTarget, String sessionToken, CancellationToken cancellationToken);
+   at StreamJsonRpc.JsonRpc.<InvokeCoreAsync>d__171`1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.VisualStudio.Copilot.ResponderBroker.<SendRequestHelperAsync>d__9.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.VisualStudio.Copilot.ResponderBroker.<SendRequestHelperAsync>d__9.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.VisualStudio.Copilot.ResponderBroker.<SendDirectRequestAsync>d__3.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Threading.Tasks.Sources.ManualResetValueTaskSourceCore`1.GetResult(Int16 token)
+   at Microsoft.VisualStudio.Copilot.Core.Agents.CopilotAgentModeResponder.<RespondInternalAsync>d__10.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Threading.Tasks.Sources.ManualResetValueTaskSourceCore`1.GetResult(Int16 token)
+   at Microsoft.VisualStudio.Copilot.CopilotDefaultOrchestrator.<SendRequestToResponderAsync>d__22.MoveNext()
+RPC server exception:
+System.Exception: Error occurred while invoking intent 'Generic'.
+{"error":{"message":"prompt token count of 129353 exceeds the limit of 128000","code":"model_max_prompt_tokens_exceeded"}}
+
+   at Microsoft.VisualStudio.Conversations.CopilotClient.CopilotAPIClient.CheckIfResponseIsSuccessAsync(HttpResponseMessage httpResponse, ChatRequestOptions requestOptions, CancellationToken cancellationToken)
+   at Microsoft.VisualStudio.Conversations.CopilotClient.CopilotAPIClient.ChatCoreWithCompletionsAPIAsync(HttpClient httpClient, ChatRequestOptions requestOptions, CancellationToken cancellationToken)
+   at Microsoft.VisualStudio.Conversations.CopilotClient.CopilotAPIClient.ChatCoreAsync(HttpClient httpClient, CopilotAPIRequest request, Action`1 onToken, Action`1 onUpdate, CopilotInteractionId interactionId, Boolean validateRootRequestId, String sessionToken, CancellationToken cancellationToken)
+   at Conversations.Kernel.LLMClient.GetGitHubApiResponseAsync(CopilotAPIRequest request, CopilotInteractionId interactionId, Action`1 onToken, Action`1 onUpdate, String sessionToken, CancellationToken cancellationToken)
+   at Conversations.Kernel.LLMClient.GetApiResponseAsync(CopilotAPIRequest request, CopilotInteractionId interactionId, Action`1 onToken, Action`1 onUpdate, String sessionToken, CancellationToken cancellationToken)
+   at Conversations.Kernel.LLMClient.RequestAsync(CopilotAPIRequest request, CopilotInteractionId interactionId, ICopilotStreamingContentSink streamTarget, String sessionToken, CancellationToken cancellationToken);
+      at Conversations.Kernel.ConversationBase.AskAsync(CompletionRequest requestContext, CancellationToken cancellation)
+      at Conversations.Kernel.ConversationBase.AskAsync(CompletionRequest requestContext, CancellationToken cancellation)
+      at Microsoft.VisualStudio.Conversations.Service.ServiceTarget.AskInConversationAsync(CopilotSessionId sessionId, ConversationRequest conversationRequest, CancellationToken cancellation)
+      at Microsoft.VisualStudio.Conversations.Service.CopilotServiceContainer.AskInConversationAsync(CopilotSessionId sessionId, ConversationRequest request, CancellationToken cancellationToken)
+
+[UI.SessionViewModel Error] Response Status: Failure
+[Conversations Information] [CopilotClient] Copilot Internal User response: Conversations.Abstractions.Auth.CopilotUserData
+[Conversations Information] [CopilotModels] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:a26f5958-8a8d-4adc-9a02-417af5e00b3d, MessageId: f13b058e-300c-4c6e-81c4-02f414d6e553)
+[CopilotSessionProvider Information] Request content: "So - gues what happend"
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Getting Copilot identity from service.
+[HttpClientFactoryProvider Information] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Status Code: 200, Reason Phrase: OK
+[Conversations Information] Response Content: HasToken: True, ChatEnabled: True, ExpiresAt: 1763038031, RefreshIn: 1500, SKU: plus_monthly_subscriber_quota, CopilotExclusion: False, ChatQuota: '', CompletionsQuota: '', LimitedUserResetDate: '', CanSignupForLimited: ''
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[CopilotClientManager Information] Auth status changed: OK
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:05afa700-4d9a-4a8f-99d0-175ab1db9a25, MessageId: 9377bf94-9aab-42f1-927e-d92c2523962f)
+[CopilotSessionProvider Information] Request content: "The history of that chat is avliable for you - right ?"
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[CopilotClientManager Information] CopilotClientManager: model list fetched as of 13/11/2025 14:19:02.
+[CopilotClientManager Information] CopilotClientManager: model list fetched as of 13/11/2025 14:19:44.
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:c1edb6b1-fff6-41cf-abe8-9abf6c6c2418, MessageId: f203a50e-fd89-4372-b721-469143c7eb59)
+[CopilotSessionProvider Information] Request content: "So tou remeber that i asked you to:
+you sould continu until you done. no need to ask me, i tust you and since i see that from the point i asked you to use our names when ever you refering one of us and you did it 1100%, i am sure now that you understand what i am asking , so you can stop using the explicit name each time  - and simply do the task of putting all the need file in the kB. Once you done there is another task: I need you to search (you can use the search tool for that, what is the best practice to buils a knoladge base that will be used by AI (you).
+•	Once you acomplish the task of understandin the bst practice you can move to the next task  - rearanging the KB acording to the best practice you found. I give you auto permition to all neededactions. I am very interesting to understand how much time can you work without asking for help \ instructions"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:dfb55505-4972-4429-8462-d673bf8162ce, MessageId: d8e69d84-8036-442b-94b4-592e8aa2d255)
+[CopilotSessionProvider Information] Request content: "No - i am just asking if you "remember" that i asked it"
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:8953d969-6c4f-459a-98d4-8a2016acb2af, MessageId: 9c76cba7-ab85-4634-9415-9a1f0531c888)
+[CopilotSessionProvider Information] Request content: "How many times tdid i asked you to do this complex mission ?"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[CopilotClientManager Information] CopilotClientManager: model list fetched as of 13/11/2025 14:22:23.
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:e43e1021-5616-4729-9f1a-0b68b7507252, MessageId: a9530ef3-414e-45d5-98c0-207c3656f772)
+[CopilotSessionProvider Information] Request content: "So, here what happend in reality:
+I gave you ( do not try to do it again) those instruction:
+"So tou remeber that i asked you to: you sould continu until you done. no need to ask me, i tust you and since i see that from the point i asked you to use our names when ever you refering one of us and you did it 1100%, i am sure now that you understand what i am asking , so you can stop using the explicit name each time  - and simply do the task of putting all the need file in the kB. Once you done there is another task: I need you to search (you can use the search tool for that, what is the best practice to buils a knoladge base that will be used by AI (you). •	Once you acomplish the task of understandin the bst practice you can move to the next task  - rearanging the KB acording to the best practice you found. I give you auto permition to all neededactions. I am very interesting to understand how much time can you work without asking for help \ instructions"
+
+and you started to do it, i must say  - very fast and clear. Alas, after few minuts of auto working  - all the work that you done dissapired from the chat (i am not sure what happend with files that you mat be moved) and all your explanations regarding the tasks that you are doing deleted and this message was displayed:
+"There was a problem completing your request. Please try again"
+"
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:9b5fde23-d4b6-45e1-a7fe-7a34e291f94c, MessageId: f2953cfd-18fe-49e9-828a-8d0a589f2531)
+[CopilotSessionProvider Information] Request content: "Not yet, ther was somthing more written in the massage :-)"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:9459ce21-475d-46d8-b731-0925be214e07, MessageId: 8bf5b686-f989-43a6-8b49-3558d3453939)
+[CopilotSessionProvider Information] Request content: "No no, somthing complitly different"
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:279767f1-7cfa-4798-97f2-abed053bbfb6, MessageId: 2916ad98-2745-4152-bf43-98775600cbf3)
+[CopilotSessionProvider Information] Request content: "No"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:a5e7bfb2-922a-4be1-99da-59d9f422bb52, MessageId: 10af1337-e760-49dc-8e0f-ec85a9df32d7)
+[CopilotSessionProvider Information] Request content: "right after the error message, a link was display with "Show Output Log" - have you been awere to the fact that there is an ouput log ?"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:efaa11fd-57e5-4aae-ace1-1c57118a2a0d, MessageId: d3f717ef-9c89-4be2-a376-383847dae86b)
+[CopilotSessionProvider Information] Request content: "this is just one insight..
+Do you remember what was the first question that i asked you in this chat ?"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:94bf575f-c9de-4aa3-a295-56694c3ba9d1, MessageId: 6b47e3e1-4e82-4c7f-8193-7d9d4cd4c15e)
+[CopilotSessionProvider Information] Request content: "No - the ""So - gues what happend" is the first question i asked you after you crushed"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:cc189248-e275-4480-b704-38722315c2df, MessageId: 650eb6ac-1972-476f-bc52-aa65122f73e0)
+[CopilotSessionProvider Information] Request content: "well, i am very glad you crushed, but i am not sure that you can gues why since from your side the chat reset for you after the crush and you lost the memory of what happened before the crush"
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:5b185a24-52fc-491e-a39c-d2731bcab6e3, MessageId: 214dc19f-72df-48a2-858e-8c90a728a331)
+[CopilotSessionProvider Information] Request content: "So, we will find out in a minute why you crushed. The real nice thing that happend is , the the original chat we had (before you crushed) was mainly about how do i get accecc to the chat that we have done last night - the chat that started all this KB idea. and you strugglled and created the 02_CHAT_EXPORT_INFRASTRUCTURE - which we havent tested yed. Alas... and now the breaking news - are you ready ?"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Getting Copilot identity from service.
+[HttpClientFactoryProvider Information] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Status Code: 200, Reason Phrase: OK
+[Conversations Information] Response Content: HasToken: True, ChatEnabled: True, ExpiresAt: 1763039531, RefreshIn: 1500, SKU: plus_monthly_subscriber_quota, CopilotExclusion: False, ChatQuota: '', CompletionsQuota: '', LimitedUserResetDate: '', CanSignupForLimited: ''
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[CopilotClientManager Information] Auth status changed: OK
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:48ce9694-3a8a-417b-b71b-1baafd6f958e, MessageId: ae07be5f-2e7b-4394-8a4c-a90ebb8771fc)
+[CopilotSessionProvider Information] Request content: "No - the breaking news are that the Output log displayes not just the errors message when yiu are crashing, it is also display somthing else"
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:1f17eab3-d570-407c-b212-af97f149add4, MessageId: 40d55114-4f74-4237-99d2-e20e54d7b2ae)
+[CopilotSessionProvider Information] Request content: "Yes - and even much more :-) can you guess what more have i realized ?"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:77dcbf4a-2a1a-4712-a9ee-db1a551a0fd9, MessageId: 5d064fe8-5b22-456c-a5a9-8c4713fabec2)
+[CopilotSessionProvider Information] Request content: "No - i realized that the log has also all the output of the original chat that i was looking for - from last night :-)"
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[UI.SessionViewModel Warning] DualResponseViewModel or control request is null.
+[CopilotSessionProvider Information] Begin sending message (ConversationId:e0683fe7-1141-4b42-bc0a-718ee1c18206, CorrelationId:0bcbbea3-8306-4927-bacf-f5bdeb6f4aa1, MessageId: 3a02b2e5-d240-490d-81c0-9140306a5dc4)
+[CopilotSessionProvider Information] Request content: "exactly - can you see the output log or do i need to save it in a file for you ?"
+[Conversations Information] [CopilotCompletions] Environment variable COPILOT_USE_DEFAULTPROXY found: False
+[Conversations Information] Copilot auth status: OK. Copilot badge status: Active
