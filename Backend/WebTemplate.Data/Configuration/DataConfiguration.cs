@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Configuration;
+using WebTemplate.Core.Common;
 using WebTemplate.Core.Configuration;
 
 namespace WebTemplate.Data.Configuration;
@@ -27,21 +28,37 @@ public class DataConfiguration : CoreConfiguration, IDataConfiguration
         DatabaseRetry = configuration.GetSection(DatabaseRetrySettings.SectionName).Get<DatabaseRetrySettings>()
             ?? new DatabaseRetrySettings();
 
-        ValidateDatabaseRetrySettings(DatabaseRetry);
+        // Validate all settings (including base CoreConfiguration settings)
+        var validationResult = ValidateInternal();
+        if (validationResult.IsFailure)
+        {
+            var errorMessages = validationResult.Errors.Select(e => e.Description);
+            throw new InvalidOperationException(
+                $"Configuration validation failed:{Environment.NewLine}{string.Join(Environment.NewLine, errorMessages)}"
+            );
+        }
     }
 
-    private static void ValidateDatabaseRetrySettings(DatabaseRetrySettings settings)
+    public override Result Validate() => ValidateInternal();
+
+    private Result ValidateInternal()
     {
-        if (settings.MaxRetryCount < 0)
-            throw new InvalidOperationException("DatabaseRetry:MaxRetryCount cannot be negative.");
+        var errors = new List<Error>();
 
-        if (settings.MaxRetryCount > 10)
-            throw new InvalidOperationException("DatabaseRetry:MaxRetryCount cannot exceed 10 for safety.");
+        // Validate base CoreConfiguration (Auth + Email)
+        var baseResult = base.Validate();
+        if (baseResult.IsFailure)
+            errors.AddRange(baseResult.Errors);
 
-        if (settings.MaxRetryDelaySeconds < 1)
-            throw new InvalidOperationException("DatabaseRetry:MaxRetryDelaySeconds must be at least 1 second.");
+        // Validate ConnectionString
+        if (string.IsNullOrWhiteSpace(ConnectionString))
+            errors.Add(Errors.Configuration.RequiredFieldMissing("ConnectionStrings:DefaultConnection"));
 
-        if (settings.MaxRetryDelaySeconds > 300)
-            throw new InvalidOperationException("DatabaseRetry:MaxRetryDelaySeconds cannot exceed 300 seconds (5 minutes).");
+        // Validate DatabaseRetry settings
+        var retryResult = DatabaseRetry.Validate();
+        if (retryResult.IsFailure)
+            errors.AddRange(retryResult.Errors);
+
+        return errors.Any() ? Result.Failure(errors) : Result.Success();
     }
 }

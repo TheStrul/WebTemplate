@@ -3,23 +3,33 @@ namespace WebTemplate.E2ETests
     using System.Net.Http.Headers;
     using System.Net.Http.Json;
     using System.Text.Json;
+    using WebTemplate.E2ETests.Configuration;
 
     /// <summary>
-    /// Base class for E2E tests with helper methods for authentication and HTTP calls
+    /// Base class for E2E tests with helper methods for authentication and HTTP calls.
+    /// Uses hierarchical configuration singleton pattern with NO FALLBACKS.
     /// </summary>
     public abstract class E2ETestBase : IDisposable
     {
         protected readonly HttpClient Client;
         protected readonly JsonSerializerOptions JsonOptions;
+        protected readonly ITestConfiguration Config;
 
         protected E2ETestBase()
         {
+            Config = TestConfiguration.Instance;
+
             Client = new HttpClient
             {
-                BaseAddress = new Uri(E2ETestConfig.BaseUrl),
-                Timeout = TimeSpan.FromSeconds(30)
+                BaseAddress = new Uri(Config.Server.BaseUrl),
+                Timeout = TimeSpan.FromSeconds(Config.Execution.RequestTimeoutSeconds)
             };
-            JsonOptions = E2ETestConfig.JsonOptions;
+
+            JsonOptions = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            };
         }
 
         /// <summary>
@@ -29,8 +39,8 @@ namespace WebTemplate.E2ETests
         {
             var loginRequest = new
             {
-                email = E2ETestConfig.AdminEmail,
-                password = E2ETestConfig.AdminPassword
+                email = Config.Admin.Email,
+                password = Config.Admin.Password
             };
 
             var response = await Client.PostAsJsonAsync("/api/auth/login", loginRequest);
@@ -52,6 +62,7 @@ namespace WebTemplate.E2ETests
             {
                 email,
                 password,
+                confirmPassword = password,
                 firstName,
                 lastName
             };

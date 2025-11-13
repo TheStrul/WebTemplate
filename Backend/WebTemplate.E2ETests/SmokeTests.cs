@@ -8,17 +8,18 @@ namespace WebTemplate.E2ETests
     /// These tests should run quickly and catch basic deployment issues.
     ///
     /// Prerequisites:
-    /// - Backend server must be running at the configured URL (default: https://localhost:7001)
-    /// - Admin credentials must be valid
+    /// - Backend server must be running (auto-detected from launchSettings.json)
+    /// - E2E_ADMIN_PASSWORD environment variable must be set
     ///
-    /// To run against a different environment:
-    /// - Set E2E_BASE_URL environment variable (e.g., "https://staging.example.com")
-    /// - Set E2E_ADMIN_EMAIL and E2E_ADMIN_PASSWORD if different from defaults
+    /// Configuration (NO FALLBACKS - explicit values required):
+    /// - E2E_BASE_URL: Override auto-detected server URL (optional)
+    /// - E2E_ADMIN_EMAIL: Admin email (default: admin@WebTemplate.com)
+    /// - E2E_ADMIN_PASSWORD: Admin password (REQUIRED - no default)
     /// </summary>
     [Collection("E2E Tests")]
     public class SmokeTests : E2ETestBase
     {
-        [Fact(Skip = "Requires running backend server. Remove Skip attribute to run.")]
+        [Fact]
         public async Task Backend_IsRunning_AndResponsive()
         {
             // Arrange & Act
@@ -31,7 +32,7 @@ namespace WebTemplate.E2ETests
             );
         }
 
-        [Fact(Skip = "Requires running backend server. Remove Skip attribute to run.")]
+        [Fact]
         public async Task Auth_AdminLogin_Succeeds()
         {
             // Arrange & Act
@@ -41,7 +42,7 @@ namespace WebTemplate.E2ETests
             token.Should().NotBeNullOrEmpty();
         }
 
-        [Fact(Skip = "Requires running backend server. Remove Skip attribute to run.")]
+        [Fact]
         public async Task Auth_RegisterNewUser_Succeeds()
         {
             // Arrange
@@ -56,7 +57,7 @@ namespace WebTemplate.E2ETests
             token.Should().NotBeNullOrEmpty();
         }
 
-        [Fact(Skip = "Requires running backend server. Remove Skip attribute to run.")]
+        [Fact]
         public async Task Auth_GetStatus_WithValidToken_ReturnsUserInfo()
         {
             // Arrange
@@ -71,10 +72,10 @@ namespace WebTemplate.E2ETests
 
             var content = await response.Content.ReadAsStringAsync();
             content.Should().Contain("email");
-            content.Should().Contain(E2ETestConfig.AdminEmail);
+            content.Should().Contain(Config.Admin.Email);
         }
 
-        [Fact(Skip = "Requires running backend server. Remove Skip attribute to run.")]
+        [Fact]
         public async Task User_GetProfile_WithValidToken_ReturnsProfile()
         {
             // Arrange

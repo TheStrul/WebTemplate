@@ -1,8 +1,9 @@
 namespace WebTemplate.Core.Configuration
 {
     using System.ComponentModel.DataAnnotations;
+    using WebTemplate.Core.Common;
 
-    public class EmailSettings
+    public class EmailSettings : IBaseConfiguration
     {
         public const string SectionName = "Email";
 
@@ -22,5 +23,23 @@ namespace WebTemplate.Core.Configuration
 
         // SendGrid
         public string SendGridApiKey { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Validates email settings
+        /// </summary>
+        public Result Validate()
+        {
+            var errors = new List<Error>();
+
+            if (string.IsNullOrWhiteSpace(Provider))
+                errors.Add(Errors.Configuration.RequiredFieldMissing($"{SectionName}:Provider"));
+
+            if (string.IsNullOrWhiteSpace(FromName))
+                errors.Add(Errors.Configuration.RequiredFieldMissing($"{SectionName}:FromName"));
+
+            // From, SmtpHost, etc. can be validated based on provider type if needed
+
+            return errors.Any() ? Result.Failure(errors) : Result.Success();
+        }
     }
 }

@@ -42,11 +42,11 @@ namespace WebTemplate.Core.Services
             _tokenService = tokenService;
             _logger = logger;
             _authSettings = configuration.Auth;
-            _jwtSettings = configuration.Jwt;
-            _features = configuration.UserModuleFeatures;
+            _jwtSettings = configuration.Auth.Jwt;
+            _features = configuration.Auth.UserModuleFeatures;
             _userTypeRepository = userTypeRepository;
             _emailSender = emailSender;
-            _appUrls = configuration.AppUrls;
+            _appUrls = configuration.Auth.AppUrls;
         }
 
         private static List<string> ParsePermissions(string? permissionsJson)

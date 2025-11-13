@@ -1,3 +1,4 @@
+using WebTemplate.Core.Common;
 using WebTemplate.Core.Configuration;
 
 namespace WebTemplate.Data.Configuration;
@@ -35,4 +36,26 @@ public class DatabaseRetrySettings
     /// Maximum delay between retries in seconds (default: 30)
     /// </summary>
     public int MaxRetryDelaySeconds { get; set; } = 30;
+
+    /// <summary>
+    /// Validates database retry settings
+    /// </summary>
+    public Result Validate()
+    {
+        var errors = new List<Error>();
+
+        if (MaxRetryCount < 0)
+            errors.Add(Errors.Configuration.ValueOutOfRange($"{SectionName}:MaxRetryCount", "cannot be negative"));
+
+        if (MaxRetryCount > 10)
+            errors.Add(Errors.Configuration.ValueOutOfRange($"{SectionName}:MaxRetryCount", "cannot exceed 10 for safety"));
+
+        if (MaxRetryDelaySeconds < 1)
+            errors.Add(Errors.Configuration.ValueOutOfRange($"{SectionName}:MaxRetryDelaySeconds", "must be at least 1 second"));
+
+        if (MaxRetryDelaySeconds > 300)
+            errors.Add(Errors.Configuration.ValueOutOfRange($"{SectionName}:MaxRetryDelaySeconds", "cannot exceed 300 seconds (5 minutes)"));
+
+        return errors.Any() ? Result.Failure(errors) : Result.Success();
+    }
 }

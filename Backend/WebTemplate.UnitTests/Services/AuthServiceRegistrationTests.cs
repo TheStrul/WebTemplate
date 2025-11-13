@@ -24,9 +24,11 @@ namespace WebTemplate.UnitTests.Services
         private readonly Mock<IEmailSender> _emailSenderMock;
         private readonly Mock<ILogger<AuthService>> _loggerMock;
         private readonly Mock<ICoreConfiguration> _configMock;
-        private readonly AuthService _authService;
         private readonly AuthSettings _authSettings;
-        private readonly JwtSettings _jwtSettings;
+        private readonly EmailSettings _emailSettings;
+        private readonly UserModuleFeatures _userModuleFeatures;
+        private readonly ResponseMessages _responseMessages;
+        private readonly AuthService _authService;
 
         public AuthServiceRegistrationTests()
         {
@@ -49,26 +51,47 @@ namespace WebTemplate.UnitTests.Services
             _emailSenderMock = new Mock<IEmailSender>();
             _loggerMock = new Mock<ILogger<AuthService>>();
 
+            // Create real configuration objects
             _authSettings = new AuthSettings
             {
-                User = new UserSettings { RequireConfirmedEmail = false },
+                Jwt = new JwtSettings
+                {
+                    SecretKey = "test-secret-key-for-unit-tests-at-least-32-chars",
+                    Issuer = "TestIssuer",
+                    Audience = "TestAudience",
+                    AccessTokenExpiryMinutes = 15,
+                    RefreshTokenExpiryDays = 7
+                },
+                AppUrls = new AppUrls
+                {
+                    FrontendBaseUrl = "http://localhost:3000"
+                },
+                User = new UserSettings
+                {
+                    RequireConfirmedEmail = false
+                },
+                Password = new PasswordSettings(),
                 EmailConfirmation = new EmailConfirmationSettings { TokenExpiryHours = 24 }
             };
 
-            _jwtSettings = new JwtSettings
+            _emailSettings = new EmailSettings
             {
-                SecretKey = "test-secret-key-for-unit-tests-at-least-32-chars",
-                Issuer = "TestIssuer",
-                Audience = "TestAudience",
-                AccessTokenExpiryMinutes = 15,
-                RefreshTokenExpiryDays = 7
+                From = "test@example.com",
+                FromName = "Test"
             };
+
+            _userModuleFeatures = new UserModuleFeatures
+            {
+                IncludeUserTypePermissionsInResponses = false
+            };
+
+            _responseMessages = new ResponseMessages();
 
             _configMock = new Mock<ICoreConfiguration>();
             _configMock.Setup(c => c.Auth).Returns(_authSettings);
-            _configMock.Setup(c => c.Jwt).Returns(_jwtSettings);
-            _configMock.Setup(c => c.UserModuleFeatures).Returns(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = false });
-            _configMock.Setup(c => c.AppUrls).Returns(new AppUrls { FrontendBaseUrl = "http://localhost:3000", ConfirmEmailPath = "/confirm-email" });
+            _configMock.Setup(c => c.Email).Returns(_emailSettings);
+            _configMock.Setup(c => c.UserModuleFeatures).Returns(_userModuleFeatures);
+            _configMock.Setup(c => c.ResponseMessages).Returns(_responseMessages);
 
             _authService = new AuthService(
                 _userManagerMock.Object,
@@ -269,10 +292,14 @@ namespace WebTemplate.UnitTests.Services
         {
             // Arrange - Create AuthService with empty FrontendBaseUrl
             var configMock = new Mock<ICoreConfiguration>();
-            configMock.Setup(c => c.Auth).Returns(new AuthSettings { User = new UserSettings { RequireConfirmedEmail = true } });
-            configMock.Setup(c => c.Jwt).Returns(_jwtSettings);
+            var localAuthSettings = new AuthSettings
+            {
+                User = new UserSettings { RequireConfirmedEmail = true },
+                Jwt = _authSettings.Jwt,
+                AppUrls = new AppUrls { FrontendBaseUrl = "", ConfirmEmailPath = "/confirm" }
+            };
+            configMock.Setup(c => c.Auth).Returns(localAuthSettings);
             configMock.Setup(c => c.UserModuleFeatures).Returns(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = false });
-            configMock.Setup(c => c.AppUrls).Returns(new AppUrls { FrontendBaseUrl = "", ConfirmEmailPath = "/confirm" });
 
             var authService = new AuthService(
                 _userManagerMock.Object,
@@ -316,10 +343,14 @@ namespace WebTemplate.UnitTests.Services
         {
             // Arrange - Permissions enabled but UserType not found
             var configMock = new Mock<ICoreConfiguration>();
-            configMock.Setup(c => c.Auth).Returns(new AuthSettings { User = new UserSettings { RequireConfirmedEmail = false } });
-            configMock.Setup(c => c.Jwt).Returns(_jwtSettings);
+            var localAuthSettings = new AuthSettings
+            {
+                User = new UserSettings { RequireConfirmedEmail = false },
+                Jwt = _authSettings.Jwt,
+                AppUrls = new AppUrls { FrontendBaseUrl = "http://localhost" }
+            };
+            configMock.Setup(c => c.Auth).Returns(localAuthSettings);
             configMock.Setup(c => c.UserModuleFeatures).Returns(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true });
-            configMock.Setup(c => c.AppUrls).Returns(new AppUrls { FrontendBaseUrl = "http://localhost" });
 
             var authService = new AuthService(
                 _userManagerMock.Object,
@@ -366,10 +397,14 @@ namespace WebTemplate.UnitTests.Services
         {
             // Arrange - Create AuthService with custom ConfirmEmailPath
             var configMock = new Mock<ICoreConfiguration>();
-            configMock.Setup(c => c.Auth).Returns(new AuthSettings { User = new UserSettings { RequireConfirmedEmail = true } });
-            configMock.Setup(c => c.Jwt).Returns(_jwtSettings);
+            var localAuthSettings = new AuthSettings
+            {
+                User = new UserSettings { RequireConfirmedEmail = true },
+                Jwt = _authSettings.Jwt,
+                AppUrls = new AppUrls { FrontendBaseUrl = "http://localhost:3000", ConfirmEmailPath = "/custom/verify" }
+            };
+            configMock.Setup(c => c.Auth).Returns(localAuthSettings);
             configMock.Setup(c => c.UserModuleFeatures).Returns(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = false });
-            configMock.Setup(c => c.AppUrls).Returns(new AppUrls { FrontendBaseUrl = "http://localhost:3000", ConfirmEmailPath = "/custom/verify" });
 
             var authService = new AuthService(
                 _userManagerMock.Object,
@@ -424,10 +459,14 @@ namespace WebTemplate.UnitTests.Services
         {
             // Arrange - Permissions enabled and UserType IS found
             var configMock = new Mock<ICoreConfiguration>();
-            configMock.Setup(c => c.Auth).Returns(new AuthSettings { User = new UserSettings { RequireConfirmedEmail = false } });
-            configMock.Setup(c => c.Jwt).Returns(_jwtSettings);
+            var localAuthSettings = new AuthSettings
+            {
+                User = new UserSettings { RequireConfirmedEmail = false },
+                Jwt = _authSettings.Jwt,
+                AppUrls = new AppUrls { FrontendBaseUrl = "http://localhost" }
+            };
+            configMock.Setup(c => c.Auth).Returns(localAuthSettings);
             configMock.Setup(c => c.UserModuleFeatures).Returns(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true });
-            configMock.Setup(c => c.AppUrls).Returns(new AppUrls { FrontendBaseUrl = "http://localhost" });
 
             var authService = new AuthService(
                 _userManagerMock.Object,

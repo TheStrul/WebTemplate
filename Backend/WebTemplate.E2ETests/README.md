@@ -7,22 +7,43 @@ End-to-end tests that run against a **real running backend server**. Unlike the 
 - Verify the full stack including network, hosting, and external dependencies
 - Useful for smoke tests after deployment
 
+## ✨ Smart Server Detection
+
+E2E tests **automatically detect** if the server is running and which port to connect to:
+
+1. **Auto-detection**: Reads `launchSettings.json` and scans common ports (5294, 7295, 5000, 5001)
+2. **Health check**: Validates server is responsive before running tests
+3. **Clear errors**: If server isn't running, you get a helpful error message with instructions
+
+**No manual configuration needed!** Just start the server and run tests.
+
 ## Prerequisites
 
-Before running E2E tests:
+### 1. Start the Backend Server
 
-1. **Start the backend server**:
-   ```powershell
-   cd WebTemplate.API
-   dotnet run
-   ```
-   Default URL: `http://localhost:5294`
+```powershell
+cd WebTemplate.API
+dotnet run
+```
 
-   For HTTPS: `dotnet run --launch-profile https` (uses `https://localhost:7295`)
+The E2E tests will automatically detect the server on any of these ports:
+- `http://localhost:5294` (default HTTP)
+- `https://localhost:7295` (default HTTPS)
+- Custom ports from `launchSettings.json`
 
-2. **Ensure admin credentials exist** (seeded automatically in development)
-   - Email: `admin@WebTemplate.com`
-   - Password: `Admin123!`
+### 2. Configure Admin Password
+
+E2E tests require the admin password to authenticate. Set it as an environment variable:
+
+```powershell
+# PowerShell
+[Environment]::SetEnvironmentVariable('E2E_ADMIN_PASSWORD', 'YourAdminPassword', 'Process')
+
+# Or in your terminal session
+$env:E2E_ADMIN_PASSWORD = 'YourAdminPassword'
+```
+
+**Note**: This must match the password configured in `Features:AdminSeed:Password` user secrets.
 
 ## Running the Tests
 

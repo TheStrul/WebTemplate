@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Configuration;
+using WebTemplate.Core.Common;
 using WebTemplate.Core.Configuration.Features;
 using WebTemplate.Data.Configuration;
 
@@ -21,8 +22,6 @@ public class ApiConfiguration : DataConfiguration, IApiConfiguration
         Features = configuration.GetSection(FeaturesOptions.SectionName).Get<FeaturesOptions>()
             ?? throw new InvalidOperationException($"Required configuration section '{FeaturesOptions.SectionName}' is missing or invalid.");
 
-        ValidateFeatures(Features);
-
         // Get allowed hosts - required, NO FALLBACKS
         AllowedHosts = configuration["AllowedHosts"]
             ?? throw new InvalidOperationException("AllowedHosts is required but not configured.");
@@ -30,39 +29,46 @@ public class ApiConfiguration : DataConfiguration, IApiConfiguration
         if (string.IsNullOrWhiteSpace(AllowedHosts))
             throw new InvalidOperationException("AllowedHosts cannot be empty.");
 
-        ValidateAllowedHosts(AllowedHosts);
-
         // Get logging settings (with defaults if not specified)
         Logging = configuration.GetSection(LoggingSettings.SectionName).Get<LoggingSettings>()
             ?? new LoggingSettings();
-    }
 
-    private static void ValidateFeatures(FeaturesOptions features)
-    {
-        // Validate critical features are configured properly
-        if (features.IdentityAuth == null)
-            throw new InvalidOperationException("Features:IdentityAuth section is missing.");
-
-        if (features.Cors == null)
-            throw new InvalidOperationException("Features:Cors section is missing.");
-
-        if (features.Cors.Enabled && (features.Cors.AllowedOrigins == null || features.Cors.AllowedOrigins.Length == 0))
-            throw new InvalidOperationException("Features:Cors:AllowedOrigins is required when CORS is enabled.");
-
-        if (features.RateLimiting == null)
-            throw new InvalidOperationException("Features:RateLimiting section is missing.");
-
-        if (features.RateLimiting.Enabled && features.RateLimiting.PermitLimit <= 0)
-            throw new InvalidOperationException("Features:RateLimiting:PermitLimit must be greater than 0 when rate limiting is enabled.");
-    }
-
-    private static void ValidateAllowedHosts(string allowedHosts)
-    {
-        // Warn if using wildcard in production-like environment
-        if (allowedHosts == "*")
+        // Validate all settings (including base DataConfiguration settings)
+        var validationResult = ValidateInternal();
+        if (validationResult.IsFailure)
         {
-            // This is acceptable for development but should be logged as a warning
-            Console.WriteLine("WARNING: AllowedHosts is set to '*' which accepts all hosts. This should not be used in production.");
+            var errorMessages = validationResult.Errors.Select(e => e.Description);
+            throw new InvalidOperationException(
+                $"Configuration validation failed:{Environment.NewLine}{string.Join(Environment.NewLine, errorMessages)}"
+            );
         }
+    }
+
+    public override Result Validate() => ValidateInternal();
+
+    private Result ValidateInternal()
+    {
+        var errors = new List<Error>();
+
+        // Validate base DataConfiguration (Core + Data)
+        var baseResult = base.Validate();
+        if (baseResult.IsFailure)
+            errors.AddRange(baseResult.Errors);
+
+        // Validate Features
+        var featuresResult = Features.Validate();
+        if (featuresResult.IsFailure)
+            errors.AddRange(featuresResult.Errors);
+
+        // Validate AllowedHosts
+        if (string.IsNullOrWhiteSpace(AllowedHosts))
+            errors.Add(Errors.Configuration.RequiredFieldMissing("AllowedHosts"));
+
+        // Validate Logging
+        var loggingResult = Logging.Validate();
+        if (loggingResult.IsFailure)
+            errors.AddRange(loggingResult.Errors);
+
+        return errors.Any() ? Result.Failure(errors) : Result.Success();
     }
 }

@@ -25,8 +25,11 @@ namespace WebTemplate.UnitTests.Services
         private readonly Mock<IEmailSender> _emailSenderMock;
         private readonly Mock<ILogger<AuthService>> _loggerMock;
         private readonly Mock<ICoreConfiguration> _configMock;
+        private readonly AuthSettings _authSettings;
+        private readonly EmailSettings _emailSettings;
+        private readonly UserModuleFeatures _userModuleFeatures;
+        private readonly ResponseMessages _responseMessages;
         private readonly AuthService _authService;
-        private readonly JwtSettings _jwtSettings;
 
         public AuthServiceStatusTests()
         {
@@ -45,20 +48,46 @@ namespace WebTemplate.UnitTests.Services
             _emailSenderMock = new Mock<IEmailSender>();
             _loggerMock = new Mock<ILogger<AuthService>>();
 
-            _jwtSettings = new JwtSettings
+            // Create real configuration objects
+            _authSettings = new AuthSettings
             {
-                SecretKey = "test-secret-key-for-unit-tests-at-least-32-chars",
-                Issuer = "Test",
-                Audience = "Test",
-                AccessTokenExpiryMinutes = 15,
-                RefreshTokenExpiryDays = 7
+                Jwt = new JwtSettings
+                {
+                    SecretKey = "test-secret-key-for-unit-tests-at-least-32-chars",
+                    Issuer = "TestIssuer",
+                    Audience = "TestAudience",
+                    AccessTokenExpiryMinutes = 15,
+                    RefreshTokenExpiryDays = 7
+                },
+                AppUrls = new AppUrls
+                {
+                    FrontendBaseUrl = "http://localhost:3000"
+                },
+                User = new UserSettings
+                {
+                    RequireConfirmedEmail = false
+                },
+                Password = new PasswordSettings()
             };
 
+            _emailSettings = new EmailSettings
+            {
+                From = "test@example.com",
+                FromName = "Test"
+            };
+
+            _userModuleFeatures = new UserModuleFeatures
+            {
+                IncludeUserTypePermissionsInResponses = false
+            };
+
+            _responseMessages = new ResponseMessages();
+
             _configMock = new Mock<ICoreConfiguration>();
-            _configMock.Setup(c => c.Auth).Returns(new AuthSettings { User = new UserSettings { RequireConfirmedEmail = false } });
-            _configMock.Setup(c => c.Jwt).Returns(_jwtSettings);
-            _configMock.Setup(c => c.UserModuleFeatures).Returns(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = false });
-            _configMock.Setup(c => c.AppUrls).Returns(new AppUrls { FrontendBaseUrl = "http://localhost:3000" });
+            _configMock.Setup(c => c.Auth).Returns(_authSettings);
+            _configMock.Setup(c => c.Email).Returns(_emailSettings);
+            _configMock.Setup(c => c.UserModuleFeatures).Returns(_userModuleFeatures);
+            _configMock.Setup(c => c.ResponseMessages).Returns(_responseMessages);
 
             _authService = new AuthService(
                 _userManagerMock.Object,
@@ -266,17 +295,21 @@ namespace WebTemplate.UnitTests.Services
         {
             // Arrange - Create AuthService with permissions enabled
             var configMock = new Mock<ICoreConfiguration>();
-            configMock.Setup(c => c.Auth).Returns(new AuthSettings { User = new UserSettings { RequireConfirmedEmail = false } });
-            configMock.Setup(c => c.Jwt).Returns(new JwtSettings
+            var localAuthSettings = new AuthSettings
             {
-                SecretKey = "test-secret-key-for-unit-tests-at-least-32-chars",
-                Issuer = "Test",
-                Audience = "Test",
-                AccessTokenExpiryMinutes = 15,
-                RefreshTokenExpiryDays = 7
-            });
+                User = new UserSettings { RequireConfirmedEmail = false },
+                Jwt = new JwtSettings
+                {
+                    SecretKey = "test-secret-key-for-unit-tests-at-least-32-chars",
+                    Issuer = "Test",
+                    Audience = "Test",
+                    AccessTokenExpiryMinutes = 15,
+                    RefreshTokenExpiryDays = 7
+                },
+                AppUrls = new AppUrls { FrontendBaseUrl = "http://localhost:3000" }
+            };
+            configMock.Setup(c => c.Auth).Returns(localAuthSettings);
             configMock.Setup(c => c.UserModuleFeatures).Returns(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true });
-            configMock.Setup(c => c.AppUrls).Returns(new AppUrls { FrontendBaseUrl = "http://localhost:3000" });
 
             var authService = new AuthService(
                 _userManagerMock.Object,

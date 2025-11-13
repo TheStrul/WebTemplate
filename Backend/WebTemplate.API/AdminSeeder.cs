@@ -12,8 +12,8 @@ namespace WebTemplate.API
         public static async Task SeedAsync(IServiceProvider services)
         {
             var logger = services.GetRequiredService<ILoggerFactory>().CreateLogger("AdminSeeder");
-            var coreConfig = services.GetRequiredService<ICoreConfiguration>();
-            var settings = coreConfig.AdminSeed;
+            var apiConfig = services.GetRequiredService<Configuration.IApiConfiguration>();
+            var settings = apiConfig.Features.AdminSeed;
             if (!settings.Enabled)
             {
                 logger.LogInformation("Admin seeding disabled.");

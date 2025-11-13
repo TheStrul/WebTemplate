@@ -16,7 +16,7 @@ namespace WebTemplate.E2ETests
     [Collection("E2E Tests")]
     public class AuthFlowTests : E2ETestBase
     {
-        [Fact(Skip = "Requires running backend server. Remove Skip attribute to run.")]
+        [Fact]
         public async Task FullAuthFlow_RegisterLoginLogout_WorksCorrectly()
         {
             // Step 1: Register a new user
@@ -53,7 +53,7 @@ namespace WebTemplate.E2ETests
             loginContent.Should().Contain("accessToken");
         }
 
-        [Fact(Skip = "Requires running backend server. Remove Skip attribute to run.")]
+        [Fact]
         public async Task Login_WithInvalidCredentials_ReturnsBadRequest()
         {
             // Arrange
@@ -70,7 +70,7 @@ namespace WebTemplate.E2ETests
             response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
 
-        [Fact(Skip = "Requires running backend server. Remove Skip attribute to run.")]
+        [Fact]
         public async Task Register_WithDuplicateEmail_ReturnsBadRequest()
         {
             // Arrange - Register first user
@@ -92,14 +92,14 @@ namespace WebTemplate.E2ETests
             response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
 
-        [Fact(Skip = "Requires running backend server. Remove Skip attribute to run.")]
+        [Fact]
         public async Task RefreshToken_WithValidToken_ReturnsNewTokens()
         {
             // Arrange - Login as admin to get refresh token
             var loginRequest = new
             {
-                email = E2ETestConfig.AdminEmail,
-                password = E2ETestConfig.AdminPassword
+                email = Config.Admin.Email,
+                password = Config.Admin.Password
             };
 
             var loginResponse = await Client.PostAsJsonAsync("/api/auth/login", loginRequest);

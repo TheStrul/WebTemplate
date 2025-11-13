@@ -1,3 +1,5 @@
+using WebTemplate.Core.Common;
+
 namespace WebTemplate.Core.Configuration.Features
 {
     public class FeaturesOptions
@@ -13,6 +15,60 @@ namespace WebTemplate.Core.Configuration.Features
         public AdminSeedFeatureOptions AdminSeed { get; set; } = new();
         public ExceptionHandlingFeatureOptions ExceptionHandling { get; set; } = new();
         public SerilogFeatureOptions Serilog { get; set; } = new();
+
+        /// <summary>
+        /// Validates all feature settings
+        /// </summary>
+        public Result Validate()
+        {
+            var errors = new List<Error>();
+
+            // Validate CORS settings if enabled
+            if (Cors.Enabled && (Cors.AllowedOrigins == null || Cors.AllowedOrigins.Length == 0))
+                errors.Add(Errors.Configuration.RequiredFieldMissing($"{SectionName}:Cors:AllowedOrigins (required when CORS is enabled)"));
+
+            // Validate Rate Limiting settings if enabled
+            if (RateLimiting.Enabled && RateLimiting.PermitLimit <= 0)
+                errors.Add(Errors.Configuration.ValueOutOfRange(
+                    $"{SectionName}:RateLimiting:PermitLimit",
+                    "must be greater than 0 when rate limiting is enabled"
+                ));
+
+            if (RateLimiting.Enabled && RateLimiting.WindowSeconds <= 0)
+                errors.Add(Errors.Configuration.ValueOutOfRange(
+                    $"{SectionName}:RateLimiting:WindowSeconds",
+                    "must be greater than 0 when rate limiting is enabled"
+                ));
+
+            // Validate Admin Seed if enabled
+            if (AdminSeed.Enabled)
+            {
+                if (string.IsNullOrWhiteSpace(AdminSeed.Email))
+                    errors.Add(Errors.Configuration.RequiredFieldMissing($"{SectionName}:AdminSeed:Email (required when AdminSeed is enabled)"));
+
+                if (string.IsNullOrWhiteSpace(AdminSeed.Password))
+                    errors.Add(Errors.Configuration.RequiredFieldMissing($"{SectionName}:AdminSeed:Password (required when AdminSeed is enabled)"));
+
+                if (string.IsNullOrWhiteSpace(AdminSeed.FirstName))
+                    errors.Add(Errors.Configuration.RequiredFieldMissing($"{SectionName}:AdminSeed:FirstName (required when AdminSeed is enabled)"));
+
+                if (string.IsNullOrWhiteSpace(AdminSeed.LastName))
+                    errors.Add(Errors.Configuration.RequiredFieldMissing($"{SectionName}:AdminSeed:LastName (required when AdminSeed is enabled)"));
+            }
+
+            // Validate Refresh Tokens cleanup interval
+            if (RefreshTokens.CleanupIntervalMinutes <= 0)
+                errors.Add(Errors.Configuration.ValueOutOfRange(
+                    $"{SectionName}:RefreshTokens:CleanupIntervalMinutes",
+                    "must be greater than 0"
+                ));
+
+            // Validate Health Checks path
+            if (HealthChecks.Enabled && string.IsNullOrWhiteSpace(HealthChecks.Path))
+                errors.Add(Errors.Configuration.RequiredFieldMissing($"{SectionName}:HealthChecks:Path (required when HealthChecks is enabled)"));
+
+            return errors.Any() ? Result.Failure(errors) : Result.Success();
+        }
     }
 
     public class SwaggerFeatureOptions

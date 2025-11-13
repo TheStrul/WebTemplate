@@ -15,7 +15,7 @@ namespace WebTemplate.UnitTests.Services
     {
         private readonly Mock<IRefreshTokenRepository> _mockRefreshTokenRepository;
         private readonly Mock<ICoreConfiguration> _configMock;
-        private readonly JwtSettings _jwtSettings;
+        private readonly AuthSettings _authSettings;
         private readonly TokenService _tokenService;
 
         public TokenServiceTests()
@@ -23,7 +23,7 @@ namespace WebTemplate.UnitTests.Services
             _mockRefreshTokenRepository = new Mock<IRefreshTokenRepository>();
 
             // Valid JWT settings for testing
-            _jwtSettings = new JwtSettings
+            var jwtSettings = new JwtSettings
             {
                 SecretKey = "ThisIsAVerySecureSecretKeyForTestingPurposesOnly123456789!",
                 Issuer = "TestIssuer",
@@ -37,8 +37,10 @@ namespace WebTemplate.UnitTests.Services
                 ClockSkewMinutes = 5
             };
 
+            _authSettings = new AuthSettings { Jwt = jwtSettings };
+
             _configMock = new Mock<ICoreConfiguration>();
-            _configMock.Setup(c => c.Jwt).Returns(_jwtSettings);
+            _configMock.Setup(c => c.Auth).Returns(_authSettings);
 
             _tokenService = new TokenService(_configMock.Object, _mockRefreshTokenRepository.Object);
         }
@@ -147,7 +149,7 @@ namespace WebTemplate.UnitTests.Services
             var expiration = _tokenService.GetTokenExpiration(token);
             expiration.Should().NotBeNull();
             expiration.Should().BeCloseTo(
-                beforeGeneration.AddMinutes(_jwtSettings.AccessTokenExpiryMinutes),
+                beforeGeneration.AddMinutes(_authSettings.Jwt.AccessTokenExpiryMinutes),
                 TimeSpan.FromSeconds(5)
             );
         }
@@ -219,7 +221,7 @@ namespace WebTemplate.UnitTests.Services
         {
             // Arrange
             var userId = Guid.NewGuid().ToString();
-            var existingTokens = Enumerable.Range(0, _jwtSettings.MaxRefreshTokensPerUser)
+            var existingTokens = Enumerable.Range(0, _authSettings.Jwt.MaxRefreshTokensPerUser)
                 .Select(i => new RefreshToken
                 {
                     Id = i + 1,
@@ -548,7 +550,7 @@ namespace WebTemplate.UnitTests.Services
             // Assert
             expiration.Should().NotBeNull();
             expiration.Should().BeCloseTo(
-                beforeGeneration.AddMinutes(_jwtSettings.AccessTokenExpiryMinutes),
+                beforeGeneration.AddMinutes(_authSettings.Jwt.AccessTokenExpiryMinutes),
                 TimeSpan.FromSeconds(5)
             );
         }

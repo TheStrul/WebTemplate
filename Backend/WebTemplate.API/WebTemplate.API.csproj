@@ -21,7 +21,6 @@
   <ItemGroup>
     <ProjectReference Include="..\WebTemplate.Data\WebTemplate.Data.csproj" />
     <ProjectReference Include="..\WebTemplate.Core\WebTemplate.Core.csproj" />
-    <ProjectReference Include="..\WebTemplate.UserModule\WebTemplate.UserModule.csproj" />
   </ItemGroup>
 
 </Project>

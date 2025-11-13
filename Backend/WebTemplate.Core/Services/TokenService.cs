@@ -23,7 +23,7 @@ namespace WebTemplate.Core.Services
             ICoreConfiguration configuration,
             IRefreshTokenRepository refreshTokenRepository)
         {
-            _jwtSettings = configuration.Jwt;
+            _jwtSettings = configuration.Auth.Jwt;
             _refreshTokenRepository = refreshTokenRepository;
 
             // Create token validation parameters from settings

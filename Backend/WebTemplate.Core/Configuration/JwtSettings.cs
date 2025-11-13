@@ -1,6 +1,7 @@
 namespace WebTemplate.Core.Configuration
 {
     using System.ComponentModel.DataAnnotations;
+    using WebTemplate.Core.Common;
 
     /// <summary>
     /// JWT authentication settings configuration
@@ -30,6 +31,45 @@ namespace WebTemplate.Core.Configuration
         /// </summary>
         [Range(1, 365)] // 1 day to 1 year
         public int RefreshTokenExpiryDays { get; set; } = 7;
+
+        /// <summary>
+        /// Validates JWT settings
+        /// </summary>
+        public Result Validate()
+        {
+            var errors = new List<Error>();
+
+            if (string.IsNullOrWhiteSpace(SecretKey))
+                errors.Add(Errors.Configuration.RequiredFieldMissingWithGuidance(
+                    "AuthSettings:Jwt:SecretKey",
+                    "Please set it in User Secrets or environment variables."
+                ));
+            else if (SecretKey.Length < 32)
+                errors.Add(Errors.Configuration.ValueOutOfRange(
+                    "AuthSettings:Jwt:SecretKey",
+                    "must be at least 32 characters for secure encryption."
+                ));
+
+            if (string.IsNullOrWhiteSpace(Issuer))
+                errors.Add(Errors.Configuration.RequiredFieldMissing("AuthSettings:Jwt:Issuer"));
+
+            if (string.IsNullOrWhiteSpace(Audience))
+                errors.Add(Errors.Configuration.RequiredFieldMissing("AuthSettings:Jwt:Audience"));
+
+            if (AccessTokenExpiryMinutes <= 0)
+                errors.Add(Errors.Configuration.ValueOutOfRange(
+                    "AuthSettings:Jwt:AccessTokenExpiryMinutes",
+                    "must be greater than 0."
+                ));
+
+            if (RefreshTokenExpiryDays <= 0)
+                errors.Add(Errors.Configuration.ValueOutOfRange(
+                    "AuthSettings:Jwt:RefreshTokenExpiryDays",
+                    "must be greater than 0."
+                ));
+
+            return errors.Any() ? Result.Failure(errors) : Result.Success();
+        }
 
         /// <summary>
         /// Whether to validate token lifetime

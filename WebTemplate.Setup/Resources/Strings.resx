@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Title_Validation_Passed" xml:space="preserve">
+    <value>Validation Passed</value>
+  </data>
+  <data name="Title_Validation_Failed" xml:space="preserve">
+    <value>Validation Failed</value>
+  </data>
+  <data name="Title_Save_Complete" xml:space="preserve">
+    <value>Save Complete</value>
+  </data>
+  <data name="Title_Load_Failed" xml:space="preserve">
+    <value>Load Failed</value>
+  </data>
+  <data name="Title_Generation_Complete" xml:space="preserve">
+    <value>Generation Complete</value>
+  </data>
+  <data name="Title_Generation_Failed" xml:space="preserve">
+    <value>Generation Failed</value>
+  </data>
+  <data name="Title_Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Msg_Select_Config_To_Load" xml:space="preserve">
+    <value>Please select a configuration to load.</value>
+  </data>
+  <data name="Title_Load_Configuration" xml:space="preserve">
+    <value>Load Configuration</value>
+  </data>
+  <data name="Msg_No_Config_To_Save" xml:space="preserve">
+    <value>No configuration to save.</value>
+  </data>
+  <data name="Title_Save_Configuration" xml:space="preserve">
+    <value>Save Configuration</value>
+  </data>
+  <data name="Msg_Config_Validation_Failed" xml:space="preserve">
+    <value>Configuration validation failed:</value>
+  </data>
+  <data name="Msg_Config_Saved_Success" xml:space="preserve">
+    <value>Configuration saved successfully!</value>
+  </data>
+  <data name="Msg_Select_Config_To_Delete" xml:space="preserve">
+    <value>Please select a configuration to delete.</value>
+  </data>
+  <data name="Title_Delete_Configuration" xml:space="preserve">
+    <value>Delete Configuration</value>
+  </data>
+  <data name="Msg_Confirm_Delete" xml:space="preserve">
+    <value>Are you sure you want to delete configuration '{0}'?
+
+This action cannot be undone.</value>
+  </data>
+  <data name="Msg_No_Config_To_Validate" xml:space="preserve">
+    <value>No configuration to validate.</value>
+  </data>
+  <data name="Title_Validate_Configuration" xml:space="preserve">
+    <value>Validate Configuration</value>
+  </data>
+  <data name="Msg_Config_Valid" xml:space="preserve">
+    <value>Configuration is valid!
+
+Ready to generate project.</value>
+  </data>
+  <data name="Msg_No_Config_To_Generate" xml:space="preserve">
+    <value>No configuration to generate from.</value>
+  </data>
+  <data name="Title_Generate_Project" xml:space="preserve">
+    <value>Generate Project</value>
+  </data>
+  <data name="Msg_Confirm_Generate" xml:space="preserve">
+    <value>Generate project '{0}'?
+
+Target: {1}
+
+This will create a new project workspace.</value>
+  </data>
+  <data name="App_Title" xml:space="preserve">
+    <value>WebTemplate Setup - {0}{1}</value>
+  </data>
+  <data name="No_Configuration" xml:space="preserve">
+    <value>No Configuration</value>
+  </data>
+  <data name="Status_Ready" xml:space="preserve">
+    <value>Ready</value>
+  </data>
+  <data name="Status_Loaded" xml:space="preserve">
+    <value>Loaded: {0}</value>
+  </data>
+  <data name="Status_Saved" xml:space="preserve">
+    <value>Configuration saved: {0}</value>
+  </data>
+  <data name="Status_Deleted" xml:space="preserve">
+    <value>Deleted configuration: {0}</value>
+  </data>
+  <data name="Status_Generation_Success" xml:space="preserve">
+    <value>Project generated successfully!</value>
+  </data>
+  <data name="Status_Generation_Failed" xml:space="preserve">
+    <value>Generation failed</value>
+  </data>
+  <data name="Status_Generation_Error" xml:space="preserve">
+    <value>Error during generation</value>
+  </data>
+  <data name="Title_Unsaved_Changes" xml:space="preserve">
+    <value>Unsaved Changes</value>
+  </data>
+  <data name="Msg_Discard_Unsaved_Changes" xml:space="preserve">
+    <value>You have unsaved changes. Discard them?</value>
+  </data>
+  <data name="Msg_Failed_Load_Prefix" xml:space="preserve">
+    <value>Failed to load configuration:</value>
+  </data>
+  <data name="Title_Save_Failed" xml:space="preserve">
+    <value>Save Failed</value>
+  </data>
+  <data name="Msg_Failed_Save_Prefix" xml:space="preserve">
+    <value>Failed to save configuration:</value>
+  </data>
+  <data name="Msg_Failed_Delete_Prefix" xml:space="preserve">
+    <value>Failed to delete configuration:</value>
+  </data>
+  <data name="Msg_Failed_Generation_Prefix" xml:space="preserve">
+    <value>Project generation failed:</value>
+  </data>
+  <data name="Msg_Generation_Error_Prefix" xml:space="preserve">
+    <value>An error occurred during generation:</value>
+  </data>
+  <data name="Msg_Generation_Complete" xml:space="preserve">
+    <value>Project generated successfully!
+
+Location: {0}
+
+Next steps:
+1. Open the solution in Visual Studio
+2. Review the generated code
+3. Run the application</value>
+  </data>
+</root>
