@@ -219,6 +219,12 @@ internal class Program
         app.MapControllers();
         featureHost.MapEndpoints(app);
 
+        // Initialize UserModule (runs migrations and seeds data)
+        if (features.IdentityAuth.Enabled)
+        {
+            await app.InitializeUserModuleAsync();
+        }
+
         await app.RunAsync();
     }
 

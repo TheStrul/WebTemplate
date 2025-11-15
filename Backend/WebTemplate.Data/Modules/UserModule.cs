@@ -128,10 +128,12 @@ public static class UserModule
         var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
         var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
         var logger = scope.ServiceProvider.GetRequiredService<ILoggerFactory>().CreateLogger("UserModule");
+        var config = scope.ServiceProvider.GetRequiredService<IConfiguration>();
 
         try
         {
-            await context.Database.MigrateAsync();
+            // Initialize database schema using SQL script (SQL-first approach)
+            await InitializeDatabaseSchemaAsync(context, logger);
 
             // roles
             string[] roles = { "Admin", "User", "Moderator" };
@@ -143,38 +145,134 @@ public static class UserModule
                 }
             }
 
-            // seed admin
-            var adminEmail = "admin@corewebapp.com";
-            var admin = await userManager.FindByEmailAsync(adminEmail);
-            if (admin == null)
+            // seed admin from configuration (NO FALLBACKS)
+            var adminSeedConfig = config.GetSection("Features:AdminSeed");
+            var adminEnabled = adminSeedConfig.GetValue<bool>("Enabled");
+            
+            if (adminEnabled)
             {
-                var user = new ApplicationUser
+                var adminEmail = adminSeedConfig.GetValue<string>("Email")
+                    ?? throw new InvalidOperationException("Features:AdminSeed:Email is required but not configured");
+                var adminPassword = adminSeedConfig.GetValue<string>("Password")
+                    ?? throw new InvalidOperationException("Features:AdminSeed:Password is required but not configured");
+                var adminFirstName = adminSeedConfig.GetValue<string>("FirstName") ?? "System";
+                var adminLastName = adminSeedConfig.GetValue<string>("LastName") ?? "Administrator";
+                
+                var admin = await userManager.FindByEmailAsync(adminEmail);
+                if (admin == null)
                 {
-                    UserName = adminEmail,
-                    Email = adminEmail,
-                    EmailConfirmed = true,
-                    FirstName = "System",
-                    LastName = "Administrator",
-                    UserTypeId = 1,
-                    IsActive = true,
-                    CreatedAt = DateTime.UtcNow
-                };
+                    var user = new ApplicationUser
+                    {
+                        UserName = adminEmail,
+                        Email = adminEmail,
+                        EmailConfirmed = true,
+                        FirstName = adminFirstName,
+                        LastName = adminLastName,
+                        UserTypeId = 1,
+                        IsActive = true,
+                        CreatedAt = DateTime.UtcNow
+                    };
 
-                var result = await userManager.CreateAsync(user, "Admin123!");
-                if (result.Succeeded)
-                {
-                    await userManager.AddToRoleAsync(user, "Admin");
-                    logger.LogInformation("Default admin created: {email}", adminEmail);
-                }
-                else
-                {
-                    logger.LogWarning("Failed to create admin: {errors}", string.Join(", ", result.Errors.Select(e => e.Description)));
+                    var result = await userManager.CreateAsync(user, adminPassword);
+                    if (result.Succeeded)
+                    {
+                        await userManager.AddToRoleAsync(user, "Admin");
+                        logger.LogInformation("Default admin created: {email}", adminEmail);
+                    }
+                    else
+                    {
+                        logger.LogWarning("Failed to create admin: {errors}", string.Join(", ", result.Errors.Select(e => e.Description)));
+                    }
                 }
             }
         }
         catch (Exception ex)
         {
             logger.LogError(ex, "UserModule initialization failed");
+        }
+    }
+
+    private static async Task InitializeDatabaseSchemaAsync(ApplicationDbContext context, ILogger logger)
+    {
+        try
+        {
+            // Check if database exists and has tables
+            var connection = context.Database.GetDbConnection();
+            await connection.OpenAsync();
+            
+            using var command = connection.CreateCommand();
+            command.CommandText = "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'AspNetRoles'";
+            var result = await command.ExecuteScalarAsync();
+            
+            if (result != null && (int)result > 0)
+            {
+                logger.LogInformation("Database schema already initialized");
+                return;
+            }
+
+            logger.LogInformation("Initializing database schema from SQL script");
+            
+            // Find the SQL script - try multiple locations
+            string? sqlScriptPath = null;
+            
+            // Try 1: Look in the Data project directory relative to AppContext.BaseDirectory
+            var potentialPaths = new[]
+            {
+                // From bin output
+                Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "WebTemplate.Data", "Migrations", "db-init.sql"),
+                // Direct path from project
+                Path.Combine(Directory.GetCurrentDirectory(), "..", "WebTemplate.Data", "Migrations", "db-init.sql"),
+                Path.Combine(Directory.GetCurrentDirectory(), "WebTemplate.Data", "Migrations", "db-init.sql"),
+                // Search up from current directory
+                Path.Combine(AppContext.BaseDirectory, "db-init.sql"),
+            };
+
+            foreach (var potentialPath in potentialPaths)
+            {
+                var normalizedPath = Path.GetFullPath(potentialPath);
+                if (File.Exists(normalizedPath))
+                {
+                    sqlScriptPath = normalizedPath;
+                    break;
+                }
+            }
+            
+            if (string.IsNullOrEmpty(sqlScriptPath) || !File.Exists(sqlScriptPath))
+            {
+                logger.LogWarning("SQL init script not found. Tried paths: {paths}", string.Join(", ", potentialPaths.Select(p => Path.GetFullPath(p))));
+                // Don't throw - allow app to start even if schema isn't initialized
+                logger.LogInformation("Continuing without schema initialization - migrations may not exist or database may already be initialized");
+                return;
+            }
+
+            var sqlScript = await File.ReadAllTextAsync(sqlScriptPath);
+            
+            // Split by GO statements and execute each batch
+            var batches = sqlScript.Split(new[] { "\nGO\n", "\nGO\r\n", "\r\nGO\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+            
+            foreach (var batch in batches)
+            {
+                if (string.IsNullOrWhiteSpace(batch)) continue;
+                
+                using var batchCommand = connection.CreateCommand();
+                batchCommand.CommandText = batch.Trim();
+                batchCommand.CommandTimeout = 300;
+                
+                try
+                {
+                    await batchCommand.ExecuteNonQueryAsync();
+                }
+                catch (Exception ex)
+                {
+                    logger.LogWarning(ex, "Error executing SQL batch (continuing anyway): {message}", ex.Message);
+                }
+            }
+            
+            logger.LogInformation("Database schema initialization completed");
+        }
+        finally
+        {
+            await context.Database.CloseConnectionAsync();
         }
     }
 
@@ -214,7 +312,26 @@ public static class UserModule
             }
             var mod = moduleSection.GetSection(moduleKey);
             if (mod.Exists()) return mod;
-            return root.GetSection(legacyKey);
+            
+            // Try legacy key first
+            var legacy = root.GetSection(legacyKey);
+            if (legacy.Exists()) return legacy;
+            
+            // For Jwt, also try AuthSettings:Jwt
+            if (legacyKey == "JwtSettings")
+            {
+                var authJwt = root.GetSection("AuthSettings:Jwt");
+                if (authJwt.Exists()) return authJwt;
+            }
+            
+            // For Auth, also try AuthSettings
+            if (legacyKey == "AuthSettings")
+            {
+                var auth = root.GetSection("AuthSettings");
+                if (auth.Exists()) return auth;
+            }
+            
+            return legacy;
         }
 
         var jwt = PickSection("Jwt", "JwtSettings");
