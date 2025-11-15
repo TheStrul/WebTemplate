@@ -1,0 +1,29 @@
+
+FullName                                                                                                                                   LastWriteTime       Length
+--------                                                                                                                                   -------------       ------
+C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\00_MASTER_INDEX.md                                            13/11/2025 15:17:33   4979
+C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\GitHub copilot output.txt                                     13/11/2025 14:55:38 106454
+C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\README.md                                                     13/11/2025 15:18:53   2044
+C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\01_CORE_PARTNERSHIP\01_WHO_YOU_ARE.md                         13/11/2025 15:15:51   3983
+C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\01_CORE_PARTNERSHIP\02_YOUR_STANDARDS.md                      13/11/2025 15:16:14   6095
+C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\01_CORE_PARTNERSHIP\03_TEAM_WORKFLOWS.md                      13/11/2025 15:16:35   5582
+C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\01_CORE_PARTNERSHIP\04_SUCCESS_CRITERIA.md                    13/11/2025 15:18:14   4843
+C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\02_CHAT_EXPORT_INFRASTRUCTURE\01_QUICK_START.md               13/11/2025 14:01:02   3097
+C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\02_CHAT_EXPORT_INFRASTRUCTURE\02_ARCHITECTURE.md              13/11/2025 14:01:38  10725
+C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\02_CHAT_EXPORT_INFRASTRUCTURE\03_SESSION_COMPLETE.md          13/11/2025 14:08:18   4131
+C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\02_WEBTEMPLATE_PROJECT\01_PROJECT_OVERVIEW.md                 13/11/2025 15:19:11   1786
+C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\03_KB_BEST_PRACTICES\01_AI_KB_DESIGN_PRINCIPLES.md            13/11/2025 14:09:28  16247
+C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\03_KB_BEST_PRACTICES\02_KB_REORGANIZATION_PLAN.md             13/11/2025 14:10:12  16948
+C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\04_QUICK_REFERENCE\CHAT_EXPORT_QUICK_REF.md                   13/11/2025 14:08:30   2127
+C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\04_QUICK_REFERENCE\STANDARDS_QUICK_REF.md                     13/11/2025 15:19:20   1201
+C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\SESSIONS\CHAT_EXPORT_INFRASTRUCTURE.md                        13/11/2025 12:38:40  10715
+C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\SESSIONS\DELIVERY_CHECKLIST.md                                13/11/2025 12:41:34   9595
+C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\SESSIONS\DELIVERY_SUMMARY.md                                  13/11/2025 12:40:49   8925
+C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\SESSIONS\INDEX_CHAT_EXPORT.md                                 13/11/2025 12:40:15  11477
+C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\SESSIONS\QUICK_START_CHAT_EXPORT.md                           13/11/2025 12:38:54   3097
+C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\SESSIONS\SESSION_20251113_CHAT_EXPORT_COMPLETE.md             13/11/2025 12:39:32  10015
+C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\SESSIONS\SESSION_20251113_FOUNDATION.md                       13/11/2025 12:14:10   8486
+C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\SESSIONS\SESSION_20251113_KB_BEST_PRACTICES.md                13/11/2025 14:10:50  13785
+C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\SESSIONS\copilot_exports\2025-11-13_12-37-31_SKMemoryTable.md 13/11/2025 12:37:31    286
+C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\SESSIONS\copilot_exports\2025-11-13_12-39-00_SKMemoryTable.md 13/11/2025 12:39:00    286
+C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\knowledge-base\SESSIONS\copilot_exports\2025-11-13_13-26-49_SKMemoryTable.md 13/11/2025 13:26:49    286
