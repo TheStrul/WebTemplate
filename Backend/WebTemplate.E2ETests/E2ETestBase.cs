@@ -64,7 +64,9 @@ namespace WebTemplate.E2ETests
                 password,
                 confirmPassword = password,
                 firstName,
-                lastName
+                lastName,
+                acceptTerms = true,
+                acceptPrivacyPolicy = true
             };
 
             var response = await Client.PostAsJsonAsync("/api/auth/register", registerRequest);
@@ -73,9 +75,18 @@ namespace WebTemplate.E2ETests
             var content = await response.Content.ReadAsStringAsync();
             var json = JsonDocument.Parse(content);
 
-            var userId = json.RootElement.GetProperty("data").GetProperty("userId").GetString()
+            // Check if data is null (might be due to email confirmation requirement)
+            var dataElement = json.RootElement.GetProperty("data");
+            if (dataElement.ValueKind == JsonValueKind.Null)
+            {
+                // For email confirmation flow, we need to handle it differently
+                // For now, extract the userId from somewhere else or throw a clear error
+                throw new InvalidOperationException("Registration returned no data - email confirmation may be required");
+            }
+
+            var userId = dataElement.GetProperty("userId").GetString()
                 ?? throw new InvalidOperationException("Failed to get userId from register response");
-            var token = json.RootElement.GetProperty("data").GetProperty("accessToken").GetString()
+            var token = dataElement.GetProperty("accessToken").GetString()
                 ?? throw new InvalidOperationException("Failed to get access token from register response");
 
             return (userId, token);
