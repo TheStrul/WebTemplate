@@ -77,16 +77,9 @@ namespace WebTemplate.Core.Configuration
         /// </summary>
         public Result Validate()
         {
-            var errors = new List<Error>();
-
-            // All properties are [Required], so configuration binding will fail if missing
-            // This validation method ensures all flags are properly set
-            if (!Enum.GetValues(typeof(bool)).Cast<bool>().Any())
-            {
-                errors.Add(Errors.Configuration.RequiredFieldMissing("UserModule:Features"));
-            }
-
-            return errors.Any() ? Result.Failure(errors) : Result.Success();
+            // All properties are marked [Required], so configuration binding will fail if missing.
+            // This validation ensures consistency with the validation pattern.
+            return Result.Success();
         }
     }
 }
