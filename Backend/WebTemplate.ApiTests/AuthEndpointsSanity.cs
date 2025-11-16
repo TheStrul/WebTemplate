@@ -16,12 +16,10 @@ namespace WebTemplate.ApiTests
         private HttpClient _client = default!;
         private readonly JsonSerializerOptions _json = new(JsonSerializerDefaults.Web);
 
-        public AuthEndpointsSanity() { }
-
         public async Task InitializeAsync()
         {
             _factory = new TestWebAppFactory();
-            await _factory.InitializeDatabaseAsync();
+            await _factory.InitializeAsync();
             _client = _factory.CreateClient(new Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryClientOptions
             {
                 BaseAddress = new Uri("https://localhost/"),
@@ -29,10 +27,11 @@ namespace WebTemplate.ApiTests
             });
         }
 
-        public Task DisposeAsync()
+        public async Task DisposeAsync()
         {
             _client?.Dispose();
-            return Task.CompletedTask;
+            _factory?.Dispose();
+            await Task.CompletedTask;
         }
 
         private async Task<T> WithScope<T>(Func<IServiceProvider, Task<T>> action)
