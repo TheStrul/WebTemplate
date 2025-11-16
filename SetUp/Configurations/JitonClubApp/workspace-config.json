@@ -1,0 +1,111 @@
+{
+  "configurationId": "JitonClubApp",
+  "configurationName": "JitonClubApp",
+  "description": "",
+  "createdAt": "2025-11-16T17:52:43.2653118Z",
+  "modifiedAt": "2025-11-16T18:06:47.0529188Z",
+  "project": {
+    "projectName": "JitonClubApp",
+    "targetPath": "C:\\Users\\avist\\source\\repos\\GitHubLocal\\Customers\\JitonClubApp1",
+    "companyName": "Jiton Club",
+    "authorName": "avist",
+    "initializeGit": true,
+    "createInitialCommit": true,
+    "runValidation": true
+  },
+  "features": {
+    "swagger": {
+      "enabled": true,
+      "requireJwtForTryItOut": false
+    },
+    "cors": {
+      "enabled": false,
+      "allowedOrigins": [],
+      "allowedMethods": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "allowedHeaders": [
+        "Content-Type",
+        "Authorization"
+      ]
+    },
+    "rateLimiting": {
+      "enabled": false,
+      "policyName": "fixed",
+      "permitLimit": 100,
+      "windowSeconds": 60,
+      "queueLimit": 0
+    },
+    "securityHeaders": {
+      "enabled": true
+    },
+    "healthChecks": {
+      "enabled": true,
+      "path": "/health"
+    },
+    "identityAuth": {
+      "enabled": true
+    },
+    "refreshTokens": {
+      "enabled": true,
+      "rotateOnUse": true,
+      "cleanupIntervalMinutes": 360
+    },
+    "adminSeed": {
+      "enabled": false,
+      "email": "avi.strul@gmail.com",
+      "password": "WinWin12!",
+      "firstName": "",
+      "lastName": ""
+    },
+    "exceptionHandling": {
+      "enabled": true,
+      "useProblemDetails": true
+    },
+    "serilog": {
+      "enabled": false,
+      "minimumLevel": "Information"
+    }
+  },
+  "secrets": {
+    "strategy": "UserSecrets",
+    "userSecretsValues": {},
+    "environmentVariables": {}
+  },
+  "database": {
+    "connectionString": "Server=localhost;Database=JitonClubAppDb;Trusted_Connection=True;TrustServerCertificate=True;",
+    "executeInitScript": true,
+    "initScriptPath": "Backend/WebTemplate.Data/Migrations/db-init.sql",
+    "testConnection": true,
+    "createDatabaseIfNotExists": true
+  },
+  "server": {
+    "url": "http://localhost:5000",
+    "httpsUrl": "https://localhost:5001",
+    "connectionTimeoutSeconds": 30,
+    "useHttpsRedirection": true
+  },
+  "email": {
+    "smtpHost": "",
+    "smtpPort": 587,
+    "smtpUsername": "",
+    "smtpPassword": "",
+    "enableSsl": true,
+    "fromEmail": "",
+    "fromName": "",
+    "enabled": false
+  },
+  "auth": {
+    "secretKey": "WQJS8aCDls1YYrmrG6n3a8i52VeF1YgxGEggLwMrWcY=",
+    "issuer": "WebTemplateAPI",
+    "audience": "WebTemplateClient",
+    "expirationMinutes": 60,
+    "refreshTokenExpirationDays": 7,
+    "frontendUrl": "http://localhost:3000"
+  }
+}
