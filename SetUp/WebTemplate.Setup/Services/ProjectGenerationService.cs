@@ -94,7 +94,16 @@ public class ProjectGenerationService
                             targetPath);
                     }
 
+                    // Create the database
                     progress.Report("Database does not exist - creating database...");
+                    var createDbResult = await dbService.CreateDatabaseIfNotExistsAsync(config.Database.ConnectionString);
+                    
+                    if (!createDbResult.Success)
+                    {
+                        return (false, $"Database creation failed: {createDbResult.Message}", targetPath);
+                    }
+
+                    progress.Report(createDbResult.Message);
                 }
                 else
                 {
