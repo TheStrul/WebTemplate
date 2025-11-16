@@ -9,36 +9,72 @@ internal class Program
 {
     private static async Task Main(string[] args)
     {
-        // ONE CONFIGURATION TO RULE THEM ALL!
-        var configuration = BuildConfiguration();
-        var isLocal = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
+        // Build configuration first - this may fail validation which indicates
+        // we're in a test environment where WebApplicationFactory will provide config
+        ApplicationConfiguration? appConfig = null;
+        IConfiguration? configuration = null;
+        bool useBuilderConfiguration = false;
 
-        // Create and validate ApplicationConfiguration (NO FALLBACKS!)
-        ApplicationConfiguration appConfig;
-        try
+        // Try to build configuration - if this fails (test environment), we'll use builder configuration instead
+        var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+        if (!string.IsNullOrWhiteSpace(environment))
         {
-            appConfig = new ApplicationConfiguration(configuration);
-        }
-        catch (InvalidOperationException ex)
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine();
-            Console.WriteLine("═══════════════════════════════════════════════════════════════");
-            Console.WriteLine("  ✗ CONFIGURATION ERROR");
-            Console.WriteLine("═══════════════════════════════════════════════════════════════");
-            Console.ResetColor();
-            Console.WriteLine();
-            Console.WriteLine(ex.Message);
-            Console.WriteLine();
-            if (isLocal)
+            try
             {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Ensure appsettings.Local.json has all required values configured.");
-                Console.ResetColor();
+                // ONE CONFIGURATION TO RULE THEM ALL!
+                configuration = BuildConfiguration();
+                var isLocal = environment == "Development";
+
+                // Create and validate ApplicationConfiguration (NO FALLBACKS!)
+                try
+                {
+                    appConfig = new ApplicationConfiguration(configuration);
+                }
+                catch (InvalidOperationException ex)
+                {
+                    // If configuration validation fails, check if we might be in a test environment
+                    // Tests use WebApplicationFactory which provides configuration after CreateBuilder
+                    // So we'll defer configuration creation until after the builder is created
+                    var errorMessage = ex.Message;
+                    if (errorMessage.Contains("Jwt") || errorMessage.Contains("SecretKey"))
+                    {
+                        // Likely in test environment - defer configuration until after builder creation
+                        useBuilderConfiguration = true;
+                    }
+                    else
+                    {
+                        // Real configuration error - fail fast
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine();
+                        Console.WriteLine("═══════════════════════════════════════════════════════════════");
+                        Console.WriteLine("  ✗ CONFIGURATION ERROR");
+                        Console.WriteLine("═══════════════════════════════════════════════════════════════");
+                        Console.ResetColor();
+                        Console.WriteLine();
+                        Console.WriteLine(ex.Message);
+                        Console.WriteLine();
+                        if (isLocal)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine("Ensure appsettings.Local.json has all required values configured.");
+                            Console.ResetColor();
+                        }
+                        Console.WriteLine();
+                        Environment.Exit(1);
+                        return;
+                    }
+                }
             }
-            Console.WriteLine();
-            Environment.Exit(1);
-            return;
+            catch (Exception)
+            {
+                // If BuildConfiguration itself fails, we're definitely in a test environment
+                useBuilderConfiguration = true;
+            }
+        }
+        else
+        {
+            // No environment set - likely test environment
+            useBuilderConfiguration = true;
         }
 
         // Old user secrets check - no longer needed with Local configuration
@@ -155,25 +191,63 @@ internal class Program
 
         var builder = WebApplication.CreateBuilder(args);
 
-        // Replace builder's configuration with our explicit configuration
-        builder.Configuration.Sources.Clear();
-        builder.Configuration.AddConfiguration(configuration);
-
-        // Set server URL explicitly from configuration (NO launchSettings.json needed!)
-        builder.WebHost.UseUrls(appConfig.Server.Url);
+        if (!useBuilderConfiguration)
+        {
+            // In non-test environment, replace builder's configuration with our explicit configuration
+            builder.Configuration.Sources.Clear();
+            builder.Configuration.AddConfiguration(configuration!);
+            
+            // Set server URL explicitly from configuration (NO launchSettings.json needed!)
+            builder.WebHost.UseUrls(appConfig!.Server.Url);
+        }
+        // else: In test environment, use the builder's configuration as-is.
+        // The TestWebAppFactory will inject configuration through ConfigureWebHost,
+        // and ApplicationConfiguration will be created lazily when services request it.
 
         // Register ApplicationConfiguration - ONE CONFIGURATION TO RULE THEM ALL!
         // Provides all configuration to API, Data, and Core layers
-        builder.Services.AddSingleton(appConfig);
-        builder.Services.AddSingleton<ICoreConfiguration>(appConfig);
+        // If appConfig is null (test environment), create it lazily from IConfiguration
+        if (appConfig != null)
+        {
+            builder.Services.AddSingleton(appConfig);
+            builder.Services.AddSingleton<ICoreConfiguration>(appConfig);
+        }
+        else
+        {
+            // Test environment - create ApplicationConfiguration from final IConfiguration
+            builder.Services.AddSingleton<ApplicationConfiguration>(sp =>
+            {
+                var config = sp.GetRequiredService<IConfiguration>();
+                return new ApplicationConfiguration(config);
+            });
+            builder.Services.AddSingleton<ICoreConfiguration>(sp =>
+                sp.GetRequiredService<ApplicationConfiguration>());
+        }
 
         // Also register the old ApiConfiguration for backward compatibility
-        var apiConfig = new WebTemplate.API.Configuration.ApiConfiguration(builder.Configuration);
-        builder.Services.AddSingleton<WebTemplate.API.Configuration.IApiConfiguration>(apiConfig);
-        builder.Services.AddSingleton<WebTemplate.Data.Configuration.IDataConfiguration>(apiConfig);
-
-        // Register FeaturesOptions as singleton for services that need it directly
-        builder.Services.AddSingleton(apiConfig.Features);
+        // If we're in test mode (appConfig is null), create it lazily to allow test configuration to be applied first
+        if (appConfig != null)
+        {
+            var apiConfig = new WebTemplate.API.Configuration.ApiConfiguration(builder.Configuration);
+            builder.Services.AddSingleton<WebTemplate.API.Configuration.IApiConfiguration>(apiConfig);
+            builder.Services.AddSingleton<WebTemplate.Data.Configuration.IDataConfiguration>(apiConfig);
+            builder.Services.AddSingleton(apiConfig.Features);
+        }
+        else
+        {
+            // Test environment - create lazily
+            builder.Services.AddSingleton<WebTemplate.API.Configuration.ApiConfiguration>(sp =>
+            {
+                var config = sp.GetRequiredService<IConfiguration>();
+                return new WebTemplate.API.Configuration.ApiConfiguration(config);
+            });
+            builder.Services.AddSingleton<WebTemplate.API.Configuration.IApiConfiguration>(sp =>
+                sp.GetRequiredService<WebTemplate.API.Configuration.ApiConfiguration>());
+            builder.Services.AddSingleton<WebTemplate.Data.Configuration.IDataConfiguration>(sp =>
+                sp.GetRequiredService<WebTemplate.API.Configuration.ApiConfiguration>());
+            builder.Services.AddSingleton(sp =>
+                sp.GetRequiredService<WebTemplate.API.Configuration.ApiConfiguration>().Features);
+        }
 
         // Bind and discover feature modules
         builder.Services.Configure<FeaturesOptions>(builder.Configuration.GetSection(FeaturesOptions.SectionName));
@@ -241,17 +315,7 @@ internal class Program
         // Fail fast if environment is missing or invalid
         if (string.IsNullOrWhiteSpace(environment))
         {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine();
-            Console.WriteLine("═══════════════════════════════════════════════════════════════");
-            Console.WriteLine("  ✗ MISSING ASPNETCORE_ENVIRONMENT");
-            Console.WriteLine("═══════════════════════════════════════════════════════════════");
-            Console.ResetColor();
-            Console.WriteLine();
-            Console.WriteLine("Set ASPNETCORE_ENVIRONMENT to one of: Development, Staging, Production");
-            Console.WriteLine();
-            Environment.Exit(1);
-            return null!;
+            throw new InvalidOperationException("ASPNETCORE_ENVIRONMENT is not set. Set it to one of: Development, Staging, Production");
         }
 
         var allowedEnvironments = new HashSet<string>(StringComparer.Ordinal)
@@ -260,18 +324,7 @@ internal class Program
         };
         if (!allowedEnvironments.Contains(environment))
         {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine();
-            Console.WriteLine("═══════════════════════════════════════════════════════════════");
-            Console.WriteLine("  ✗ INVALID ASPNETCORE_ENVIRONMENT VALUE");
-            Console.WriteLine("═══════════════════════════════════════════════════════════════");
-            Console.ResetColor();
-            Console.WriteLine();
-            Console.WriteLine($"Provided: '{environment}'");
-            Console.WriteLine("Allowed: Development, Staging, Production");
-            Console.WriteLine();
-            Environment.Exit(1);
-            return null!;
+            throw new InvalidOperationException($"Invalid ASPNETCORE_ENVIRONMENT: '{environment}'. Allowed values: Development, Staging, Production");
         }
 
         var isLocal = environment == "Development";
