@@ -25,8 +25,19 @@ public class ProjectGenerationService
     {
         try
         {
+            // Validate inputs
+            if (config == null)
+            {
+                return (false, "Configuration cannot be null", null);
+            }
+
+            if (progress == null)
+            {
+                progress = new Progress<string>(msg => { /* no-op */ });
+            }
+
             // Validate configuration
-            progress?.Report("Validating configuration...");
+            progress.Report("Validating configuration...");
             var validation = config.Validate();
             if (!validation.IsValid)
             {
@@ -44,7 +55,7 @@ public class ProjectGenerationService
             var templateConfig = ConvertConfiguration(config);
 
             // Run the template engine (C# implementation, no PowerShell!)
-            progress?.Report("Generating project from template...");
+            progress.Report("Generating project from template...");
             var result = await _templateEngine.GenerateAsync(templateConfig, progress);
 
             if (!result.Success)
@@ -55,9 +66,20 @@ public class ProjectGenerationService
             // Initialize database (if configured)
             if (config.Database.ExecuteInitScript)
             {
-                progress?.Report("Checking if database exists...");
+                progress.Report("Checking if database exists...");
                 var dbService = new DatabaseService();
                 
+                // Validate required database configuration
+                if (string.IsNullOrWhiteSpace(config.Database.ConnectionString))
+                {
+                    return (false, "Database connection string is required for initialization", targetPath);
+                }
+
+                if (string.IsNullOrWhiteSpace(config.Project?.ProjectName))
+                {
+                    return (false, "Project name is required for database initialization", targetPath);
+                }
+
                 // Check if database already exists
                 var databaseExists = await dbService.DatabaseExistsAsync(config.Database.ConnectionString);
 
@@ -72,18 +94,26 @@ public class ProjectGenerationService
                             targetPath);
                     }
 
-                    progress?.Report("Database does not exist - creating database...");
+                    progress.Report("Database does not exist - creating database...");
                 }
                 else
                 {
-                    progress?.Report("Database exists - proceeding with initialization...");
+                    progress.Report("Database exists - proceeding with initialization...");
                 }
 
+                // Build the script path safely
+                var scriptPath = Path.Combine(
+                    targetPath,
+                    "Backend",
+                    $"{config.Project.ProjectName}.Data",
+                    "Migrations",
+                    "db-init.sql");
+
                 // Execute the init script
-                progress?.Report("Initializing database...");
+                progress.Report("Initializing database...");
                 var dbResult = await dbService.ExecuteInitScriptAsync(
                     config.Database.ConnectionString,
-                    Path.Combine(targetPath, "Backend", $"{config.Project.ProjectName}.Data", "Migrations", "db-init.sql"));
+                    scriptPath);
 
                 if (!dbResult.Success)
                 {
@@ -91,8 +121,16 @@ public class ProjectGenerationService
                 }
             }
 
-            progress?.Report($"Project generated successfully in {result.Duration.TotalSeconds:F1}s");
+            progress.Report($"Project generated successfully in {result.Duration.TotalSeconds:F1}s");
             return (true, "Project generation completed successfully", result.GeneratedPath);
+        }
+        catch (ArgumentNullException ex)
+        {
+            return (false, $"Null argument error: {ex.Message}", null);
+        }
+        catch (ArgumentException ex)
+        {
+            return (false, $"Invalid argument error: {ex.Message}", null);
         }
         catch (Exception ex)
         {
