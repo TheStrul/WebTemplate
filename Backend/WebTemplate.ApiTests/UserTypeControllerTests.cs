@@ -5,7 +5,6 @@ namespace WebTemplate.ApiTests
     using System.Net.Http.Json;
     using System.Text.Json;
     using FluentAssertions;
-    using Microsoft.AspNetCore.Mvc.Testing;
     using Xunit;
 
     /// <summary>
@@ -14,21 +13,28 @@ namespace WebTemplate.ApiTests
     /// Requires Admin role for all endpoints
     /// </summary>
     [Collection("Integration Tests")]
-    public class UserTypeControllerTests
+    public class UserTypeControllerTests : IAsyncLifetime
     {
-        private readonly TestWebAppFactory _factory;
-        private readonly HttpClient _client;
+        private TestWebAppFactory _factory = default!;
+        private HttpClient _client = default!;
         private readonly JsonSerializerOptions _json = new(JsonSerializerDefaults.Web);
 
-        public UserTypeControllerTests()
+        public async Task InitializeAsync()
         {
             _factory = new TestWebAppFactory();
-            _factory.InitializeDatabaseAsync().GetAwaiter().GetResult();
-            _client = _factory.CreateClient(new WebApplicationFactoryClientOptions
+            await _factory.InitializeAsync();
+            _client = _factory.CreateClient(new Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryClientOptions
             {
                 BaseAddress = new Uri("https://localhost/"),
                 AllowAutoRedirect = false
             });
+        }
+
+        public async Task DisposeAsync()
+        {
+            _client?.Dispose();
+            _factory?.Dispose();
+            await Task.CompletedTask;
         }
 
         #region Helper Methods
