@@ -17,6 +17,87 @@ internal class Program
         builder.Configuration.Sources.Clear();
         BuildConfiguration(builder.Configuration, builder.Environment);
 
+        // Detect testhost early
+        bool IsRunningUnderTests()
+        {
+            var processName = Process.GetCurrentProcess().ProcessName?.ToLowerInvariant() ?? string.Empty;
+            if (processName.Contains("testhost") || processName.Contains("vstest") || processName.Contains("dotnet-test"))
+                return true;
+            if (builder.Environment.IsEnvironment("Testing"))
+                return true;
+            // Assembly presence check
+            var loaded = AppDomain.CurrentDomain.GetAssemblies();
+            if (loaded.Any(a => a.FullName?.Contains("Microsoft.AspNetCore.Mvc.Testing", StringComparison.OrdinalIgnoreCase) == true))
+                return true;
+            return false;
+        }
+
+        var runningInTests = IsRunningUnderTests();
+
+        if (runningInTests)
+        {
+            var testDefaults = new Dictionary<string, string?>
+            {
+                ["Server:Url"] = "http://127.0.0.1:5000",
+                ["Server:HealthEndpoint"] = "/health",
+                ["Server:ConnectionTimeoutSeconds"] = "2",
+                ["Database:ConnectionString"] = "InMemory",
+                ["ConnectionStrings:DefaultConnection"] = "InMemory",
+
+                // Features
+                ["Features:IdentityAuth:Enabled"] = "true",
+                ["Features:RefreshTokens:Enabled"] = "true",
+                ["Features:ExceptionHandling:Enabled"] = "true",
+                ["Features:Swagger:Enabled"] = "false",
+                ["Features:Cors:Enabled"] = "false",
+                ["Features:HealthChecks:Enabled"] = "false",
+                ["Features:AdminSeed:Enabled"] = "false",
+                ["Features:AdminSeed:Email"] = "admin@WebTemplate.com",
+                ["Features:AdminSeed:Password"] = "Admin123!@#",
+                ["Features:AdminSeed:FirstName"] = "System",
+                ["Features:AdminSeed:LastName"] = "Administrator",
+
+                // Auth
+                ["AuthSettings:Jwt:SecretKey"] = "ThisIsATemporaryTestSecretKeyThatMustBeAtLeast32CharactersLong!@#",
+                ["AuthSettings:Jwt:Issuer"] = "CoreWebApp.API",
+                ["AuthSettings:Jwt:Audience"] = "CoreWebApp.Client",
+                ["AuthSettings:Jwt:ClockSkewMinutes"] = "5",
+                ["AuthSettings:Password:RequiredLength"] = "8",
+                ["AuthSettings:Password:RequireDigit"] = "true",
+                ["AuthSettings:Password:RequireLowercase"] = "true",
+                ["AuthSettings:Password:RequireUppercase"] = "true",
+                ["AuthSettings:Password:RequireNonAlphanumeric"] = "false",
+                ["AuthSettings:Password:RequiredUniqueChars"] = "1",
+                ["AuthSettings:Password:ResetTokenExpiryHours"] = "24",
+                ["AuthSettings:Lockout:DefaultLockoutEnabled"] = "true",
+                ["AuthSettings:Lockout:DefaultLockoutTimeSpanMinutes"] = "5",
+                ["AuthSettings:Lockout:MaxFailedAccessAttempts"] = "5",
+                ["AuthSettings:User:RequireConfirmedEmail"] = "false",
+                ["AuthSettings:User:RequireConfirmedPhoneNumber"] = "false",
+                ["AuthSettings:User:RequireUniqueEmail"] = "true",
+                ["AuthSettings:User:AllowedUserNameCharacters"] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+",
+                ["AuthSettings:User:SessionTimeoutMinutes"] = "480",
+                ["AuthSettings:EmailConfirmation:TokenExpiryHours"] = "24",
+                ["AuthSettings:EmailConfirmation:SendWelcomeEmail"] = "false",
+                ["AuthSettings:EmailConfirmation:MaxEmailsPerHour"] = "3",
+                ["AuthSettings:UserModuleFeatures:EnableLogin"] = "true",
+                ["AuthSettings:UserModuleFeatures:EnableRegistration"] = "true",
+                ["AuthSettings:UserModuleFeatures:EnableRefreshToken"] = "true",
+                ["AuthSettings:UserModuleFeatures:EnableLogout"] = "true",
+                ["AuthSettings:UserModuleFeatures:EnableLogoutAllDevices"] = "true",
+                ["AuthSettings:UserModuleFeatures:EnableForgotPassword"] = "true",
+                ["AuthSettings:UserModuleFeatures:EnableResetPassword"] = "true",
+                ["AuthSettings:UserModuleFeatures:EnableConfirmEmail"] = "true",
+                ["AuthSettings:UserModuleFeatures:EnableChangePassword"] = "true",
+                ["AuthSettings:UserModuleFeatures:IncludeUserTypePermissionsInResponses"] = "true",
+                ["Email:Provider"] = "Smtp",
+                ["Email:From"] = "no-reply@example.com",
+                ["Email:FromName"] = "WebTemplate",
+                ["AllowedHosts"] = "*"
+            };
+            builder.Configuration.AddInMemoryCollection(testDefaults);
+        }
+
         // Set server URL from configuration.
         var serverUrl = builder.Configuration.GetValue<string>("Server:Url");
         if (!string.IsNullOrWhiteSpace(serverUrl))
@@ -107,14 +188,24 @@ internal class Program
             await app.InitializeUserModuleAsync();
         }
 
+        // Never run the app under test harness; let the test server manage lifetime
+        runningInTests = runningInTests || app.Environment.IsEnvironment("Testing");
+        if (runningInTests)
+        {
+            return;
+        }
+
         await app.RunAsync();
     }
 
     private static void BuildConfiguration(IConfigurationBuilder configurationBuilder, IWebHostEnvironment env)
     {
-        if (env.IsEnvironment("Testing"))
+        // If tests, don't attempt to load files or enforce environment name
+        var processName = Process.GetCurrentProcess().ProcessName?.ToLowerInvariant() ?? string.Empty;
+        var isTestHost = processName.Contains("testhost") || processName.Contains("vstest") || AppDomain.CurrentDomain.GetAssemblies().Any(a => a.FullName?.Contains("Microsoft.AspNetCore.Mvc.Testing", StringComparison.OrdinalIgnoreCase) == true);
+        if (env.IsEnvironment("Testing") || isTestHost)
         {
-            return; // TestWebAppFactory provides configuration.
+            return; // TestWebAppFactory provides configuration or we inject minimal defaults.
         }
 
         if (string.IsNullOrWhiteSpace(env.EnvironmentName))

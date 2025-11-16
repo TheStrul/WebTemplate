@@ -5,7 +5,6 @@ namespace WebTemplate.ApiTests
     using System.Text.Json;
     using FluentAssertions;
     using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Mvc.Testing;
     using Microsoft.Extensions.DependencyInjection;
     using WebTemplate.Core.Entities;
     using Xunit;
@@ -13,21 +12,17 @@ namespace WebTemplate.ApiTests
     [Collection("Integration Tests")]
     public class AuthEndpointsSanity : IAsyncLifetime
     {
-        private readonly TestWebAppFactory _factory;
+        private TestWebAppFactory _factory = default!;
         private HttpClient _client = default!;
         private readonly JsonSerializerOptions _json = new(JsonSerializerDefaults.Web);
 
-        public AuthEndpointsSanity(TestWebAppFactory factory)
-        {
-            _factory = factory;
-        }
+        public AuthEndpointsSanity() { }
 
         public async Task InitializeAsync()
         {
-            // Initialize database before creating client (async to avoid deadlocks)
+            _factory = new TestWebAppFactory();
             await _factory.InitializeDatabaseAsync();
-
-            _client = _factory.CreateClient(new WebApplicationFactoryClientOptions
+            _client = _factory.CreateClient(new Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryClientOptions
             {
                 BaseAddress = new Uri("https://localhost/"),
                 AllowAutoRedirect = false
@@ -45,7 +40,6 @@ namespace WebTemplate.ApiTests
             using var scope = _factory.Services.CreateScope();
             return await action(scope.ServiceProvider);
         }
-
         private Task WithScope(Func<IServiceProvider, Task> action) => WithScope<object>(async sp => { await action(sp); return new object(); });
 
         [Fact(DisplayName = "Register -> Login -> Status (happy path)")]

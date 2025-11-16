@@ -16,9 +16,26 @@ namespace WebTemplate.ApiTests
         private bool _seeded = false;
         private readonly SemaphoreSlim _seedLock = new SemaphoreSlim(1, 1);
 
+        // Ensure environment is set as early as possible
+        static TestWebAppFactory()
+        {
+            System.Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Testing");
+            System.Environment.SetEnvironmentVariable("DOTNET_ENVIRONMENT", "Testing");
+        }
+
+        public TestWebAppFactory()
+        {
+            System.Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Testing");
+            System.Environment.SetEnvironmentVariable("DOTNET_ENVIRONMENT", "Testing");
+        }
+
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
             builder.UseEnvironment("Testing");
+
+            // Make sure environment variables also reflect Testing for libraries that read env vars directly
+            System.Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Testing");
+            System.Environment.SetEnvironmentVariable("DOTNET_ENVIRONMENT", "Testing");
 
             builder.ConfigureAppConfiguration((ctx, configBuilder) =>
             {
@@ -32,32 +49,70 @@ namespace WebTemplate.ApiTests
                     ["Server:Url"] = "http://localhost:5000",
                     ["Server:HealthEndpoint"] = "/health",
                     ["Server:ConnectionTimeoutSeconds"] = "2",
+
+                    // Required by ApiConfiguration
+                    ["AllowedHosts"] = "*",
                     
                     // Database (will be overridden to InMemory in ConfigureServices)
                     ["Database:ConnectionString"] = "InMemory",
                     ["ConnectionStrings:DefaultConnection"] = "InMemory",
 
-                    // Auth settings
-                    ["AuthSettings:User:RequireConfirmedEmail"] = "false",
-                    ["AuthSettings:User:RequireConfirmedPhoneNumber"] = "false",
-                    ["AuthSettings:User:RequireUniqueEmail"] = "true",
-                    ["AuthSettings:User:AllowedUserNameCharacters"] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+",
-                    ["AuthSettings:User:SessionTimeoutMinutes"] = "480",
+                    // Auth settings - Password
                     ["AuthSettings:Password:RequiredLength"] = "8",
                     ["AuthSettings:Password:RequireDigit"] = "true",
                     ["AuthSettings:Password:RequireLowercase"] = "true",
                     ["AuthSettings:Password:RequireUppercase"] = "true",
                     ["AuthSettings:Password:RequireNonAlphanumeric"] = "false",
                     ["AuthSettings:Password:RequiredUniqueChars"] = "1",
+                    ["AuthSettings:Password:ResetTokenExpiryHours"] = "24",
+
+                    // Auth settings - Lockout
+                    ["AuthSettings:Lockout:DefaultLockoutEnabled"] = "true",
+                    ["AuthSettings:Lockout:DefaultLockoutTimeSpanMinutes"] = "5",
+                    ["AuthSettings:Lockout:MaxFailedAccessAttempts"] = "5",
+
+                    // Auth settings - User
+                    ["AuthSettings:User:RequireConfirmedEmail"] = "false",
+                    ["AuthSettings:User:RequireConfirmedPhoneNumber"] = "false",
+                    ["AuthSettings:User:RequireUniqueEmail"] = "true",
+                    ["AuthSettings:User:AllowedUserNameCharacters"] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+",
+                    ["AuthSettings:User:SessionTimeoutMinutes"] = "480",
+
+                    // Auth settings - Email Confirmation
+                    ["AuthSettings:EmailConfirmation:TokenExpiryHours"] = "24",
+                    ["AuthSettings:EmailConfirmation:SendWelcomeEmail"] = "false",
+                    ["AuthSettings:EmailConfirmation:MaxEmailsPerHour"] = "3",
+
+                    // Auth settings - JWT
                     ["AuthSettings:Jwt:SecretKey"] = "ThisIsATemporaryTestSecretKeyThatMustBeAtLeast32CharactersLong!@#",
                     ["AuthSettings:Jwt:Issuer"] = "CoreWebApp.API",
                     ["AuthSettings:Jwt:Audience"] = "CoreWebApp.Client",
                     ["AuthSettings:Jwt:AccessTokenExpiryMinutes"] = "60",
                     ["AuthSettings:Jwt:RefreshTokenExpiryDays"] = "30",
                     ["AuthSettings:Jwt:ClockSkewMinutes"] = "5",
-                    
-                    // Admin seed configuration
-                    ["Features:AdminSeed:Enabled"] = "true",
+
+                    // Auth settings - User Module Feature flags
+                    ["AuthSettings:UserModuleFeatures:EnableLogin"] = "true",
+                    ["AuthSettings:UserModuleFeatures:EnableRegistration"] = "true",
+                    ["AuthSettings:UserModuleFeatures:EnableRefreshToken"] = "true",
+                    ["AuthSettings:UserModuleFeatures:EnableLogout"] = "true",
+                    ["AuthSettings:UserModuleFeatures:EnableLogoutAllDevices"] = "true",
+                    ["AuthSettings:UserModuleFeatures:EnableForgotPassword"] = "true",
+                    ["AuthSettings:UserModuleFeatures:EnableResetPassword"] = "true",
+                    ["AuthSettings:UserModuleFeatures:EnableConfirmEmail"] = "true",
+                    ["AuthSettings:UserModuleFeatures:EnableChangePassword"] = "true",
+                    ["AuthSettings:UserModuleFeatures:IncludeUserTypePermissionsInResponses"] = "true",
+
+                    // Email settings
+                    ["Email:Provider"] = "Smtp",
+                    ["Email:From"] = "no-reply@example.com",
+                    ["Email:FromName"] = "WebTemplate",
+
+                    // AppUrls
+                    ["AuthSettings:AppUrls:ConfirmEmailPath"] = "/confirm-email",
+
+                    // Admin seed configuration (disabled - tests seed explicitly)
+                    ["Features:AdminSeed:Enabled"] = "false",
                     ["Features:AdminSeed:Email"] = "admin@WebTemplate.com",
                     ["Features:AdminSeed:Password"] = "Admin123!@#",
                     ["Features:AdminSeed:FirstName"] = "System",
@@ -72,7 +127,15 @@ namespace WebTemplate.ApiTests
                     ["Features:IdentityAuth:Enabled"] = "true",
                     ["Features:RefreshTokens:Enabled"] = "true",
                     ["Features:ExceptionHandling:Enabled"] = "true",
-                    ["Features:EmailModule:Enabled"] = "false"
+                    ["Features:EmailModule:Enabled"] = "false",
+
+                    // UserModule overrides to ensure Identity options are configured
+                    ["UserModule:Auth:PasswordRequirements:RequireDigit"] = "true",
+                    ["UserModule:Auth:PasswordRequirements:RequireLowercase"] = "true",
+                    ["UserModule:Auth:PasswordRequirements:RequireUppercase"] = "true",
+                    ["UserModule:Auth:PasswordRequirements:RequireNonAlphanumeric"] = "false",
+                    ["UserModule:Auth:PasswordRequirements:RequiredLength"] = "8",
+                    ["UserModule:Auth:PasswordRequirements:RequiredUniqueChars"] = "1"
                 };
 
                 configBuilder.AddInMemoryCollection(testConfig);
@@ -150,6 +213,10 @@ namespace WebTemplate.ApiTests
 
         private static async Task SeedAdminUser(IServiceProvider serviceProvider)
         {
+            var config = serviceProvider.GetRequiredService<IConfiguration>();
+            var adminPassword = config["Features:AdminSeed:Password"];
+            if (string.IsNullOrWhiteSpace(adminPassword)) throw new InvalidOperationException("Admin seed password configuration missing.");
+            var adminEmail = config["Features:AdminSeed:Email"] ?? throw new InvalidOperationException("Admin seed email configuration missing.");
             try
             {
                 var db = serviceProvider.GetRequiredService<ApplicationDbContext>();
@@ -170,10 +237,7 @@ namespace WebTemplate.ApiTests
                     }
                 }
 
-                // Create admin user
-                var adminEmail = "admin@WebTemplate.com";
                 var existingAdmin = await userManager.FindByEmailAsync(adminEmail);
-                
                 if (existingAdmin == null)
                 {
                     var adminUser = new ApplicationUser
@@ -182,19 +246,19 @@ namespace WebTemplate.ApiTests
                         UserName = adminEmail,
                         Email = adminEmail,
                         EmailConfirmed = true,
-                        FirstName = "System",
-                        LastName = "Administrator",
+                        FirstName = config["Features:AdminSeed:FirstName"] ?? throw new InvalidOperationException("Admin seed first name missing."),
+                        LastName = config["Features:AdminSeed:LastName"] ?? throw new InvalidOperationException("Admin seed last name missing."),
                         UserTypeId = 1,
                         IsActive = true,
                         CreatedAt = DateTime.UtcNow,
-                        NormalizedUserName = adminEmail.ToUpper(),
-                        NormalizedEmail = adminEmail.ToUpper(),
+                        NormalizedUserName = adminEmail.ToUpperInvariant(),
+                        NormalizedEmail = adminEmail.ToUpperInvariant(),
                         SecurityStamp = Guid.NewGuid().ToString(),
                         ConcurrencyStamp = Guid.NewGuid().ToString()
                     };
 
                     // Hash the password
-                    var passwordHash = userManager.PasswordHasher.HashPassword(adminUser, "Admin123!");
+                    var passwordHash = userManager.PasswordHasher.HashPassword(adminUser, adminPassword);
                     adminUser.PasswordHash = passwordHash;
 
                     // Add to database
@@ -205,7 +269,7 @@ namespace WebTemplate.ApiTests
                     var roleResult = await userManager.AddToRoleAsync(adminUser, "Admin");
                     if (!roleResult.Succeeded)
                     {
-                        Console.WriteLine($"Warning: Failed to add Admin role to user");
+                        Console.WriteLine("Warning: Failed to add Admin role to user");
                     }
                 }
             }

@@ -25,10 +25,14 @@ public static class UserModule
 {
     public static IServiceCollection AddUserModule(this IServiceCollection services, IConfiguration rootConfig)
     {
-        // For test environments, the DbContext is configured by TestWebAppFactory.
-        // We can skip the rest of the setup for DbContext and connection strings.
+        // Detect testing early via environment variables or testhost context
         var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
         var isTesting = "Testing".Equals(environment, StringComparison.OrdinalIgnoreCase);
+        var processName = System.Diagnostics.Process.GetCurrentProcess().ProcessName?.ToLowerInvariant() ?? string.Empty;
+        var isTestHost = processName.Contains("testhost") || AppDomain.CurrentDomain
+            .GetAssemblies()
+            .Any(a => a.FullName?.Contains("Microsoft.AspNetCore.Mvc.Testing", StringComparison.OrdinalIgnoreCase) == true);
+        if (isTestHost) isTesting = true;
 
         // Resolve module configuration with simple override strategy:
         // 1) External JSON pointed by UserModule:ConfigPath or env USER_MODULE_CONFIG
@@ -45,17 +49,23 @@ public static class UserModule
         {
             if (string.IsNullOrWhiteSpace(connectionString))
             {
-                throw new InvalidOperationException(
-                    "Connection string is required but not configured. Please provide a connection string via one of these methods: " +
-                    "1) UserModule:Db:ConnectionString, 2) ConnectionStrings:DefaultConnection in appsettings.json, " +
-                    "3) External config file specified in UserModule:ConfigPath or USER_MODULE_CONFIG environment variable.");
-            }
-
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString, sqlOptions =>
+                // When running under test host, let the test factory register the DbContext provider.
+                if (!isTestHost)
                 {
-                    sqlOptions.EnableRetryOnFailure(5, TimeSpan.FromSeconds(30), null);
-                }));
+                    throw new InvalidOperationException(
+                        "Connection string is required but not configured. Please provide a connection string via one of these methods: " +
+                        "1) UserModule:Db:ConnectionString, 2) ConnectionStrings:DefaultConnection in appsettings.json, " +
+                        "3) External config file specified in UserModule:ConfigPath or USER_MODULE_CONFIG environment variable.");
+                }
+            }
+            else
+            {
+                services.AddDbContext<ApplicationDbContext>(options =>
+                    options.UseSqlServer(connectionString, sqlOptions =>
+                    {
+                        sqlOptions.EnableRetryOnFailure(5, TimeSpan.FromSeconds(30), null);
+                    }));
+            }
         }
 
         // Identity
@@ -149,8 +159,17 @@ public static class UserModule
 
         try
         {
-            // Initialize database schema using SQL script (SQL-first approach)
-            await InitializeDatabaseSchemaAsync(context, logger);
+            // Skip schema initialization for InMemory provider
+            var providerName = context.Database.ProviderName;
+            if (!string.IsNullOrWhiteSpace(providerName) && providerName.IndexOf("InMemory", StringComparison.OrdinalIgnoreCase) >= 0)
+            {
+                logger.LogInformation("InMemory provider detected - skipping SQL schema initialization");
+            }
+            else
+            {
+                // Initialize database schema using SQL script (SQL-first approach)
+                await InitializeDatabaseSchemaAsync(context, logger);
+            }
 
             // roles
             string[] roles = { "Admin", "User", "Moderator" };

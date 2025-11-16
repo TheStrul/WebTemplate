@@ -14,6 +14,8 @@ namespace WebTemplate.E2ETests
         protected readonly HttpClient Client;
         protected readonly JsonSerializerOptions JsonOptions;
         protected readonly ITestConfiguration Config;
+        private bool _serverValidated = false;
+        private static readonly object _validationLock = new();
 
         protected E2ETestBase()
         {
@@ -33,10 +35,48 @@ namespace WebTemplate.E2ETests
         }
 
         /// <summary>
+        /// Validates that the backend server is running and responding.
+        /// Lazy initialization - only checks once per test session.
+        /// </summary>
+        private void EnsureServerIsRunning()
+        {
+            if (_serverValidated)
+                return;
+
+            lock (_validationLock)
+            {
+                if (_serverValidated)
+                    return;
+
+                try
+                {
+                    var healthTask = Client.GetAsync("/health");
+                    healthTask.Wait(TimeSpan.FromSeconds(2));
+                    _serverValidated = true;
+                }
+                catch (Exception ex)
+                {
+                    throw new InvalidOperationException(
+                        $"E2E tests require the backend server to be running.\n\n" +
+                        $"Server URL configured: {Config.Server.BaseUrl}\n\n" +
+                        $"To start the backend server, run:\n" +
+                        $"  cd Backend/WebTemplate.API\n" +
+                        $"  dotnet run\n\n" +
+                        $"After the server is running and shows 'Now listening on: {Config.Server.BaseUrl}',\n" +
+                        $"you can run E2E tests again.\n\n" +
+                        $"Original error: {ex.GetBaseException().Message}",
+                        ex);
+                }
+            }
+        }
+
+        /// <summary>
         /// Authenticates as admin and returns the access token
         /// </summary>
         protected async Task<string> LoginAsAdminAsync()
         {
+            EnsureServerIsRunning();
+
             var loginRequest = new
             {
                 email = Config.Admin.Email,
@@ -58,6 +98,8 @@ namespace WebTemplate.E2ETests
         /// </summary>
         protected async Task<(string userId, string token)> RegisterUserAsync(string email, string password, string firstName = "Test", string lastName = "User")
         {
+            EnsureServerIsRunning();
+
             var registerRequest = new
             {
                 email,
@@ -75,16 +117,19 @@ namespace WebTemplate.E2ETests
             var content = await response.Content.ReadAsStringAsync();
             var json = JsonDocument.Parse(content);
 
-            // Check if data is null (might be due to email confirmation requirement)
+            // Get the data element - may be null if email confirmation required
             var dataElement = json.RootElement.GetProperty("data");
+            
             if (dataElement.ValueKind == JsonValueKind.Null)
             {
-                // For email confirmation flow, we need to handle it differently
-                // For now, extract the userId from somewhere else or throw a clear error
-                throw new InvalidOperationException("Registration returned no data - email confirmation may be required");
+                // Email confirmation is required - we can't auto-login
+                throw new InvalidOperationException(
+                    "Registration successful but email confirmation is required. " +
+                    "E2E tests cannot proceed without confirmation token. " +
+                    "Ensure 'RequireConfirmedEmail' is false in appsettings for E2E testing.");
             }
 
-            var userId = dataElement.GetProperty("userId").GetString()
+            var userId = dataElement.GetProperty("user").GetProperty("id").GetString()
                 ?? throw new InvalidOperationException("Failed to get userId from register response");
             var token = dataElement.GetProperty("accessToken").GetString()
                 ?? throw new InvalidOperationException("Failed to get access token from register response");

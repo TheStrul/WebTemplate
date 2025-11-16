@@ -15,17 +15,15 @@ namespace WebTemplate.ApiTests
     [Collection("Integration Tests")]
     public class UserEndpointsTests : IAsyncLifetime
     {
-        private readonly TestWebAppFactory _factory;
+        private TestWebAppFactory _factory = default!;
         private HttpClient _client = default!;
         private readonly JsonSerializerOptions _json = new(JsonSerializerDefaults.Web);
 
-        public UserEndpointsTests(TestWebAppFactory factory)
-        {
-            _factory = factory;
-        }
+        public UserEndpointsTests() { }
 
         public async Task InitializeAsync()
         {
+            _factory = new TestWebAppFactory();
             await _factory.InitializeDatabaseAsync();
             _client = _factory.CreateClient(new WebApplicationFactoryClientOptions
             {
@@ -44,7 +42,8 @@ namespace WebTemplate.ApiTests
 
         private async Task<string> GetAdminTokenAsync()
         {
-            var loginPayload = new { email = "admin@WebTemplate.com", password = "Admin123!" };
+            // Use password from configuration seed (Admin123!@#) consistently
+            var loginPayload = new { email = "admin@WebTemplate.com", password = "Admin123!@#" };
             var loginResp = await _client.PostAsJsonAsync("/api/auth/login", loginPayload, _json);
             loginResp.StatusCode.Should().Be(HttpStatusCode.OK);
 

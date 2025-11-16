@@ -20,14 +20,11 @@ namespace WebTemplate.ApiTests
         private readonly HttpClient _client;
         private readonly JsonSerializerOptions _json = new(JsonSerializerDefaults.Web);
 
-        public UserTypeControllerTests(TestWebAppFactory factory)
+        public UserTypeControllerTests()
         {
-            _factory = factory;
-
-            // Initialize database before creating client
-            factory.InitializeDatabaseAsync().GetAwaiter().GetResult();
-
-            _client = factory.CreateClient(new WebApplicationFactoryClientOptions
+            _factory = new TestWebAppFactory();
+            _factory.InitializeDatabaseAsync().GetAwaiter().GetResult();
+            _client = _factory.CreateClient(new WebApplicationFactoryClientOptions
             {
                 BaseAddress = new Uri("https://localhost/"),
                 AllowAutoRedirect = false
