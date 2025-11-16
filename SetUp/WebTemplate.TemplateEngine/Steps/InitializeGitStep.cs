@@ -6,33 +6,70 @@ namespace WebTemplate.TemplateEngine.Steps;
 
 /// <summary>
 /// Step 6: Initializes git repository and optionally creates initial commit
-/// [PLACEHOLDER - Implementation in Phase 5]
 /// </summary>
 public class InitializeGitStep : GenerationStepBase
 {
     public override string StepName => "Initializing Git Repository";
     public override int StepNumber => 6;
 
-    public InitializeGitStep(ILogger<InitializeGitStep> logger)
+    private readonly GitInitializer _gitInitializer;
+
+    public InitializeGitStep(ILogger<InitializeGitStep> logger, GitInitializer gitInitializer)
         : base(logger)
     {
+        _gitInitializer = gitInitializer;
     }
 
-    public override Task<StepResult> ExecuteAsync(
+    public override async Task<StepResult> ExecuteAsync(
         TemplateContext context,
         IProgress<string>? progress = null,
         CancellationToken cancellationToken = default)
     {
-        // Skip if not requested
-        if (!context.Configuration.Project.InitializeGit)
+        try
         {
-            ReportProgress(progress, "Skipping Git Initialization");
-            Logger.LogInformation("Git initialization skipped by configuration");
-            return Task.FromResult(new StepResult(true, "Git initialization skipped"));
-        }
+            // Skip if not requested
+            if (!context.Configuration.Project.InitializeGit)
+            {
+                ReportProgress(progress, "Skipping Git Initialization");
+                Logger.LogInformation("Git initialization skipped by configuration");
+                return new StepResult(true, "Git initialization skipped");
+            }
 
-        ReportStepProgress(progress);
-        Logger.LogInformation("[PLACEHOLDER] Step {StepNumber}: {StepName}", StepNumber, StepName);
-        return Task.FromResult(new StepResult(true, "Placeholder - Phase 5 implementation pending"));
+            ReportStepProgress(progress);
+
+            Logger.LogInformation("Initializing git repository for {ProjectName} at {TargetPath}",
+                context.NewProjectName, context.TargetPath);
+
+            var result = await _gitInitializer.InitializeRepositoryAsync(
+                context.TargetPath,
+                context.NewProjectName,
+                context.Configuration.Project.CreateInitialCommit,
+                progress,
+                cancellationToken);
+
+            if (!result.Success)
+            {
+                Logger.LogError("Git initialization failed: {Message}", result.Message);
+                return new StepResult(false, result.Message, result.Exception);
+            }
+
+            var message = result.InitialCommitCreated
+                ? "Git repository initialized with initial commit"
+                : "Git repository initialized (no commit)";
+
+            Logger.LogInformation("Git initialization successful: {Message}", message);
+
+            return new StepResult(true, message);
+        }
+        catch (OperationCanceledException ex)
+        {
+            Logger.LogWarning(ex, "Git initialization operation was cancelled");
+            return new StepResult(false, "Git initialization operation was cancelled", ex);
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, "Git initialization operation failed with unexpected error");
+            return new StepResult(false, $"Git initialization operation failed: {ex.Message}", ex);
+        }
     }
 }
