@@ -21,28 +21,65 @@ namespace WebTemplate.ApiTests
 
             builder.ConfigureAppConfiguration((ctx, configBuilder) =>
             {
-                // Load test appsettings
-                configBuilder.AddJsonFile("appsettings.Local.json", optional: false, reloadOnChange: false);
-                
-                // Override for testing
-                var overrides = new Dictionary<string, string?>
+                // Don't load any files - rely on in-memory configuration only
+                configBuilder.Sources.Clear();
+
+                // Configure everything needed for tests in-memory
+                var testConfig = new Dictionary<string, string?>
                 {
+                    // Server configuration
+                    ["Server:Url"] = "http://localhost:5000",
+                    ["Server:HealthEndpoint"] = "/health",
+                    ["Server:ConnectionTimeoutSeconds"] = "2",
+                    
+                    // Database (will be overridden to InMemory in ConfigureServices)
+                    ["Database:ConnectionString"] = "InMemory",
+                    ["ConnectionStrings:DefaultConnection"] = "InMemory",
+
+                    // Auth settings
                     ["AuthSettings:User:RequireConfirmedEmail"] = "false",
+                    ["AuthSettings:User:RequireConfirmedPhoneNumber"] = "false",
+                    ["AuthSettings:User:RequireUniqueEmail"] = "true",
+                    ["AuthSettings:User:AllowedUserNameCharacters"] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+",
+                    ["AuthSettings:User:SessionTimeoutMinutes"] = "480",
+                    ["AuthSettings:Password:RequiredLength"] = "8",
+                    ["AuthSettings:Password:RequireDigit"] = "true",
+                    ["AuthSettings:Password:RequireLowercase"] = "true",
+                    ["AuthSettings:Password:RequireUppercase"] = "true",
+                    ["AuthSettings:Password:RequireNonAlphanumeric"] = "false",
+                    ["AuthSettings:Password:RequiredUniqueChars"] = "1",
+                    ["AuthSettings:Jwt:SecretKey"] = "ThisIsATemporaryTestSecretKeyThatMustBeAtLeast32CharactersLong!@#",
+                    ["AuthSettings:Jwt:Issuer"] = "CoreWebApp.API",
+                    ["AuthSettings:Jwt:Audience"] = "CoreWebApp.Client",
+                    ["AuthSettings:Jwt:AccessTokenExpiryMinutes"] = "60",
+                    ["AuthSettings:Jwt:RefreshTokenExpiryDays"] = "30",
+                    ["AuthSettings:Jwt:ClockSkewMinutes"] = "5",
+                    
+                    // Admin seed configuration
                     ["Features:AdminSeed:Enabled"] = "true",
                     ["Features:AdminSeed:Email"] = "admin@WebTemplate.com",
-                    ["Features:AdminSeed:Password"] = "Admin123!",
+                    ["Features:AdminSeed:Password"] = "Admin123!@#",
                     ["Features:AdminSeed:FirstName"] = "System",
-                    ["Features:AdminSeed:LastName"] = "Administrator"
+                    ["Features:AdminSeed:LastName"] = "Administrator",
+                    
+                    // Feature flags
+                    ["Features:Swagger:Enabled"] = "false",
+                    ["Features:Cors:Enabled"] = "false",
+                    ["Features:RateLimiting:Enabled"] = "false",
+                    ["Features:SecurityHeaders:Enabled"] = "false",
+                    ["Features:HealthChecks:Enabled"] = "false",
+                    ["Features:IdentityAuth:Enabled"] = "true",
+                    ["Features:RefreshTokens:Enabled"] = "true",
+                    ["Features:ExceptionHandling:Enabled"] = "true",
+                    ["Features:EmailModule:Enabled"] = "false"
                 };
-                configBuilder.AddInMemoryCollection(overrides!);
+
+                configBuilder.AddInMemoryCollection(testConfig);
             });
 
             builder.ConfigureServices((ctx, services) =>
             {
-                // Strategy: Remove ALL database/EF Core registrations and re-add InMemory ONLY
-                // This must happen after Program.cs ConfigureServices but we forcibly replace
-               
-                // Find and remove ALL database provider registrations
+                // Remove all EF database provider registrations
                 var allEfDescriptors = services
                     .Where(d => d.ServiceType.FullName?.Contains("EntityFrameworkCore") == true ||
                                 d.ServiceType == typeof(ApplicationDbContext) ||
@@ -54,7 +91,7 @@ namespace WebTemplate.ApiTests
                     services.Remove(descriptor);
                 }
 
-                // NOW register ONLY InMemory
+                // Register ONLY InMemory database for tests
                 services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseInMemoryDatabase($"WebTemplate_Test_{Guid.NewGuid()}"),
                     ServiceLifetime.Scoped);

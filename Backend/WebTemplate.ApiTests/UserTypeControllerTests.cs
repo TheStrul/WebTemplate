@@ -41,7 +41,7 @@ namespace WebTemplate.ApiTests
         /// </summary>
         private async Task<string> GetAdminTokenAsync()
         {
-            var loginPayload = new { email = "admin@WebTemplate.com", password = "Admin123!" };
+            var loginPayload = new { email = "admin@WebTemplate.com", password = "Admin123!@#" };
             var loginResp = await _client.PostAsJsonAsync("/api/auth/login", loginPayload, _json);
             loginResp.StatusCode.Should().Be(HttpStatusCode.OK, "admin should be seeded");
 

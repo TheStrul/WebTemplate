@@ -80,7 +80,7 @@ namespace WebTemplate.ApiTests
         public async Task Refresh_Logout_ChangePassword_Authorized()
         {
             // Login as admin seeded user
-            var loginPayload = new { email = "admin@WebTemplate.com", password = "Admin123!" };
+            var loginPayload = new { email = "admin@WebTemplate.com", password = "Admin123!@#" };
             var loginResp = await _client.PostAsJsonAsync("/api/auth/login", loginPayload, _json);
             loginResp.StatusCode.Should().Be(System.Net.HttpStatusCode.OK, "admin should be seeded in dev");
 
@@ -96,7 +96,7 @@ namespace WebTemplate.ApiTests
             // Change password (will likely fail validation, but endpoint should be authorized)
             var changeReq = new HttpRequestMessage(HttpMethod.Post, "/api/auth/change-password")
             {
-                Content = JsonContent.Create(new { currentPassword = "Admin123!", newPassword = "Admin123!", confirmPassword = "Admin123!" }, options: _json)
+                Content = JsonContent.Create(new { currentPassword = "Admin123!@#", newPassword = "Admin123!@#", confirmPassword = "Admin123!@#" }, options: _json)
             };
             changeReq.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
             var changeResp = await _client.SendAsync(changeReq);
