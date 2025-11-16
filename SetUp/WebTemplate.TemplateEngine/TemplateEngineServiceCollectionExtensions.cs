@@ -17,7 +17,7 @@ public static class TemplateEngineServiceCollectionExtensions
     /// - ITemplateEngine and TemplateEngine implementation
     /// - GenerationStepFactory
     /// - All individual generation steps
-    /// - Helper services (FileCopier, FileRebrander, etc.)
+    /// - Helper services (FileCopier, FileRebrander, ConfigurationUpdater, etc.)
     /// </remarks>
     public static IServiceCollection AddTemplateEngine(this IServiceCollection services)
     {
@@ -28,6 +28,7 @@ public static class TemplateEngineServiceCollectionExtensions
         // Helper services
         services.AddSingleton<FileCopier>();
         services.AddSingleton<FileRebrander>();
+        services.AddSingleton<ConfigurationUpdater>();
 
         // Generation steps (in execution order)
         services.AddTransient<ValidateTemplateStep>();
