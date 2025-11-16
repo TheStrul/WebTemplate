@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using WebTemplate.TemplateEngine.Interfaces;
+using WebTemplate.TemplateEngine.Steps;
 
 namespace WebTemplate.TemplateEngine;
 
@@ -15,7 +16,8 @@ public static class TemplateEngineServiceCollectionExtensions
     /// Call this in your DI configuration to register:
     /// - ITemplateEngine and TemplateEngine implementation
     /// - GenerationStepFactory
-    /// - All individual generation steps (as they are implemented)
+    /// - All individual generation steps
+    /// - Helper services (FileCopier, etc.)
     /// </remarks>
     public static IServiceCollection AddTemplateEngine(this IServiceCollection services)
     {
@@ -23,8 +25,16 @@ public static class TemplateEngineServiceCollectionExtensions
         services.AddSingleton<ITemplateEngine, TemplateEngine>();
         services.AddSingleton<GenerationStepFactory>();
 
-        // Generation steps will be registered here as they are implemented
-        // For Phase 1, this is the foundation - steps will be added in later phases
+        // Helper services
+        services.AddSingleton<FileCopier>();
+
+        // Generation steps (in execution order)
+        services.AddTransient<ValidateTemplateStep>();
+        services.AddTransient<CopyFilesStep>();
+        services.AddTransient<RebrandProjectStep>();
+        services.AddTransient<UpdateConfigurationsStep>();
+        services.AddTransient<InitializeGitStep>();
+        services.AddTransient<ValidateProjectStep>();
 
         return services;
     }

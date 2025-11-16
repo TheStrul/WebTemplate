@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.Extensions.Logging;
 using WebTemplate.TemplateEngine.Interfaces;
 using WebTemplate.TemplateEngine.Models;
+using WebTemplate.TemplateEngine.Steps;
 
 namespace WebTemplate.TemplateEngine;
 
@@ -142,17 +143,40 @@ public class TemplateEngine : ITemplateEngine
     /// </summary>
     private IEnumerable<IGenerationStep> GetGenerationSteps()
     {
-        // Steps are resolved from DI in order
-        // The actual step implementations will be registered in Startup
-        var stepTypes = new[]
-        {
-            typeof(IGenerationStep) // Placeholder - actual implementation will use factory
-        };
-
         _logger.LogDebug("Retrieving generation steps from DI container");
 
-        // For now, return empty - will be populated when steps are implemented
-        return [];
+        // Steps are resolved from DI by type
+        // This list defines the execution order (must match StepNumber)
+        var stepTypes = new[]
+        {
+            typeof(ValidateTemplateStep),
+            typeof(CopyFilesStep),
+            typeof(RebrandProjectStep),
+            typeof(UpdateConfigurationsStep),
+            typeof(InitializeGitStep),
+            typeof(ValidateProjectStep)
+        };
+
+        var steps = new List<IGenerationStep>();
+
+        foreach (var stepType in stepTypes)
+        {
+            try
+            {
+                var step = _serviceProvider.GetService(stepType) as IGenerationStep;
+                if (step != null)
+                {
+                    steps.Add(step);
+                    _logger.LogDebug("Loaded step: {StepName} (Step {StepNumber})", step.StepName, step.StepNumber);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to resolve step: {StepType}", stepType.Name);
+            }
+        }
+
+        return steps.OrderBy(s => s.StepNumber);
     }
 
     /// <summary>
