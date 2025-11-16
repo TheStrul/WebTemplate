@@ -22,29 +22,31 @@ namespace WebTemplate.E2ETests
             // Step 1: Register a new user
             var email = $"e2etest_{Guid.NewGuid():N}@example.com";
             var password = "Test123!";
-            var (userId, registerToken) = await RegisterUserAsync(email, password, "E2E", "Test");
+            var (userId, accessToken, refreshToken) = await RegisterUserAsync(email, password, "E2E", "Test");
 
             userId.Should().NotBeNullOrEmpty();
-            registerToken.Should().NotBeNullOrEmpty();
+            accessToken.Should().NotBeNullOrEmpty();
+            refreshToken.Should().NotBeNullOrEmpty();
 
             // Step 2: Verify we can get user status with the registration token
-            SetAuthToken(registerToken);
+            SetAuthToken(accessToken);
             var statusResponse = await Client.GetAsync("/api/auth/status");
             statusResponse.StatusCode.Should().Be(HttpStatusCode.OK);
 
             var statusContent = await statusResponse.Content.ReadAsStringAsync();
             statusContent.Should().Contain(email);
 
-            // Step 3: Logout
-            var logoutResponse = await Client.PostAsync("/api/auth/logout", null);
+            // Step 3: Logout with proper LogoutDto
+            var logoutRequest = new { refreshToken, logoutFromAllDevices = false };
+            var logoutResponse = await Client.PostAsJsonAsync("/api/auth/logout", logoutRequest);
             logoutResponse.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            // Step 4: Verify status now returns Unauthorized
+            // Step 4: Clear the token and verify status now returns Unauthorized
+            ClearAuthToken();
             var statusAfterLogout = await Client.GetAsync("/api/auth/status");
             statusAfterLogout.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
 
             // Step 5: Login again with credentials
-            ClearAuthToken();
             var loginRequest = new { email, password };
             var loginResponse = await Client.PostAsJsonAsync("/api/auth/login", loginRequest);
             loginResponse.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -54,7 +56,7 @@ namespace WebTemplate.E2ETests
         }
 
         [Fact]
-        public async Task Login_WithInvalidCredentials_ReturnsBadRequest()
+        public async Task Login_WithInvalidCredentials_ReturnsUnauthorized()
         {
             // Arrange
             var loginRequest = new
@@ -67,7 +69,7 @@ namespace WebTemplate.E2ETests
             var response = await Client.PostAsJsonAsync("/api/auth/login", loginRequest);
 
             // Assert
-            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+            response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
         }
 
         [Fact]
@@ -108,12 +110,14 @@ namespace WebTemplate.E2ETests
             var loginContent = await loginResponse.Content.ReadAsStringAsync();
             var loginJson = System.Text.Json.JsonDocument.Parse(loginContent);
             var refreshToken = loginJson.RootElement.GetProperty("data").GetProperty("refreshToken").GetString();
+            var accessToken = loginJson.RootElement.GetProperty("data").GetProperty("accessToken").GetString();
 
             refreshToken.Should().NotBeNullOrEmpty();
+            accessToken.Should().NotBeNullOrEmpty();
 
             // Act - Use refresh token to get new tokens
-            var refreshRequest = new { refreshToken };
-            var refreshResponse = await Client.PostAsJsonAsync("/api/auth/refresh", refreshRequest);
+            var refreshRequest = new { refreshToken, accessToken };
+            var refreshResponse = await Client.PostAsJsonAsync("/api/auth/refresh-token", refreshRequest);
 
             // Assert
             refreshResponse.StatusCode.Should().Be(HttpStatusCode.OK);

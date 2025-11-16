@@ -94,9 +94,9 @@ namespace WebTemplate.E2ETests
         }
 
         /// <summary>
-        /// Registers a new user and returns userId and access token
+        /// Registers a new user and returns userId, access token, and refresh token
         /// </summary>
-        protected async Task<(string userId, string token)> RegisterUserAsync(string email, string password, string firstName = "Test", string lastName = "User")
+        protected async Task<(string userId, string accessToken, string refreshToken)> RegisterUserAsync(string email, string password, string firstName = "Test", string lastName = "User")
         {
             EnsureServerIsRunning();
 
@@ -131,10 +131,12 @@ namespace WebTemplate.E2ETests
 
             var userId = dataElement.GetProperty("user").GetProperty("id").GetString()
                 ?? throw new InvalidOperationException("Failed to get userId from register response");
-            var token = dataElement.GetProperty("accessToken").GetString()
+            var accessToken = dataElement.GetProperty("accessToken").GetString()
                 ?? throw new InvalidOperationException("Failed to get access token from register response");
+            var refreshToken = dataElement.GetProperty("refreshToken").GetString()
+                ?? throw new InvalidOperationException("Failed to get refresh token from register response");
 
-            return (userId, token);
+            return (userId, accessToken, refreshToken);
         }
 
         /// <summary>

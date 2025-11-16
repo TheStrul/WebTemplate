@@ -50,11 +50,12 @@ namespace WebTemplate.E2ETests
             var password = "Test123!";
 
             // Act
-            var (userId, token) = await RegisterUserAsync(email, password);
+            var (userId, accessToken, refreshToken) = await RegisterUserAsync(email, password);
 
             // Assert
             userId.Should().NotBeNullOrEmpty();
-            token.Should().NotBeNullOrEmpty();
+            accessToken.Should().NotBeNullOrEmpty();
+            refreshToken.Should().NotBeNullOrEmpty();
         }
 
         [Fact]
