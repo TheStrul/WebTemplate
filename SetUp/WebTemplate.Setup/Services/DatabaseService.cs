@@ -30,6 +30,36 @@ public class DatabaseService
     }
 
     /// <summary>
+    /// Checks if a database exists
+    /// </summary>
+    public async Task<bool> DatabaseExistsAsync(string connectionString)
+    {
+        try
+        {
+            var builder = new SqlConnectionStringBuilder(connectionString);
+            var databaseName = builder.InitialCatalog;
+            builder.InitialCatalog = "master";
+
+            using var connection = new SqlConnection(builder.ConnectionString);
+            await connection.OpenAsync();
+
+            var checkCommand = new SqlCommand(
+                $"SELECT database_id FROM sys.databases WHERE name = @dbName",
+                connection
+            );
+            checkCommand.Parameters.AddWithValue("@dbName", databaseName);
+
+            var result = await checkCommand.ExecuteScalarAsync();
+            return result != null;
+        }
+        catch (Exception ex)
+        {
+            // If we can't connect or check, assume it doesn't exist
+            return false;
+        }
+    }
+
+    /// <summary>
     /// Creates database if it doesn't exist
     /// </summary>
     public async Task<(bool Success, string Message)> CreateDatabaseIfNotExistsAsync(string connectionString)

@@ -55,8 +55,32 @@ public class ProjectGenerationService
             // Initialize database (if configured)
             if (config.Database.ExecuteInitScript)
             {
-                progress?.Report("Initializing database...");
+                progress?.Report("Checking if database exists...");
                 var dbService = new DatabaseService();
+                
+                // Check if database already exists
+                var databaseExists = await dbService.DatabaseExistsAsync(config.Database.ConnectionString);
+
+                if (!databaseExists)
+                {
+                    // Database doesn't exist - check if we should create it
+                    if (!config.Database.CreateDatabaseIfNotExists)
+                    {
+                        return (false, 
+                            $"Database does not exist and CreateDatabaseIfNotExists is disabled. " +
+                            $"Connection string: {config.Database.ConnectionString}", 
+                            targetPath);
+                    }
+
+                    progress?.Report("Database does not exist - creating database...");
+                }
+                else
+                {
+                    progress?.Report("Database exists - proceeding with initialization...");
+                }
+
+                // Execute the init script
+                progress?.Report("Initializing database...");
                 var dbResult = await dbService.ExecuteInitScriptAsync(
                     config.Database.ConnectionString,
                     Path.Combine(targetPath, "Backend", $"{config.Project.ProjectName}.Data", "Migrations", "db-init.sql"));
