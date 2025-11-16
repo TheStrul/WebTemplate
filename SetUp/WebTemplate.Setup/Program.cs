@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using WebTemplate.Setup.Services;
 using WebTemplate.Setup.UI;
 using WebTemplate.TemplateEngine;
@@ -29,6 +30,13 @@ static class Program
 
     private static void ConfigureServices(IServiceCollection services)
     {
+        // Add logging services first - required by TemplateEngine
+        services.AddLogging(builder =>
+        {
+            builder.AddConsole();
+            builder.SetMinimumLevel(LogLevel.Information);
+        });
+
         services.AddSingleton<INotificationService, NotificationService>();
 
         // Services used by MainForm
