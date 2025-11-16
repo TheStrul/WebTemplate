@@ -1,0 +1,509 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  WebTemplate.Core -> C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.Core\bin\Debug\net9.0\WebTemplate.Core.dll
+  WebTemplate.Data -> C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.Data\bin\Debug\net9.0\WebTemplate.Data.dll
+  WebTemplate.API -> C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.API\bin\Debug\net9.0\WebTemplate.API.dll
+  WebTemplate.ApiTests -> C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\bin\Debug\net9.0\WebTemplate.ApiTests.dll
+Test run for C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\bin\Debug\net9.0\WebTemplate.ApiTests.dll (.NETCoreApp,Version=v9.0)
+VSTest version 18.0.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:04.14]     Refresh -> Logout -> ChangePassword (authorized path) [FAIL]
+[xUnit.net 00:00:04.34]     Reset password with valid token updates password [FAIL]
+[xUnit.net 00:00:04.58]     Register -> Login -> Status (happy path) [FAIL]
+[xUnit.net 00:00:04.77]     Confirm email succeeds with valid token [FAIL]
+[xUnit.net 00:00:04.79]     POST /api/user - Admin can create new user [FAIL]
+[xUnit.net 00:00:04.94]     Regular user cannot perform admin operations [FAIL]
+[xUnit.net 00:00:05.09]     POST /api/user/change-password - Changes user password [FAIL]
+[xUnit.net 00:00:05.14]     GET /api/user - Admin can list all users [FAIL]
+[xUnit.net 00:00:05.28]     GET /api/user/profile - Returns current user profile [FAIL]
+  Failed Refresh -> Logout -> ChangePassword (authorized path) [192 ms]
+  Error Message:
+   Expected loginResp.StatusCode to be HttpStatusCode.OK {value: 200} because admin should be seeded in dev, but found HttpStatusCode.Unauthorized {value: 401}.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.AuthEndpointsSanity.Refresh_Logout_ChangePassword_Authorized() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\AuthEndpointsSanity.cs:line 85
+--- End of stack trace from previous location ---
+  Failed Reset password with valid token updates password [209 ms]
+  Error Message:
+   Expected loginResp.StatusCode to be HttpStatusCode.OK {value: 200}, but found HttpStatusCode.Unauthorized {value: 401}.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.AuthEndpointsSanity.ResetPassword_HappyPath() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\AuthEndpointsSanity.cs:line 185
+--- End of stack trace from previous location ---
+  Failed Register -> Login -> Status (happy path) [229 ms]
+  Error Message:
+   Expected regResp.IsSuccessStatusCode to be true because registration should succeed without email confirmation in test env, but found False.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.BooleanAssertions`1.BeTrue(String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.AuthEndpointsSanity.Register_Login_Status_HappyPath() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\AuthEndpointsSanity.cs:line 58
+--- End of stack trace from previous location ---
+  Failed Confirm email succeeds with valid token [189 ms]
+  Error Message:
+   Expected resp.StatusCode to be HttpStatusCode.OK {value: 200}, but found HttpStatusCode.BadRequest {value: 400}.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.AuthEndpointsSanity.ConfirmEmail_HappyPath() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\AuthEndpointsSanity.cs:line 154
+--- End of stack trace from previous location ---
+  Failed POST /api/user - Admin can create new user [13 ms]
+  Error Message:
+   Expected loginResp.StatusCode to be HttpStatusCode.OK {value: 200}, but found HttpStatusCode.Unauthorized {value: 401}.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.UserEndpointsTests.GetAdminTokenAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 42
+   at WebTemplate.ApiTests.UserEndpointsTests.CreateUser_AsAdmin_CreatesUser() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 285
+--- End of stack trace from previous location ---
+  Failed Regular user cannot perform admin operations [151 ms]
+  Error Message:
+   Expected regResp.IsSuccessStatusCode to be true, but found False.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.BooleanAssertions`1.BeTrue(String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.UserEndpointsTests.CreateTestUserAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 63
+   at WebTemplate.ApiTests.UserEndpointsTests.AdminOperations_AsRegularUser_ReturnsForbidden() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 455
+--- End of stack trace from previous location ---
+  Failed POST /api/user/change-password - Changes user password [149 ms]
+  Error Message:
+   Expected regResp.IsSuccessStatusCode to be true, but found False.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.BooleanAssertions`1.BeTrue(String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.UserEndpointsTests.CreateTestUserAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 63
+   at WebTemplate.ApiTests.UserEndpointsTests.ChangePassword_WithValidData_ChangesPassword() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 183
+--- End of stack trace from previous location ---
+  Failed GET /api/user - Admin can list all users [37 ms]
+  Error Message:
+   Expected loginResp.StatusCode to be HttpStatusCode.OK {value: 200}, but found HttpStatusCode.Unauthorized {value: 401}.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.UserEndpointsTests.GetAdminTokenAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 42
+   at WebTemplate.ApiTests.UserEndpointsTests.GetAllUsers_AsAdmin_ReturnsUserList() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 215
+--- End of stack trace from previous location ---
+  Failed GET /api/user/profile - Returns current user profile [147 ms]
+  Error Message:
+   Expected regResp.IsSuccessStatusCode to be true, but found False.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.BooleanAssertions`1.BeTrue(String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.UserEndpointsTests.CreateTestUserAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 63
+   at WebTemplate.ApiTests.UserEndpointsTests.GetProfile_WithAuthenticatedUser_ReturnsProfile() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 111
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:05.32]     GET /api/user/{id} - Returns NotFound for non-existent user [FAIL]
+[xUnit.net 00:00:05.34]     POST /api/user/{id}/activate - Admin can activate user [FAIL]
+[xUnit.net 00:00:05.35]     POST /api/user - Cannot create user with duplicate email [FAIL]
+[xUnit.net 00:00:05.51]     PUT /api/user/profile - Updates current user profile [FAIL]
+[xUnit.net 00:00:05.68]     GET /api/user - Regular user cannot list users [FAIL]
+[xUnit.net 00:00:05.70]     DELETE /api/user/{id} - Admin can soft delete user [FAIL]
+[xUnit.net 00:00:05.72]     PUT /api/user/{id} - Admin can update user [FAIL]
+[xUnit.net 00:00:05.74]     GET /api/user/{id} - Admin can get user by ID [FAIL]
+  Failed GET /api/user/{id} - Returns NotFound for non-existent user [11 ms]
+  Error Message:
+   Expected loginResp.StatusCode to be HttpStatusCode.OK {value: 200}, but found HttpStatusCode.Unauthorized {value: 401}.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.UserEndpointsTests.GetAdminTokenAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 42
+   at WebTemplate.ApiTests.UserEndpointsTests.GetUserById_WithNonExistentId_ReturnsNotFound() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 268
+--- End of stack trace from previous location ---
+  Failed POST /api/user/{id}/activate - Admin can activate user [17 ms]
+  Error Message:
+   Expected loginResp.StatusCode to be HttpStatusCode.OK {value: 200}, but found HttpStatusCode.Unauthorized {value: 401}.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.UserEndpointsTests.GetAdminTokenAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 42
+   at WebTemplate.ApiTests.UserEndpointsTests.CreateTestUserWithAdminAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 78
+   at WebTemplate.ApiTests.UserEndpointsTests.ActivateUser_AsAdmin_ActivatesUser() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 411
+--- End of stack trace from previous location ---
+  Failed POST /api/user - Cannot create user with duplicate email [11 ms]
+  Error Message:
+   Expected loginResp.StatusCode to be HttpStatusCode.OK {value: 200}, but found HttpStatusCode.Unauthorized {value: 401}.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.UserEndpointsTests.GetAdminTokenAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 42
+   at WebTemplate.ApiTests.UserEndpointsTests.CreateUser_WithDuplicateEmail_ReturnsBadRequest() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 330
+--- End of stack trace from previous location ---
+  Failed PUT /api/user/profile - Updates current user profile [148 ms]
+  Error Message:
+   Expected regResp.IsSuccessStatusCode to be true, but found False.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.BooleanAssertions`1.BeTrue(String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.UserEndpointsTests.CreateTestUserAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 63
+   at WebTemplate.ApiTests.UserEndpointsTests.UpdateProfile_WithValidData_UpdatesProfile() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 142
+--- End of stack trace from previous location ---
+  Failed GET /api/user - Regular user cannot list users [173 ms]
+  Error Message:
+   Expected regResp.IsSuccessStatusCode to be true, but found False.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.BooleanAssertions`1.BeTrue(String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.UserEndpointsTests.CreateTestUserAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 63
+   at WebTemplate.ApiTests.UserEndpointsTests.GetAllUsers_AsRegularUser_ReturnsForbidden() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 233
+--- End of stack trace from previous location ---
+  Failed DELETE /api/user/{id} - Admin can soft delete user [14 ms]
+  Error Message:
+   Expected loginResp.StatusCode to be HttpStatusCode.OK {value: 200}, but found HttpStatusCode.Unauthorized {value: 401}.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.UserEndpointsTests.GetAdminTokenAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 42
+   at WebTemplate.ApiTests.UserEndpointsTests.CreateTestUserWithAdminAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 78
+   at WebTemplate.ApiTests.UserEndpointsTests.DeleteUser_AsAdmin_SoftDeletesUser() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 388
+--- End of stack trace from previous location ---
+  Failed PUT /api/user/{id} - Admin can update user [16 ms]
+  Error Message:
+   Expected loginResp.StatusCode to be HttpStatusCode.OK {value: 200}, but found HttpStatusCode.Unauthorized {value: 401}.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.UserEndpointsTests.GetAdminTokenAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 42
+   at WebTemplate.ApiTests.UserEndpointsTests.CreateTestUserWithAdminAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 78
+   at WebTemplate.ApiTests.UserEndpointsTests.UpdateUser_AsAdmin_UpdatesUser() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 358
+--- End of stack trace from previous location ---
+  Failed GET /api/user/{id} - Admin can get user by ID [13 ms]
+  Error Message:
+   Expected loginResp.StatusCode to be HttpStatusCode.OK {value: 200}, but found HttpStatusCode.Unauthorized {value: 401}.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.UserEndpointsTests.GetAdminTokenAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 42
+   at WebTemplate.ApiTests.UserEndpointsTests.CreateTestUserWithAdminAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 78
+   at WebTemplate.ApiTests.UserEndpointsTests.GetUserById_AsAdmin_ReturnsUser() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 248
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:05.76]     POST /api/user/{id}/deactivate - Admin can deactivate user [FAIL]
+[xUnit.net 00:00:05.79]     GET /api/usertype - Admin retrieves all user types [FAIL]
+[xUnit.net 00:00:05.82]     GET /api/usertype/{id} - Returns NotFound for non-existent ID [FAIL]
+[xUnit.net 00:00:06.18]     GET /api/usertype - Forbidden for non-admin user [FAIL]
+[xUnit.net 00:00:06.22]     DELETE /api/usertype/{id} - Admin deletes user type [FAIL]
+[xUnit.net 00:00:06.28]     PUT /api/usertype/{id} - Returns NotFound for non-existent ID [FAIL]
+[xUnit.net 00:00:06.31]     POST /api/usertype - Admin creates new user type [FAIL]
+[xUnit.net 00:00:06.33]     PUT /api/usertype/{id} - Admin updates user type [FAIL]
+  Failed POST /api/user/{id}/deactivate - Admin can deactivate user [13 ms]
+  Error Message:
+   Expected loginResp.StatusCode to be HttpStatusCode.OK {value: 200}, but found HttpStatusCode.Unauthorized {value: 401}.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.UserEndpointsTests.GetAdminTokenAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 42
+   at WebTemplate.ApiTests.UserEndpointsTests.CreateTestUserWithAdminAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 78
+   at WebTemplate.ApiTests.UserEndpointsTests.DeactivateUser_AsAdmin_DeactivatesUser() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 436
+--- End of stack trace from previous location ---
+  Failed GET /api/usertype - Admin retrieves all user types [29 ms]
+  Error Message:
+   Expected loginResp.StatusCode to be HttpStatusCode.OK {value: 200} because admin should be seeded, but found HttpStatusCode.Unauthorized {value: 401}.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.UserTypeControllerTests.GetAdminTokenAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 46
+   at WebTemplate.ApiTests.UserTypeControllerTests.GetAllUserTypes_AsAdmin_ReturnsAllUserTypes() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 73
+--- End of stack trace from previous location ---
+  Failed GET /api/usertype/{id} - Returns NotFound for non-existent ID [24 ms]
+  Error Message:
+   Expected loginResp.StatusCode to be HttpStatusCode.OK {value: 200} because admin should be seeded, but found HttpStatusCode.Unauthorized {value: 401}.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.UserTypeControllerTests.GetAdminTokenAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 46
+   at WebTemplate.ApiTests.UserTypeControllerTests.GetUserTypeById_WithNonExistentId_ReturnsNotFound() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 176
+--- End of stack trace from previous location ---
+  Failed GET /api/usertype - Forbidden for non-admin user [363 ms]
+  Error Message:
+   System.InvalidOperationException : The requested operation requires an element of type 'Object', but the target element has type 'Null'.
+  Stack Trace:
+     at System.Text.Json.ThrowHelper.ThrowJsonElementWrongTypeException(JsonTokenType expectedType, JsonTokenType actualType)
+   at System.Text.Json.JsonDocument.TryGetNamedPropertyValue(Int32 index, ReadOnlySpan`1 propertyName, JsonElement& value)
+   at System.Text.Json.JsonElement.GetProperty(String propertyName)
+   at WebTemplate.ApiTests.UserTypeControllerTests.GetAllUserTypes_AsRegularUser_ReturnsForbidden() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 138
+--- End of stack trace from previous location ---
+  Failed DELETE /api/usertype/{id} - Admin deletes user type [31 ms]
+  Error Message:
+   Expected loginResp.StatusCode to be HttpStatusCode.OK {value: 200} because admin should be seeded, but found HttpStatusCode.Unauthorized {value: 401}.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.UserTypeControllerTests.GetAdminTokenAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 46
+   at WebTemplate.ApiTests.UserTypeControllerTests.DeleteUserType_WithValidId_DeletesUserType() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 399
+--- End of stack trace from previous location ---
+  Failed PUT /api/usertype/{id} - Returns NotFound for non-existent ID [27 ms]
+  Error Message:
+   Expected loginResp.StatusCode to be HttpStatusCode.OK {value: 200} because admin should be seeded, but found HttpStatusCode.Unauthorized {value: 401}.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.UserTypeControllerTests.GetAdminTokenAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 46
+   at WebTemplate.ApiTests.UserTypeControllerTests.UpdateUserType_WithNonExistentId_ReturnsNotFound() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 374
+--- End of stack trace from previous location ---
+  Failed POST /api/usertype - Admin creates new user type [11 ms]
+  Error Message:
+   Expected loginResp.StatusCode to be HttpStatusCode.OK {value: 200} because admin should be seeded, but found HttpStatusCode.Unauthorized {value: 401}.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.UserTypeControllerTests.GetAdminTokenAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 46
+   at WebTemplate.ApiTests.UserTypeControllerTests.CreateUserType_WithValidData_CreatesUserType() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 208
+--- End of stack trace from previous location ---
+  Failed PUT /api/usertype/{id} - Admin updates user type [18 ms]
+  Error Message:
+   Expected loginResp.StatusCode to be HttpStatusCode.OK {value: 200} because admin should be seeded, but found HttpStatusCode.Unauthorized {value: 401}.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.UserTypeControllerTests.GetAdminTokenAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 46
+   at WebTemplate.ApiTests.UserTypeControllerTests.UpdateUserType_WithValidData_UpdatesUserType() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 330
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:06.36]     POST /api/usertype - Validates required fields [FAIL]
+[xUnit.net 00:00:06.39]     POST /api/usertype/{id}/toggle-status - Returns NotFound for non-existent ID [FAIL]
+[xUnit.net 00:00:06.40]     POST /api/usertype - Cannot create duplicate user type [FAIL]
+[xUnit.net 00:00:06.43]     DELETE /api/usertype/{id} - Returns NotFound for non-existent ID [FAIL]
+[xUnit.net 00:00:06.64]     DELETE /api/usertype/{id} - Forbidden for non-admin user [FAIL]
+[xUnit.net 00:00:06.97]     POST /api/usertype - Forbidden for non-admin user [FAIL]
+[xUnit.net 00:00:06.99]     POST /api/usertype/{id}/toggle-status - Admin toggles user type status [FAIL]
+  Failed POST /api/usertype - Validates required fields [12 ms]
+  Error Message:
+   Expected loginResp.StatusCode to be HttpStatusCode.OK {value: 200} because admin should be seeded, but found HttpStatusCode.Unauthorized {value: 401}.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.UserTypeControllerTests.GetAdminTokenAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 46
+   at WebTemplate.ApiTests.UserTypeControllerTests.CreateUserType_WithMissingData_ReturnsBadRequest() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 265
+--- End of stack trace from previous location ---
+  Failed POST /api/usertype/{id}/toggle-status - Returns NotFound for non-existent ID [12 ms]
+  Error Message:
+   Expected loginResp.StatusCode to be HttpStatusCode.OK {value: 200} because admin should be seeded, but found HttpStatusCode.Unauthorized {value: 401}.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.UserTypeControllerTests.GetAdminTokenAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 46
+   at WebTemplate.ApiTests.UserTypeControllerTests.ToggleUserTypeStatus_WithNonExistentId_ReturnsNotFound() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 528
+--- End of stack trace from previous location ---
+  Failed POST /api/usertype - Cannot create duplicate user type [12 ms]
+  Error Message:
+   Expected loginResp.StatusCode to be HttpStatusCode.OK {value: 200} because admin should be seeded, but found HttpStatusCode.Unauthorized {value: 401}.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.UserTypeControllerTests.GetAdminTokenAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 46
+   at WebTemplate.ApiTests.UserTypeControllerTests.CreateUserType_WithDuplicateName_ReturnsBadRequest() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 242
+--- End of stack trace from previous location ---
+  Failed DELETE /api/usertype/{id} - Returns NotFound for non-existent ID [21 ms]
+  Error Message:
+   Expected loginResp.StatusCode to be HttpStatusCode.OK {value: 200} because admin should be seeded, but found HttpStatusCode.Unauthorized {value: 401}.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.UserTypeControllerTests.GetAdminTokenAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 46
+   at WebTemplate.ApiTests.UserTypeControllerTests.DeleteUserType_WithNonExistentId_ReturnsNotFound() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 435
+--- End of stack trace from previous location ---
+  Failed DELETE /api/usertype/{id} - Forbidden for non-admin user [213 ms]
+  Error Message:
+   System.InvalidOperationException : The requested operation requires an element of type 'Object', but the target element has type 'Null'.
+  Stack Trace:
+     at System.Text.Json.ThrowHelper.ThrowJsonElementWrongTypeException(JsonTokenType expectedType, JsonTokenType actualType)
+   at System.Text.Json.JsonDocument.TryGetNamedPropertyValue(Int32 index, ReadOnlySpan`1 propertyName, JsonElement& value)
+   at System.Text.Json.JsonElement.GetProperty(String propertyName)
+   at WebTemplate.ApiTests.UserTypeControllerTests.DeleteUserType_AsRegularUser_ReturnsForbidden() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 465
+--- End of stack trace from previous location ---
+  Failed POST /api/usertype - Forbidden for non-admin user [318 ms]
+  Error Message:
+   System.InvalidOperationException : The requested operation requires an element of type 'Object', but the target element has type 'Null'.
+  Stack Trace:
+     at System.Text.Json.ThrowHelper.ThrowJsonElementWrongTypeException(JsonTokenType expectedType, JsonTokenType actualType)
+   at System.Text.Json.JsonDocument.TryGetNamedPropertyValue(Int32 index, ReadOnlySpan`1 propertyName, JsonElement& value)
+   at System.Text.Json.JsonElement.GetProperty(String propertyName)
+   at WebTemplate.ApiTests.UserTypeControllerTests.CreateUserType_AsRegularUser_ReturnsForbidden() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 304
+--- End of stack trace from previous location ---
+  Failed POST /api/usertype/{id}/toggle-status - Admin toggles user type status [26 ms]
+  Error Message:
+   Expected loginResp.StatusCode to be HttpStatusCode.OK {value: 200} because admin should be seeded, but found HttpStatusCode.Unauthorized {value: 401}.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.UserTypeControllerTests.GetAdminTokenAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 46
+   at WebTemplate.ApiTests.UserTypeControllerTests.ToggleUserTypeStatus_WithValidId_ToggleStatus() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 484
+--- End of stack trace from previous location ---
+[xUnit.net 00:00:07.05]     GET /api/usertype - Response includes all required fields [FAIL]
+[xUnit.net 00:00:07.08]     GET /api/usertype/{id} - Admin retrieves user type by ID [FAIL]
+  Failed GET /api/usertype - Response includes all required fields [27 ms]
+  Error Message:
+   Expected loginResp.StatusCode to be HttpStatusCode.OK {value: 200} because admin should be seeded, but found HttpStatusCode.Unauthorized {value: 401}.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.UserTypeControllerTests.GetAdminTokenAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 46
+   at WebTemplate.ApiTests.UserTypeControllerTests.GetAllUserTypes_ReturnsCompleteUserTypeData() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 91
+--- End of stack trace from previous location ---
+  Failed GET /api/usertype/{id} - Admin retrieves user type by ID [16 ms]
+  Error Message:
+   Expected loginResp.StatusCode to be HttpStatusCode.OK {value: 200} because admin should be seeded, but found HttpStatusCode.Unauthorized {value: 401}.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at WebTemplate.ApiTests.UserTypeControllerTests.GetAdminTokenAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 46
+   at WebTemplate.ApiTests.UserTypeControllerTests.GetUserTypeById_WithValidId_ReturnsUserType() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 157
+--- End of stack trace from previous location ---
+
+Failed!  - Failed:    34, Passed:     5, Skipped:     0, Total:    39, Duration: 6 s - WebTemplate.ApiTests.dll (net9.0)

@@ -1,0 +1,715 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  WebTemplate.Core -> C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.Core\bin\Debug\net9.0\WebTemplate.Core.dll
+  WebTemplate.Data -> C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.Data\bin\Debug\net9.0\WebTemplate.Data.dll
+  WebTemplate.API -> C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.API\bin\Debug\net9.0\WebTemplate.API.dll
+  WebTemplate.ApiTests -> C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\bin\Debug\net9.0\WebTemplate.ApiTests.dll
+Test run for C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\bin\Debug\net9.0\WebTemplate.ApiTests.dll (.NETCoreApp,Version=v9.0)
+VSTest version 18.0.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:01.27]     Forgot password returns OK for existing user [FAIL]
+[xUnit.net 00:00:01.28]     Refresh -> Logout -> ChangePassword (authorized path) [FAIL]
+[xUnit.net 00:00:01.29]     Reset password with valid token updates password [FAIL]
+[xUnit.net 00:00:01.29]     Register -> Login -> Status (happy path) [FAIL]
+[xUnit.net 00:00:01.29]     Confirm email succeeds with valid token [FAIL]
+[xUnit.net 00:00:01.29]     POST /api/user - Admin can create new user [FAIL]
+[xUnit.net 00:00:01.30]     Regular user cannot perform admin operations [FAIL]
+[xUnit.net 00:00:01.30]     POST /api/user/change-password - Changes user password [FAIL]
+[xUnit.net 00:00:01.30]     GET /api/user - Admin can list all users [FAIL]
+  Failed Forgot password returns OK for existing user [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.AuthEndpointsSanity..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\AuthEndpointsSanity.cs:line 25
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Failed Refresh -> Logout -> ChangePassword (authorized path) [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.AuthEndpointsSanity..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\AuthEndpointsSanity.cs:line 25
+   at InvokeStub_AuthEndpointsSanity..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Reset password with valid token updates password [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.AuthEndpointsSanity..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\AuthEndpointsSanity.cs:line 25
+   at InvokeStub_AuthEndpointsSanity..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Register -> Login -> Status (happy path) [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.AuthEndpointsSanity..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\AuthEndpointsSanity.cs:line 25
+   at InvokeStub_AuthEndpointsSanity..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed Confirm email succeeds with valid token [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.AuthEndpointsSanity..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\AuthEndpointsSanity.cs:line 25
+   at InvokeStub_AuthEndpointsSanity..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed POST /api/user - Admin can create new user [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserEndpointsTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 27
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Failed Regular user cannot perform admin operations [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserEndpointsTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 27
+   at InvokeStub_UserEndpointsTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed POST /api/user/change-password - Changes user password [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserEndpointsTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 27
+   at InvokeStub_UserEndpointsTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed GET /api/user - Admin can list all users [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserEndpointsTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 27
+   at InvokeStub_UserEndpointsTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.36]     GET /api/user/profile - Returns current user profile [FAIL]
+[xUnit.net 00:00:01.36]     GET /api/user/profile - Unauthorized without token [FAIL]
+[xUnit.net 00:00:01.37]     GET /api/user/{id} - Returns NotFound for non-existent user [FAIL]
+[xUnit.net 00:00:01.37]     POST /api/user/{id}/activate - Admin can activate user [FAIL]
+[xUnit.net 00:00:01.37]     POST /api/user - Cannot create user with duplicate email [FAIL]
+[xUnit.net 00:00:01.37]     PUT /api/user/profile - Updates current user profile [FAIL]
+[xUnit.net 00:00:01.38]     GET /api/user - Regular user cannot list users [FAIL]
+[xUnit.net 00:00:01.38]     DELETE /api/user/{id} - Admin can soft delete user [FAIL]
+[xUnit.net 00:00:01.38]     PUT /api/user/{id} - Admin can update user [FAIL]
+  Failed GET /api/user/profile - Returns current user profile [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserEndpointsTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 27
+   at InvokeStub_UserEndpointsTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed GET /api/user/profile - Unauthorized without token [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserEndpointsTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 27
+   at InvokeStub_UserEndpointsTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed GET /api/user/{id} - Returns NotFound for non-existent user [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserEndpointsTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 27
+   at InvokeStub_UserEndpointsTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed POST /api/user/{id}/activate - Admin can activate user [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserEndpointsTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 27
+   at InvokeStub_UserEndpointsTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed POST /api/user - Cannot create user with duplicate email [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserEndpointsTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 27
+   at InvokeStub_UserEndpointsTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed PUT /api/user/profile - Updates current user profile [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserEndpointsTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 27
+   at InvokeStub_UserEndpointsTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed GET /api/user - Regular user cannot list users [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserEndpointsTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 27
+   at InvokeStub_UserEndpointsTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed DELETE /api/user/{id} - Admin can soft delete user [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserEndpointsTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 27
+   at InvokeStub_UserEndpointsTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed PUT /api/user/{id} - Admin can update user [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserEndpointsTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 27
+   at InvokeStub_UserEndpointsTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.39]     GET /api/user/{id} - Admin can get user by ID [FAIL]
+[xUnit.net 00:00:01.40]     POST /api/user/{id}/deactivate - Admin can deactivate user [FAIL]
+[xUnit.net 00:00:01.40]     GET /api/usertype - Admin retrieves all user types [FAIL]
+[xUnit.net 00:00:01.40]     GET /api/usertype/{id} - Returns NotFound for non-existent ID [FAIL]
+[xUnit.net 00:00:01.40]     GET /api/usertype - Forbidden for non-admin user [FAIL]
+[xUnit.net 00:00:01.41]     DELETE /api/usertype/{id} - Admin deletes user type [FAIL]
+[xUnit.net 00:00:01.41]     POST /api/usertype/{id}/toggle-status - Unauthorized without token [FAIL]
+[xUnit.net 00:00:01.41]     PUT /api/usertype/{id} - Returns NotFound for non-existent ID [FAIL]
+[xUnit.net 00:00:01.41]     POST /api/usertype - Admin creates new user type [FAIL]
+  Failed GET /api/user/{id} - Admin can get user by ID [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserEndpointsTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 27
+   at InvokeStub_UserEndpointsTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed POST /api/user/{id}/deactivate - Admin can deactivate user [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserEndpointsTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserEndpointsTests.cs:line 27
+   at InvokeStub_UserEndpointsTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed GET /api/usertype - Admin retrieves all user types [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserTypeControllerTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 28
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Failed GET /api/usertype/{id} - Returns NotFound for non-existent ID [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserTypeControllerTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 28
+   at InvokeStub_UserTypeControllerTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed GET /api/usertype - Forbidden for non-admin user [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserTypeControllerTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 28
+   at InvokeStub_UserTypeControllerTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed DELETE /api/usertype/{id} - Admin deletes user type [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserTypeControllerTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 28
+   at InvokeStub_UserTypeControllerTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed POST /api/usertype/{id}/toggle-status - Unauthorized without token [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserTypeControllerTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 28
+   at InvokeStub_UserTypeControllerTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed PUT /api/usertype/{id} - Returns NotFound for non-existent ID [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserTypeControllerTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 28
+   at InvokeStub_UserTypeControllerTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed POST /api/usertype - Admin creates new user type [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserTypeControllerTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 28
+   at InvokeStub_UserTypeControllerTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.42]     PUT /api/usertype/{id} - Admin updates user type [FAIL]
+[xUnit.net 00:00:01.42]     POST /api/usertype - Validates required fields [FAIL]
+[xUnit.net 00:00:01.42]     GET /api/usertype - Unauthorized without token [FAIL]
+[xUnit.net 00:00:01.42]     POST /api/usertype/{id}/toggle-status - Returns NotFound for non-existent ID [FAIL]
+[xUnit.net 00:00:01.42]     POST /api/usertype - Cannot create duplicate user type [FAIL]
+[xUnit.net 00:00:01.43]     DELETE /api/usertype/{id} - Returns NotFound for non-existent ID [FAIL]
+[xUnit.net 00:00:01.43]     DELETE /api/usertype/{id} - Forbidden for non-admin user [FAIL]
+[xUnit.net 00:00:01.43]     POST /api/usertype - Forbidden for non-admin user [FAIL]
+[xUnit.net 00:00:01.43]     POST /api/usertype/{id}/toggle-status - Admin toggles user type status [FAIL]
+  Failed PUT /api/usertype/{id} - Admin updates user type [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserTypeControllerTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 28
+   at InvokeStub_UserTypeControllerTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed POST /api/usertype - Validates required fields [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserTypeControllerTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 28
+   at InvokeStub_UserTypeControllerTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed GET /api/usertype - Unauthorized without token [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserTypeControllerTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 28
+   at InvokeStub_UserTypeControllerTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed POST /api/usertype/{id}/toggle-status - Returns NotFound for non-existent ID [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserTypeControllerTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 28
+   at InvokeStub_UserTypeControllerTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed POST /api/usertype - Cannot create duplicate user type [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserTypeControllerTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 28
+   at InvokeStub_UserTypeControllerTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed DELETE /api/usertype/{id} - Returns NotFound for non-existent ID [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserTypeControllerTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 28
+   at InvokeStub_UserTypeControllerTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed DELETE /api/usertype/{id} - Forbidden for non-admin user [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserTypeControllerTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 28
+   at InvokeStub_UserTypeControllerTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed POST /api/usertype - Forbidden for non-admin user [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserTypeControllerTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 28
+   at InvokeStub_UserTypeControllerTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed POST /api/usertype/{id}/toggle-status - Admin toggles user type status [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserTypeControllerTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 28
+   at InvokeStub_UserTypeControllerTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:01.44]     GET /api/usertype/{id} - Unauthorized without token [FAIL]
+[xUnit.net 00:00:01.44]     GET /api/usertype - Response includes all required fields [FAIL]
+[xUnit.net 00:00:01.44]     GET /api/usertype/{id} - Admin retrieves user type by ID [FAIL]
+  Failed GET /api/usertype/{id} - Unauthorized without token [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserTypeControllerTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 28
+   at InvokeStub_UserTypeControllerTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed GET /api/usertype - Response includes all required fields [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserTypeControllerTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 28
+   at InvokeStub_UserTypeControllerTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed GET /api/usertype/{id} - Admin retrieves user type by ID [1 ms]
+  Error Message:
+   System.InvalidOperationException : Services for database providers 'Microsoft.EntityFrameworkCore.SqlServer', 'Microsoft.EntityFrameworkCore.InMemory' have been registered in the service provider. Only a single database provider can be registered in a service provider. If possible, ensure that Entity Framework is managing its service provider by removing the call to 'UseInternalServiceProvider'. Otherwise, consider conditionally registering the database provider, or maintaining one service provider per database provider.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Internal.DbContextServices.Initialize(IServiceProvider scopedProvider, DbContextOptions contextOptions, DbContext context)
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure<System.IServiceProvider>.get_Instance()
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService(IInfrastructure`1 accessor, Type serviceType)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.InfrastructureExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions.GetService[TService](IInfrastructure`1 accessor)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.get_Dependencies()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at WebTemplate.ApiTests.TestWebAppFactory.InitializeDatabaseAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\TestWebAppFactory.cs:line 74
+   at WebTemplate.ApiTests.UserTypeControllerTests..ctor(TestWebAppFactory factory) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.ApiTests\UserTypeControllerTests.cs:line 28
+   at InvokeStub_UserTypeControllerTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+
+Failed!  - Failed:    39, Passed:     0, Skipped:     0, Total:    39, Duration: 169 ms - WebTemplate.ApiTests.dll (net9.0)

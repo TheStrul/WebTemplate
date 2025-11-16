@@ -17,11 +17,16 @@ namespace WebTemplate.ApiTests
 
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
+            builder.UseEnvironment("Testing");
+
             builder.ConfigureAppConfiguration((ctx, configBuilder) =>
             {
+                // Load test appsettings
+                configBuilder.AddJsonFile("appsettings.Local.json", optional: false, reloadOnChange: false);
+                
+                // Override for testing
                 var overrides = new Dictionary<string, string?>
                 {
-                    ["ConnectionStrings:DefaultConnection"] = $"Server=(localdb)\\mssqllocaldb;Database={TestDatabaseName};Trusted_Connection=true;MultipleActiveResultSets=true;TrustServerCertificate=true",
                     ["AuthSettings:User:RequireConfirmedEmail"] = "false",
                     ["Features:AdminSeed:Enabled"] = "true",
                     ["Features:AdminSeed:Email"] = "admin@WebTemplate.com",
@@ -32,31 +37,27 @@ namespace WebTemplate.ApiTests
                 configBuilder.AddInMemoryCollection(overrides!);
             });
 
-            builder.ConfigureServices(services =>
+            builder.ConfigureServices((ctx, services) =>
             {
-                // Remove the existing DbContext registration from UserModule
-                var dbContextDescriptor = services.FirstOrDefault(
-                    d => d.ServiceType == typeof(ApplicationDbContext));
-                if (dbContextDescriptor != null)
+                // Strategy: Remove ALL database/EF Core registrations and re-add InMemory ONLY
+                // This must happen after Program.cs ConfigureServices but we forcibly replace
+               
+                // Find and remove ALL database provider registrations
+                var allEfDescriptors = services
+                    .Where(d => d.ServiceType.FullName?.Contains("EntityFrameworkCore") == true ||
+                                d.ServiceType == typeof(ApplicationDbContext) ||
+                                d.ServiceType == typeof(DbContextOptions<ApplicationDbContext>))
+                    .ToList();
+
+                foreach (var descriptor in allEfDescriptors)
                 {
-                    services.Remove(dbContextDescriptor);
+                    services.Remove(descriptor);
                 }
 
-                var dbContextOptionsDescriptor = services.FirstOrDefault(
-                    d => d.ServiceType == typeof(DbContextOptions<ApplicationDbContext>));
-                if (dbContextOptionsDescriptor != null)
-                {
-                    services.Remove(dbContextOptionsDescriptor);
-                }
-
-                // Re-register with test database connection string
+                // NOW register ONLY InMemory
                 services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlServer(
-                        $"Server=(localdb)\\mssqllocaldb;Database={TestDatabaseName};Trusted_Connection=true;MultipleActiveResultSets=true;TrustServerCertificate=true",
-                        sqlOptions =>
-                        {
-                            sqlOptions.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
-                        }));
+                    options.UseInMemoryDatabase($"WebTemplate_Test_{Guid.NewGuid()}"),
+                    ServiceLifetime.Scoped);
             });
         }
 
@@ -70,14 +71,13 @@ namespace WebTemplate.ApiTests
                 using var scope = Services.CreateScope();
                 var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
-                // Recreate database for clean test state
-                await db.Database.EnsureDeletedAsync();
+                // For InMemory, just ensure created (no physical database)
                 await db.Database.EnsureCreatedAsync();
 
-                // Seed UserTypes (required for FK constraints)
+                // Seed UserTypes
                 SeedUserTypes(db);
 
-                // Seed admin user for tests
+                // Seed admin user
                 await SeedAdminUser(scope.ServiceProvider);
 
                 _seeded = true;
@@ -94,30 +94,9 @@ namespace WebTemplate.ApiTests
                 return;
 
             context.UserTypes.AddRange(
-                new UserType
-                {
-                    Name = "Admin",
-                    Description = "System Administrator with full access",
-                    IsActive = true,
-                    CreatedAt = DateTime.UtcNow,
-                    Permissions = "[\"user.create\",\"user.read\",\"user.update\",\"user.delete\",\"usertype.manage\",\"system.admin\"]"
-                },
-                new UserType
-                {
-                    Name = "User",
-                    Description = "Regular user with basic access",
-                    IsActive = true,
-                    CreatedAt = DateTime.UtcNow,
-                    Permissions = "[\"profile.read\",\"profile.update\"]"
-                },
-                new UserType
-                {
-                    Name = "Moderator",
-                    Description = "Moderator with limited admin access",
-                    IsActive = true,
-                    CreatedAt = DateTime.UtcNow,
-                    Permissions = "[\"user.read\",\"user.update\",\"profile.read\",\"profile.update\"]"
-                }
+                new UserType { Id = 1, Name = "Admin", Description = "System Administrator with full access", IsActive = true, CreatedAt = DateTime.UtcNow, Permissions = "[\"user.create\",\"user.read\",\"user.update\",\"user.delete\",\"usertype.manage\",\"system.admin\"]" },
+                new UserType { Id = 2, Name = "User", Description = "Regular user with basic access", IsActive = true, CreatedAt = DateTime.UtcNow, Permissions = "[\"profile.read\",\"profile.update\"]" },
+                new UserType { Id = 3, Name = "Moderator", Description = "Moderator with limited admin access", IsActive = true, CreatedAt = DateTime.UtcNow, Permissions = "[\"user.read\",\"user.update\",\"profile.read\",\"profile.update\"]" }
             );
 
             context.SaveChanges();
@@ -125,41 +104,68 @@ namespace WebTemplate.ApiTests
 
         private static async Task SeedAdminUser(IServiceProvider serviceProvider)
         {
-            var userManager = serviceProvider.GetRequiredService<Microsoft.AspNetCore.Identity.UserManager<ApplicationUser>>();
-            var roleManager = serviceProvider.GetRequiredService<Microsoft.AspNetCore.Identity.RoleManager<Microsoft.AspNetCore.Identity.IdentityRole>>();
-
-            // Ensure roles exist
-            string[] roles = { "Admin", "User", "Moderator" };
-            foreach (var role in roles)
+            try
             {
-                if (!await roleManager.RoleExistsAsync(role))
+                var db = serviceProvider.GetRequiredService<ApplicationDbContext>();
+                var userManager = serviceProvider.GetRequiredService<Microsoft.AspNetCore.Identity.UserManager<ApplicationUser>>();
+                var roleManager = serviceProvider.GetRequiredService<Microsoft.AspNetCore.Identity.RoleManager<Microsoft.AspNetCore.Identity.IdentityRole>>();
+
+                // Ensure roles exist
+                string[] roleNames = { "Admin", "User", "Moderator" };
+                foreach (var roleName in roleNames)
                 {
-                    await roleManager.CreateAsync(new Microsoft.AspNetCore.Identity.IdentityRole(role));
+                    if (!await roleManager.RoleExistsAsync(roleName))
+                    {
+                        var result = await roleManager.CreateAsync(new Microsoft.AspNetCore.Identity.IdentityRole(roleName));
+                        if (!result.Succeeded)
+                        {
+                            Console.WriteLine($"Warning: Failed to create role {roleName}");
+                        }
+                    }
+                }
+
+                // Create admin user
+                var adminEmail = "admin@WebTemplate.com";
+                var existingAdmin = await userManager.FindByEmailAsync(adminEmail);
+                
+                if (existingAdmin == null)
+                {
+                    var adminUser = new ApplicationUser
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        UserName = adminEmail,
+                        Email = adminEmail,
+                        EmailConfirmed = true,
+                        FirstName = "System",
+                        LastName = "Administrator",
+                        UserTypeId = 1,
+                        IsActive = true,
+                        CreatedAt = DateTime.UtcNow,
+                        NormalizedUserName = adminEmail.ToUpper(),
+                        NormalizedEmail = adminEmail.ToUpper(),
+                        SecurityStamp = Guid.NewGuid().ToString(),
+                        ConcurrencyStamp = Guid.NewGuid().ToString()
+                    };
+
+                    // Hash the password
+                    var passwordHash = userManager.PasswordHasher.HashPassword(adminUser, "Admin123!");
+                    adminUser.PasswordHash = passwordHash;
+
+                    // Add to database
+                    db.Users.Add(adminUser);
+                    await db.SaveChangesAsync();
+
+                    // Add to Admin role
+                    var roleResult = await userManager.AddToRoleAsync(adminUser, "Admin");
+                    if (!roleResult.Succeeded)
+                    {
+                        Console.WriteLine($"Warning: Failed to add Admin role to user");
+                    }
                 }
             }
-
-            // Seed admin user with test credentials
-            var adminEmail = "admin@WebTemplate.com";
-            var admin = await userManager.FindByEmailAsync(adminEmail);
-            if (admin == null)
+            catch (Exception ex)
             {
-                admin = new ApplicationUser
-                {
-                    UserName = adminEmail,
-                    Email = adminEmail,
-                    EmailConfirmed = true,
-                    FirstName = "System",
-                    LastName = "Administrator",
-                    UserTypeId = 1,
-                    IsActive = true,
-                    CreatedAt = DateTime.UtcNow
-                };
-
-                var result = await userManager.CreateAsync(admin, "Admin123!");
-                if (result.Succeeded)
-                {
-                    await userManager.AddToRoleAsync(admin, "Admin");
-                }
+                Console.WriteLine($"Warning: Error seeding admin user: {ex.Message}");
             }
         }
     }
