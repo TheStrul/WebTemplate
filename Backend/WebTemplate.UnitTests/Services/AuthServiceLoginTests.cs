@@ -71,7 +71,13 @@ namespace WebTemplate.UnitTests.Services
                 {
                     RequireConfirmedEmail = false
                 },
-                Password = new PasswordSettings()
+                Password = new PasswordSettings(),
+                UserModuleFeatures = new UserModuleFeatures
+                {
+                    IncludeUserTypePermissionsInResponses = false
+                },
+                Lockout = new LockoutSettings { DefaultLockoutEnabled = true, MaxFailedAccessAttempts = 5, DefaultLockoutTimeSpanMinutes = 15 },
+                EmailConfirmation = new EmailConfirmationSettings { TokenExpiryHours = 24 }
             };
 
             _emailSettings = new EmailSettings
@@ -251,10 +257,13 @@ namespace WebTemplate.UnitTests.Services
             {
                 User = new UserSettings { RequireConfirmedEmail = false },
                 Jwt = new JwtSettings { SecretKey = "test-key", Issuer = "test", Audience = "test", AccessTokenExpiryMinutes = 15, RefreshTokenExpiryDays = 7 },
-                AppUrls = new AppUrls { FrontendBaseUrl = "http://localhost:3000" }
+                AppUrls = new AppUrls { FrontendBaseUrl = "http://localhost:3000" },
+                UserModuleFeatures = new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true },
+                Password = new PasswordSettings(),
+                Lockout = new LockoutSettings { DefaultLockoutEnabled = true, MaxFailedAccessAttempts = 5, DefaultLockoutTimeSpanMinutes = 15 },
+                EmailConfirmation = new EmailConfirmationSettings { TokenExpiryHours = 24 }
             };
             configMock.Setup(c => c.Auth).Returns(localAuthSettings);
-            configMock.Setup(c => c.UserModuleFeatures).Returns(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true });
 
             var authService = new AuthService(
                 _userManagerMock.Object,
@@ -321,10 +330,13 @@ namespace WebTemplate.UnitTests.Services
             {
                 User = new UserSettings { RequireConfirmedEmail = false },
                 Jwt = new JwtSettings { SecretKey = "test-key", Issuer = "test", Audience = "test", AccessTokenExpiryMinutes = 15, RefreshTokenExpiryDays = 7 },
-                AppUrls = new AppUrls { FrontendBaseUrl = "http://localhost:3000" }
+                AppUrls = new AppUrls { FrontendBaseUrl = "http://localhost:3000" },
+                UserModuleFeatures = new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true },
+                Password = new PasswordSettings(),
+                Lockout = new LockoutSettings { DefaultLockoutEnabled = true, MaxFailedAccessAttempts = 5, DefaultLockoutTimeSpanMinutes = 15 },
+                EmailConfirmation = new EmailConfirmationSettings { TokenExpiryHours = 24 }
             };
             configMock.Setup(c => c.Auth).Returns(localAuthSettings);
-            configMock.Setup(c => c.UserModuleFeatures).Returns(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true });
 
             var authService = new AuthService(
                 _userManagerMock.Object,
@@ -436,10 +448,13 @@ namespace WebTemplate.UnitTests.Services
             {
                 User = new UserSettings { RequireConfirmedEmail = false },
                 Jwt = new JwtSettings { SecretKey = "test-key", Issuer = "test", Audience = "test", AccessTokenExpiryMinutes = 15, RefreshTokenExpiryDays = 7 },
-                AppUrls = new AppUrls { FrontendBaseUrl = "http://localhost:3000" }
+                AppUrls = new AppUrls { FrontendBaseUrl = "http://localhost:3000" },
+                UserModuleFeatures = new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true },
+                Password = new PasswordSettings(),
+                Lockout = new LockoutSettings { DefaultLockoutEnabled = true, MaxFailedAccessAttempts = 5, DefaultLockoutTimeSpanMinutes = 15 },
+                EmailConfirmation = new EmailConfirmationSettings { TokenExpiryHours = 24 }
             };
             configMock.Setup(c => c.Auth).Returns(localAuthSettings);
-            configMock.Setup(c => c.UserModuleFeatures).Returns(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true });
 
             var authService = new AuthService(
                 _userManagerMock.Object,
@@ -496,10 +511,13 @@ namespace WebTemplate.UnitTests.Services
             {
                 User = new UserSettings { RequireConfirmedEmail = false },
                 Jwt = new JwtSettings { SecretKey = "test-key", Issuer = "test", Audience = "test", AccessTokenExpiryMinutes = 15, RefreshTokenExpiryDays = 7 },
-                AppUrls = new AppUrls { FrontendBaseUrl = "http://localhost" }
+                AppUrls = new AppUrls { FrontendBaseUrl = "http://localhost" },
+                UserModuleFeatures = new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true },
+                Password = new PasswordSettings(),
+                Lockout = new LockoutSettings { DefaultLockoutEnabled = true, MaxFailedAccessAttempts = 5, DefaultLockoutTimeSpanMinutes = 15 },
+                EmailConfirmation = new EmailConfirmationSettings { TokenExpiryHours = 24 }
             };
             configMock.Setup(c => c.Auth).Returns(localAuthSettings);
-            configMock.Setup(c => c.UserModuleFeatures).Returns(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true });
 
             var authService = new AuthService(
                 _userManagerMock.Object,
@@ -532,10 +550,12 @@ namespace WebTemplate.UnitTests.Services
 
             _userManagerMock.Setup(x => x.FindByEmailAsync(It.IsAny<string>()))
                 .ReturnsAsync(user);
-            _signInManagerMock.Setup(x => x.CheckPasswordSignInAsync(It.IsAny<ApplicationUser>(), It.IsAny<string>(), false))
+            _signInManagerMock.Setup(x => x.CheckPasswordSignInAsync(It.IsAny<ApplicationUser>(), It.IsAny<string>(), true))
                 .ReturnsAsync(Microsoft.AspNetCore.Identity.SignInResult.Success);
             _userManagerMock.Setup(x => x.GetRolesAsync(It.IsAny<ApplicationUser>()))
                 .ReturnsAsync(new List<string> { "User" });
+            _userManagerMock.Setup(x => x.UpdateAsync(It.IsAny<ApplicationUser>()))
+                .ReturnsAsync(IdentityResult.Success);
             _tokenServiceMock.Setup(x => x.GenerateAccessTokenAsync(
                 It.IsAny<string>(),
                 It.IsAny<string>(),
@@ -553,14 +573,11 @@ namespace WebTemplate.UnitTests.Services
             var result = await authService.LoginAsync(loginDto);
 
             // Assert
-            if (result.Success)
-            {
-                result.Data!.User.UserType.Should().NotBeNull();
-                result.Data.User.UserType.Name.Should().Be("Premium");
-                result.Data.User.UserType.Permissions.Should().HaveCount(3);
-                result.Data.User.UserType.Permissions.Should().Contain(new[] { "read", "write", "delete" });
-            }
-            // Note: Test validates that UserType found branch is executed, even if other mocking issues exist
+            result.Success.Should().BeTrue();
+            result.Data!.User.UserType.Should().NotBeNull();
+            result.Data.User.UserType.Name.Should().Be("Premium");
+            result.Data.User.UserType.Permissions.Should().HaveCount(3);
+            result.Data.User.UserType.Permissions.Should().Contain(new[] { "read", "write", "delete" });
         }
 
         [Fact]
@@ -573,10 +590,13 @@ namespace WebTemplate.UnitTests.Services
             {
                 User = new UserSettings { RequireConfirmedEmail = false },
                 Jwt = new JwtSettings { SecretKey = "test-key", Issuer = "test", Audience = "test", AccessTokenExpiryMinutes = 15, RefreshTokenExpiryDays = 7 },
-                AppUrls = new AppUrls { FrontendBaseUrl = "http://localhost" }
+                AppUrls = new AppUrls { FrontendBaseUrl = "http://localhost" },
+                UserModuleFeatures = new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true },
+                Password = new PasswordSettings(),
+                Lockout = new LockoutSettings { DefaultLockoutEnabled = true, MaxFailedAccessAttempts = 5, DefaultLockoutTimeSpanMinutes = 15 },
+                EmailConfirmation = new EmailConfirmationSettings { TokenExpiryHours = 24 }
             };
             configMock.Setup(c => c.Auth).Returns(localAuthSettings);
-            configMock.Setup(c => c.UserModuleFeatures).Returns(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true });
 
             var authService = new AuthService(
                 _userManagerMock.Object,
@@ -609,10 +629,12 @@ namespace WebTemplate.UnitTests.Services
 
             _userManagerMock.Setup(x => x.FindByEmailAsync(It.IsAny<string>()))
                 .ReturnsAsync(user);
-            _signInManagerMock.Setup(x => x.CheckPasswordSignInAsync(It.IsAny<ApplicationUser>(), It.IsAny<string>(), false))
+            _signInManagerMock.Setup(x => x.CheckPasswordSignInAsync(It.IsAny<ApplicationUser>(), It.IsAny<string>(), true))
                 .ReturnsAsync(Microsoft.AspNetCore.Identity.SignInResult.Success);
             _userManagerMock.Setup(x => x.GetRolesAsync(It.IsAny<ApplicationUser>()))
                 .ReturnsAsync(new List<string> { "User" });
+            _userManagerMock.Setup(x => x.UpdateAsync(It.IsAny<ApplicationUser>()))
+                .ReturnsAsync(IdentityResult.Success);
             _tokenServiceMock.Setup(x => x.GenerateAccessTokenAsync(
                 It.IsAny<string>(),
                 It.IsAny<string>(),
@@ -630,12 +652,9 @@ namespace WebTemplate.UnitTests.Services
             var result = await authService.LoginAsync(loginDto);
 
             // Assert
-            if (result.Success)
-            {
-                result.Data!.User.UserType.Should().NotBeNull();
-                result.Data.User.UserType.Permissions.Should().BeEmpty();
-            }
-            // Note: Test validates that null permissions branch is executed, even if other mocking issues exist
+            result.Success.Should().BeTrue();
+            result.Data!.User.UserType.Should().NotBeNull();
+            result.Data.User.UserType.Permissions.Should().BeEmpty();
         }
     }
 }

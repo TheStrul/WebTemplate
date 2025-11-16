@@ -180,7 +180,8 @@ public class ConfigurationValidationTests
             RequireUppercase = true,
             RequireNonAlphanumeric = true,
             RequiredLength = 8,
-            RequiredUniqueChars = 1
+            RequiredUniqueChars = 1,
+            ResetTokenExpiryHours = 24
         };
 
         // Act
@@ -211,7 +212,7 @@ public class ConfigurationValidationTests
         // Assert
         result.IsFailure.Should().BeTrue();
         result.Errors.Should().ContainSingle(e => e.Code == "CONFIG.VALUE_OUT_OF_RANGE");
-        result.Errors[0].Description.Should().Contain("at least 6");
+        result.Errors[0].Description.Should().Contain("between 6 and 128");
     }
 
     #endregion
@@ -303,7 +304,8 @@ public class ConfigurationValidationTests
                 RequireUppercase = true,
                 RequireNonAlphanumeric = true,
                 RequiredLength = 8,
-                RequiredUniqueChars = 1
+                RequiredUniqueChars = 1,
+                ResetTokenExpiryHours = 24
             },
             Jwt = new JwtSettings
             {
@@ -318,7 +320,26 @@ public class ConfigurationValidationTests
                 FrontendBaseUrl = "https://app.example.com",
                 ConfirmEmailPath = "/auth/confirm-email"
             },
-            User = new UserSettings { RequireConfirmedEmail = false },
+            User = new UserSettings
+            {
+                RequireConfirmedEmail = false,
+                RequireConfirmedPhoneNumber = false,
+                RequireUniqueEmail = true,
+                AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+",
+                SessionTimeoutMinutes = 480
+            },
+            Lockout = new LockoutSettings
+            {
+                DefaultLockoutEnabled = true,
+                DefaultLockoutTimeSpanMinutes = 15,
+                MaxFailedAccessAttempts = 5
+            },
+            EmailConfirmation = new EmailConfirmationSettings
+            {
+                TokenExpiryHours = 24,
+                SendWelcomeEmail = true,
+                MaxEmailsPerHour = 3
+            },
             UserModuleFeatures = new UserModuleFeatures { EnableLogin = true }
         };
 

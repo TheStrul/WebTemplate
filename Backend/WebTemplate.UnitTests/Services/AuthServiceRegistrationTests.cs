@@ -71,7 +71,12 @@ namespace WebTemplate.UnitTests.Services
                     RequireConfirmedEmail = false
                 },
                 Password = new PasswordSettings(),
-                EmailConfirmation = new EmailConfirmationSettings { TokenExpiryHours = 24 }
+                EmailConfirmation = new EmailConfirmationSettings { TokenExpiryHours = 24 },
+                UserModuleFeatures = new UserModuleFeatures
+                {
+                    IncludeUserTypePermissionsInResponses = false
+                },
+                Lockout = new LockoutSettings { DefaultLockoutEnabled = true, MaxFailedAccessAttempts = 5, DefaultLockoutTimeSpanMinutes = 15 }
             };
 
             _emailSettings = new EmailSettings
@@ -296,10 +301,13 @@ namespace WebTemplate.UnitTests.Services
             {
                 User = new UserSettings { RequireConfirmedEmail = true },
                 Jwt = _authSettings.Jwt,
-                AppUrls = new AppUrls { FrontendBaseUrl = "", ConfirmEmailPath = "/confirm" }
+                AppUrls = new AppUrls { FrontendBaseUrl = "", ConfirmEmailPath = "/confirm" },
+                UserModuleFeatures = new UserModuleFeatures { IncludeUserTypePermissionsInResponses = false },
+                Password = new PasswordSettings(),
+                Lockout = new LockoutSettings { DefaultLockoutEnabled = true, MaxFailedAccessAttempts = 5, DefaultLockoutTimeSpanMinutes = 15 },
+                EmailConfirmation = new EmailConfirmationSettings { TokenExpiryHours = 24 }
             };
             configMock.Setup(c => c.Auth).Returns(localAuthSettings);
-            configMock.Setup(c => c.UserModuleFeatures).Returns(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = false });
 
             var authService = new AuthService(
                 _userManagerMock.Object,
@@ -347,10 +355,13 @@ namespace WebTemplate.UnitTests.Services
             {
                 User = new UserSettings { RequireConfirmedEmail = false },
                 Jwt = _authSettings.Jwt,
-                AppUrls = new AppUrls { FrontendBaseUrl = "http://localhost" }
+                AppUrls = new AppUrls { FrontendBaseUrl = "http://localhost" },
+                UserModuleFeatures = new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true },
+                Password = new PasswordSettings(),
+                Lockout = new LockoutSettings { DefaultLockoutEnabled = true, MaxFailedAccessAttempts = 5, DefaultLockoutTimeSpanMinutes = 15 },
+                EmailConfirmation = new EmailConfirmationSettings { TokenExpiryHours = 24 }
             };
             configMock.Setup(c => c.Auth).Returns(localAuthSettings);
-            configMock.Setup(c => c.UserModuleFeatures).Returns(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true });
 
             var authService = new AuthService(
                 _userManagerMock.Object,
@@ -401,10 +412,13 @@ namespace WebTemplate.UnitTests.Services
             {
                 User = new UserSettings { RequireConfirmedEmail = true },
                 Jwt = _authSettings.Jwt,
-                AppUrls = new AppUrls { FrontendBaseUrl = "http://localhost:3000", ConfirmEmailPath = "/custom/verify" }
+                AppUrls = new AppUrls { FrontendBaseUrl = "http://localhost:3000", ConfirmEmailPath = "/custom/verify" },
+                UserModuleFeatures = new UserModuleFeatures { IncludeUserTypePermissionsInResponses = false },
+                Password = new PasswordSettings(),
+                Lockout = new LockoutSettings { DefaultLockoutEnabled = true, MaxFailedAccessAttempts = 5, DefaultLockoutTimeSpanMinutes = 15 },
+                EmailConfirmation = new EmailConfirmationSettings { TokenExpiryHours = 24 }
             };
             configMock.Setup(c => c.Auth).Returns(localAuthSettings);
-            configMock.Setup(c => c.UserModuleFeatures).Returns(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = false });
 
             var authService = new AuthService(
                 _userManagerMock.Object,
@@ -463,10 +477,13 @@ namespace WebTemplate.UnitTests.Services
             {
                 User = new UserSettings { RequireConfirmedEmail = false },
                 Jwt = _authSettings.Jwt,
-                AppUrls = new AppUrls { FrontendBaseUrl = "http://localhost" }
+                AppUrls = new AppUrls { FrontendBaseUrl = "http://localhost" },
+                UserModuleFeatures = new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true },
+                Password = new PasswordSettings(),
+                Lockout = new LockoutSettings { DefaultLockoutEnabled = true, MaxFailedAccessAttempts = 5, DefaultLockoutTimeSpanMinutes = 15 },
+                EmailConfirmation = new EmailConfirmationSettings { TokenExpiryHours = 24 }
             };
             configMock.Setup(c => c.Auth).Returns(localAuthSettings);
-            configMock.Setup(c => c.UserModuleFeatures).Returns(new UserModuleFeatures { IncludeUserTypePermissionsInResponses = true });
 
             var authService = new AuthService(
                 _userManagerMock.Object,

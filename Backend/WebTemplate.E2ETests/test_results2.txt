@@ -1,0 +1,62 @@
+Test run for C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.E2ETests\bin\Debug\net9.0\WebTemplate.E2ETests.dll (.NETCoreApp,Version=v9.0)
+VSTest version 18.0.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:00.57]     WebTemplate.E2ETests.AuthFlowTests.RefreshToken_WithValidToken_ReturnsNewTokens [FAIL]
+[xUnit.net 00:00:00.59]     WebTemplate.E2ETests.AuthFlowTests.Login_WithInvalidCredentials_ReturnsBadRequest [FAIL]
+[xUnit.net 00:00:00.75]     WebTemplate.E2ETests.AuthFlowTests.Register_WithDuplicateEmail_ReturnsBadRequest [FAIL]
+[xUnit.net 00:00:00.90]     WebTemplate.E2ETests.AuthFlowTests.FullAuthFlow_RegisterLoginLogout_WorksCorrectly [FAIL]
+[xUnit.net 00:00:01.05]     WebTemplate.E2ETests.SmokeTests.Auth_RegisterNewUser_Succeeds [FAIL]
+  Failed WebTemplate.E2ETests.AuthFlowTests.RefreshToken_WithValidToken_ReturnsNewTokens [322 ms]
+  Error Message:
+   Expected refreshResponse.StatusCode to be HttpStatusCode.OK {value: 200}, but found HttpStatusCode.NotFound {value: 404}.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at WebTemplate.E2ETests.AuthFlowTests.RefreshToken_WithValidToken_ReturnsNewTokens() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.E2ETests\AuthFlowTests.cs:line 119
+--- End of stack trace from previous location ---
+  Failed WebTemplate.E2ETests.AuthFlowTests.Login_WithInvalidCredentials_ReturnsBadRequest [14 ms]
+  Error Message:
+   Expected response.StatusCode to be HttpStatusCode.BadRequest {value: 400}, but found HttpStatusCode.Unauthorized {value: 401}.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at WebTemplate.E2ETests.AuthFlowTests.Login_WithInvalidCredentials_ReturnsBadRequest() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.E2ETests\AuthFlowTests.cs:line 70
+--- End of stack trace from previous location ---
+  Failed WebTemplate.E2ETests.AuthFlowTests.Register_WithDuplicateEmail_ReturnsBadRequest [158 ms]
+  Error Message:
+   System.Collections.Generic.KeyNotFoundException : The given key was not present in the dictionary.
+  Stack Trace:
+     at System.Text.Json.JsonElement.GetProperty(String propertyName)
+   at WebTemplate.E2ETests.E2ETestBase.RegisterUserAsync(String email, String password, String firstName, String lastName) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.E2ETests\E2ETestBase.cs:line 87
+   at WebTemplate.E2ETests.AuthFlowTests.Register_WithDuplicateEmail_ReturnsBadRequest() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.E2ETests\AuthFlowTests.cs:line 78
+--- End of stack trace from previous location ---
+  Failed WebTemplate.E2ETests.AuthFlowTests.FullAuthFlow_RegisterLoginLogout_WorksCorrectly [155 ms]
+  Error Message:
+   System.Collections.Generic.KeyNotFoundException : The given key was not present in the dictionary.
+  Stack Trace:
+     at System.Text.Json.JsonElement.GetProperty(String propertyName)
+   at WebTemplate.E2ETests.E2ETestBase.RegisterUserAsync(String email, String password, String firstName, String lastName) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.E2ETests\E2ETestBase.cs:line 87
+   at WebTemplate.E2ETests.AuthFlowTests.FullAuthFlow_RegisterLoginLogout_WorksCorrectly() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.E2ETests\AuthFlowTests.cs:line 25
+--- End of stack trace from previous location ---
+  Failed WebTemplate.E2ETests.SmokeTests.Auth_RegisterNewUser_Succeeds [140 ms]
+  Error Message:
+   System.Collections.Generic.KeyNotFoundException : The given key was not present in the dictionary.
+  Stack Trace:
+     at System.Text.Json.JsonElement.GetProperty(String propertyName)
+   at WebTemplate.E2ETests.E2ETestBase.RegisterUserAsync(String email, String password, String firstName, String lastName) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.E2ETests\E2ETestBase.cs:line 87
+   at WebTemplate.E2ETests.SmokeTests.Auth_RegisterNewUser_Succeeds() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.E2ETests\SmokeTests.cs:line 53
+--- End of stack trace from previous location ---
+
+Failed!  - Failed:     5, Passed:     4, Skipped:     0, Total:     9, Duration: 1 s - WebTemplate.E2ETests.dll (net9.0)
