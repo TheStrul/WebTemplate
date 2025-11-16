@@ -10,31 +10,34 @@ namespace WebTemplate.ApiTests
     using Xunit;
 
     /// <summary>
-    /// TEMPORARILY DISABLED: WebApplicationFactory requires additional setup
-    /// E2E tests (WebTemplate.E2ETests) provide equivalent coverage
+    /// Sanity tests for auth endpoints using WebApplicationFactory
     /// </summary>
+    [Collection("Integration Tests")]
     public class AuthEndpointsSanity_Disabled : IAsyncLifetime
     {
-        private TestWebAppFactory _factory = default!;
+        private readonly TestWebAppFactory _factory;
         private HttpClient _client = default!;
         private readonly JsonSerializerOptions _json = new(JsonSerializerDefaults.Web);
 
-        public async Task InitializeAsync()
+        public AuthEndpointsSanity_Disabled(TestWebAppFactory factory)
         {
-            _factory = new TestWebAppFactory();
-            await _factory.InitializeAsync();
+            _factory = factory;
+        }
+
+        public Task InitializeAsync()
+        {
             _client = _factory.CreateClient(new Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryClientOptions
             {
                 BaseAddress = new Uri("https://localhost/"),
                 AllowAutoRedirect = false
             });
+            return Task.CompletedTask;
         }
 
-        public async Task DisposeAsync()
+        public Task DisposeAsync()
         {
             _client?.Dispose();
-            _factory?.Dispose();
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
         private async Task<T> WithScope<T>(Func<IServiceProvider, Task<T>> action)
@@ -155,7 +158,8 @@ namespace WebTemplate.ApiTests
                 token = await um.GenerateEmailConfirmationTokenAsync(user);
             });
 
-            var resp = await _client.PostAsJsonAsync("/api/auth/confirm-email", new { userId, token }, _json);
+            var encodedToken = Uri.EscapeDataString(token);
+            var resp = await _client.PostAsJsonAsync("/api/auth/confirm-email", new { userId, token = encodedToken }, _json);
             resp.StatusCode.Should().Be(System.Net.HttpStatusCode.OK);
 
             await WithScope(async sp =>

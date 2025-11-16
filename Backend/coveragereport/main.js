@@ -220,38 +220,54 @@ var assemblies = [
   {
     "name": "WebTemplate.API",
     "classes": [
-      { "name": "Program", "rp": "WebTemplate.API_Program.html", "cl": 45, "ucl": 0, "cal": 45, "tl": 80, "cb": 10, "tb": 12, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.API.AdminSeeder", "rp": "WebTemplate.API_AdminSeeder.html", "cl": 0, "ucl": 43, "cal": 43, "tl": 70, "cb": 0, "tb": 14, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.API.Controllers.AuthController", "rp": "WebTemplate.API_AuthController.html", "cl": 76, "ucl": 67, "cal": 143, "tl": 257, "cb": 30, "tb": 64, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.API.Controllers.UserController", "rp": "WebTemplate.API_UserController.html", "cl": 127, "ucl": 90, "cal": 217, "tl": 383, "cb": 15, "tb": 28, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.API.Controllers.UserTypeController", "rp": "WebTemplate.API_UserTypeController.html", "cl": 0, "ucl": 123, "cal": 123, "tl": 227, "cb": 0, "tb": 12, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "Program", "rp": "WebTemplate.API_Program.html", "cl": 132, "ucl": 61, "cal": 193, "tl": 247, "cb": 23, "tb": 52, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.API.AdminSeeder", "rp": "WebTemplate.API_AdminSeeder.html", "cl": 0, "ucl": 57, "cal": 57, "tl": 90, "cb": 0, "tb": 20, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.API.Configuration.ApiConfiguration", "rp": "WebTemplate.API_ApiConfiguration.html", "cl": 26, "ucl": 11, "cal": 37, "tl": 74, "cb": 11, "tb": 20, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.API.Configuration.LoggingSettings", "rp": "WebTemplate.API_LoggingSettings.html", "cl": 8, "ucl": 4, "cal": 12, "tl": 97, "cb": 3, "tb": 8, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.API.Configuration.LogLevelSettings", "rp": "WebTemplate.API_LogLevelSettings.html", "cl": 11, "ucl": 12, "cal": 23, "tl": 97, "cb": 4, "tb": 8, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.API.Controllers.AuthController", "rp": "WebTemplate.API_AuthController.html", "cl": 78, "ucl": 67, "cal": 145, "tl": 260, "cb": 29, "tb": 64, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.API.Controllers.UserController", "rp": "WebTemplate.API_UserController.html", "cl": 121, "ucl": 96, "cal": 217, "tl": 383, "cb": 15, "tb": 28, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.API.Controllers.UserTypeController", "rp": "WebTemplate.API_UserTypeController.html", "cl": 95, "ucl": 28, "cal": 123, "tl": 227, "cb": 10, "tb": 12, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
     ]},
   {
     "name": "WebTemplate.Core",
     "classes": [
+      { "name": "WebTemplate.Core.Common.Error", "rp": "WebTemplate.Core_Error.html", "cl": 15, "ucl": 19, "cal": 34, "tl": 158, "cb": 2, "tb": 8, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Common.Errors", "rp": "WebTemplate.Core_Errors.html", "cl": 20, "ucl": 275, "cal": 295, "tl": 419, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Common.Result", "rp": "WebTemplate.Core_Result.html", "cl": 22, "ucl": 25, "cal": 47, "tl": 240, "cb": 15, "tb": 22, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Common.Result<T>", "rp": "WebTemplate.Core_Result_1.html", "cl": 0, "ucl": 35, "cal": 35, "tl": 240, "cb": 0, "tb": 6, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "WebTemplate.Core.Configuration.AdminSeedSettings", "rp": "WebTemplate.Core_AdminSeedSettings.html", "cl": 0, "ucl": 5, "cal": 5, "tl": 12, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Configuration.AppUrls", "rp": "WebTemplate.Core_AppUrls.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 20, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Configuration.ApplicationConfiguration", "rp": "WebTemplate.Core_ApplicationConfiguration.html", "cl": 38, "ucl": 14, "cal": 52, "tl": 109, "cb": 16, "tb": 32, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Configuration.AppUrls", "rp": "WebTemplate.Core_AppUrls.html", "cl": 15, "ucl": 1, "cal": 16, "tl": 45, "cb": 6, "tb": 8, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Configuration.AuthOptions", "rp": "WebTemplate.Core_AuthOptions.html", "cl": 0, "ucl": 3, "cal": 3, "tl": 58, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "WebTemplate.Core.Configuration.AuthResponseMessages", "rp": "WebTemplate.Core_AuthResponseMessages.html", "cl": 12, "ucl": 0, "cal": 12, "tl": 29, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Configuration.AuthSettings", "rp": "WebTemplate.Core_AuthSettings.html", "cl": 4, "ucl": 0, "cal": 4, "tl": 144, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Configuration.EmailConfirmationSettings", "rp": "WebTemplate.Core_EmailConfirmationSettings.html", "cl": 3, "ucl": 0, "cal": 3, "tl": 144, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Configuration.EmailSettings", "rp": "WebTemplate.Core_EmailSettings.html", "cl": 9, "ucl": 0, "cal": 9, "tl": 26, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Configuration.Features.AdminSeedFeatureOptions", "rp": "WebTemplate.Core_AdminSeedFeatureOptions.html", "cl": 5, "ucl": 0, "cal": 5, "tl": 70, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Configuration.Features.CorsFeatureOptions", "rp": "WebTemplate.Core_CorsFeatureOptions.html", "cl": 4, "ucl": 0, "cal": 4, "tl": 70, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Configuration.Features.ExceptionHandlingFeatureOptions", "rp": "WebTemplate.Core_ExceptionHandlingFeatureOptions.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 70, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Configuration.Features.FeaturesOptions", "rp": "WebTemplate.Core_FeaturesOptions.html", "cl": 10, "ucl": 0, "cal": 10, "tl": 70, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Configuration.Features.HealthChecksFeatureOptions", "rp": "WebTemplate.Core_HealthChecksFeatureOptions.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 70, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Configuration.Features.IdentityAuthFeatureOptions", "rp": "WebTemplate.Core_IdentityAuthFeatureOptions.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 70, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Configuration.Features.RateLimitingFeatureOptions", "rp": "WebTemplate.Core_RateLimitingFeatureOptions.html", "cl": 5, "ucl": 0, "cal": 5, "tl": 70, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Configuration.Features.RefreshTokensFeatureOptions", "rp": "WebTemplate.Core_RefreshTokensFeatureOptions.html", "cl": 3, "ucl": 0, "cal": 3, "tl": 70, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Configuration.Features.SecurityHeadersFeatureOptions", "rp": "WebTemplate.Core_SecurityHeadersFeatureOptions.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 70, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Configuration.Features.SerilogFeatureOptions", "rp": "WebTemplate.Core_SerilogFeatureOptions.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 70, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Configuration.Features.SwaggerFeatureOptions", "rp": "WebTemplate.Core_SwaggerFeatureOptions.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 70, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Configuration.JwtSettings", "rp": "WebTemplate.Core_JwtSettings.html", "cl": 13, "ucl": 0, "cal": 13, "tl": 75, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Configuration.LockoutSettings", "rp": "WebTemplate.Core_LockoutSettings.html", "cl": 3, "ucl": 0, "cal": 3, "tl": 144, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Configuration.PasswordSettings", "rp": "WebTemplate.Core_PasswordSettings.html", "cl": 7, "ucl": 0, "cal": 7, "tl": 144, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Configuration.AuthSettings", "rp": "WebTemplate.Core_AuthSettings.html", "cl": 56, "ucl": 18, "cal": 74, "tl": 340, "cb": 22, "tb": 30, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Configuration.CoreConfiguration", "rp": "WebTemplate.Core_CoreConfiguration.html", "cl": 26, "ucl": 7, "cal": 33, "tl": 68, "cb": 9, "tb": 16, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Configuration.DatabaseSettings", "rp": "WebTemplate.Core_DatabaseSettings.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 14, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Configuration.EmailConfirmationSettings", "rp": "WebTemplate.Core_EmailConfirmationSettings.html", "cl": 9, "ucl": 2, "cal": 11, "tl": 340, "cb": 3, "tb": 6, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Configuration.EmailSettings", "rp": "WebTemplate.Core_EmailSettings.html", "cl": 17, "ucl": 0, "cal": 17, "tl": 45, "cb": 6, "tb": 6, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Configuration.Features.AdminSeedFeatureOptions", "rp": "WebTemplate.Core_AdminSeedFeatureOptions.html", "cl": 5, "ucl": 0, "cal": 5, "tl": 126, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Configuration.Features.CorsFeatureOptions", "rp": "WebTemplate.Core_CorsFeatureOptions.html", "cl": 4, "ucl": 0, "cal": 4, "tl": 126, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Configuration.Features.ExceptionHandlingFeatureOptions", "rp": "WebTemplate.Core_ExceptionHandlingFeatureOptions.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 126, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Configuration.Features.FeaturesOptions", "rp": "WebTemplate.Core_FeaturesOptions.html", "cl": 26, "ucl": 18, "cal": 44, "tl": 126, "cb": 17, "tb": 32, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Configuration.Features.HealthChecksFeatureOptions", "rp": "WebTemplate.Core_HealthChecksFeatureOptions.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 126, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Configuration.Features.IdentityAuthFeatureOptions", "rp": "WebTemplate.Core_IdentityAuthFeatureOptions.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 126, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Configuration.Features.RateLimitingFeatureOptions", "rp": "WebTemplate.Core_RateLimitingFeatureOptions.html", "cl": 5, "ucl": 0, "cal": 5, "tl": 126, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Configuration.Features.RefreshTokensFeatureOptions", "rp": "WebTemplate.Core_RefreshTokensFeatureOptions.html", "cl": 3, "ucl": 0, "cal": 3, "tl": 126, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Configuration.Features.SecurityHeadersFeatureOptions", "rp": "WebTemplate.Core_SecurityHeadersFeatureOptions.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 126, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Configuration.Features.SerilogFeatureOptions", "rp": "WebTemplate.Core_SerilogFeatureOptions.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 126, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Configuration.Features.SwaggerFeatureOptions", "rp": "WebTemplate.Core_SwaggerFeatureOptions.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 126, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Configuration.JwtOptions", "rp": "WebTemplate.Core_JwtOptions.html", "cl": 0, "ucl": 6, "cal": 6, "tl": 58, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Configuration.JwtSettings", "rp": "WebTemplate.Core_JwtSettings.html", "cl": 41, "ucl": 0, "cal": 41, "tl": 115, "cb": 14, "tb": 14, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Configuration.LockoutSettings", "rp": "WebTemplate.Core_LockoutSettings.html", "cl": 9, "ucl": 2, "cal": 11, "tl": 340, "cb": 3, "tb": 6, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Configuration.PasswordRequirementsOptions", "rp": "WebTemplate.Core_PasswordRequirementsOptions.html", "cl": 0, "ucl": 6, "cal": 6, "tl": 58, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Configuration.PasswordSettings", "rp": "WebTemplate.Core_PasswordSettings.html", "cl": 21, "ucl": 1, "cal": 22, "tl": 340, "cb": 11, "tb": 12, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "WebTemplate.Core.Configuration.ResponseMessages", "rp": "WebTemplate.Core_ResponseMessages.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 29, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Configuration.UserModuleFeatures", "rp": "WebTemplate.Core_UserModuleFeatures.html", "cl": 10, "ucl": 0, "cal": 10, "tl": 37, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Configuration.UserSettings", "rp": "WebTemplate.Core_UserSettings.html", "cl": 6, "ucl": 0, "cal": 6, "tl": 144, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Configuration.SeedOptions", "rp": "WebTemplate.Core_SeedOptions.html", "cl": 0, "ucl": 3, "cal": 3, "tl": 58, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Configuration.ServerSettings", "rp": "WebTemplate.Core_ServerSettings.html", "cl": 3, "ucl": 0, "cal": 3, "tl": 25, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Configuration.UserModuleFeatures", "rp": "WebTemplate.Core_UserModuleFeatures.html", "cl": 13, "ucl": 0, "cal": 13, "tl": 85, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Configuration.UserModuleOptions", "rp": "WebTemplate.Core_UserModuleOptions.html", "cl": 0, "ucl": 4, "cal": 4, "tl": 58, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Configuration.UserSettings", "rp": "WebTemplate.Core_UserSettings.html", "cl": 18, "ucl": 0, "cal": 18, "tl": 340, "cb": 10, "tb": 10, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "WebTemplate.Core.DTOs.AdminUserDto", "rp": "WebTemplate.Core_AdminUserDto.html", "cl": 10, "ucl": 0, "cal": 10, "tl": 139, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "WebTemplate.Core.DTOs.Auth.ApiResponseDto<T>", "rp": "WebTemplate.Core_ApiResponseDto_1.html", "cl": 6, "ucl": 0, "cal": 6, "tl": 236, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "WebTemplate.Core.DTOs.Auth.AuthResponseDto", "rp": "WebTemplate.Core_AuthResponseDto.html", "cl": 8, "ucl": 0, "cal": 8, "tl": 236, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
@@ -275,45 +291,39 @@ var assemblies = [
       { "name": "WebTemplate.Core.Entities.ApplicationUser", "rp": "WebTemplate.Core_ApplicationUser.html", "cl": 17, "ucl": 0, "cal": 17, "tl": 62, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "WebTemplate.Core.Entities.RefreshToken", "rp": "WebTemplate.Core_RefreshToken.html", "cl": 12, "ucl": 8, "cal": 20, "tl": 81, "cb": 2, "tb": 4, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "WebTemplate.Core.Entities.UserType", "rp": "WebTemplate.Core_UserType.html", "cl": 8, "ucl": 0, "cal": 8, "tl": 32, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Features.AdminSeedModule", "rp": "WebTemplate.Core_AdminSeedModule.html", "cl": 59, "ucl": 1, "cal": 60, "tl": 81, "cb": 2, "tb": 2, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Features.CorsModule", "rp": "WebTemplate.Core_CorsModule.html", "cl": 18, "ucl": 2, "cal": 20, "tl": 33, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Features.AdminSeedModule", "rp": "WebTemplate.Core_AdminSeedModule.html", "cl": 0, "ucl": 18, "cal": 18, "tl": 48, "cb": 0, "tb": 10, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Features.CorsModule", "rp": "WebTemplate.Core_CorsModule.html", "cl": 0, "ucl": 20, "cal": 20, "tl": 33, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "WebTemplate.Core.Features.EmailModule", "rp": "WebTemplate.Core_EmailModule.html", "cl": 14, "ucl": 4, "cal": 18, "tl": 33, "cb": 1, "tb": 2, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "WebTemplate.Core.Features.ExceptionHandlingModule", "rp": "WebTemplate.Core_ExceptionHandlingModule.html", "cl": 12, "ucl": 14, "cal": 26, "tl": 42, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Features.FeatureHost", "rp": "WebTemplate.Core_FeatureHost.html", "cl": 31, "ucl": 0, "cal": 31, "tl": 55, "cb": 26, "tb": 28, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Features.HealthChecksModule", "rp": "WebTemplate.Core_HealthChecksModule.html", "cl": 11, "ucl": 1, "cal": 12, "tl": 27, "cb": 1, "tb": 2, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Features.RateLimitingModule", "rp": "WebTemplate.Core_RateLimitingModule.html", "cl": 18, "ucl": 1, "cal": 19, "tl": 33, "cb": 0, "tb": 2, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Features.FeatureHost", "rp": "WebTemplate.Core_FeatureHost.html", "cl": 31, "ucl": 0, "cal": 31, "tl": 54, "cb": 21, "tb": 28, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Features.HealthChecksModule", "rp": "WebTemplate.Core_HealthChecksModule.html", "cl": 0, "ucl": 12, "cal": 12, "tl": 27, "cb": 0, "tb": 2, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Features.RateLimitingModule", "rp": "WebTemplate.Core_RateLimitingModule.html", "cl": 0, "ucl": 19, "cal": 19, "tl": 33, "cb": 0, "tb": 2, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "WebTemplate.Core.Features.RefreshTokensModule", "rp": "WebTemplate.Core_RefreshTokensModule.html", "cl": 9, "ucl": 1, "cal": 10, "tl": 25, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Features.SecurityHeadersModule", "rp": "WebTemplate.Core_SecurityHeadersModule.html", "cl": 17, "ucl": 1, "cal": 18, "tl": 31, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Features.SecurityHeadersModule", "rp": "WebTemplate.Core_SecurityHeadersModule.html", "cl": 14, "ucl": 4, "cal": 18, "tl": 31, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "WebTemplate.Core.Features.SerilogModule", "rp": "WebTemplate.Core_SerilogModule.html", "cl": 0, "ucl": 19, "cal": 19, "tl": 36, "cb": 0, "tb": 8, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Features.SwaggerModule", "rp": "WebTemplate.Core_SwaggerModule.html", "cl": 37, "ucl": 1, "cal": 38, "tl": 53, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Services.AuthService", "rp": "WebTemplate.Core_AuthService.html", "cl": 466, "ucl": 51, "cal": 517, "tl": 703, "cb": 92, "tb": 96, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Features.SwaggerModule", "rp": "WebTemplate.Core_SwaggerModule.html", "cl": 0, "ucl": 38, "cal": 38, "tl": 53, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Services.AuthService", "rp": "WebTemplate.Core_AuthService.html", "cl": 454, "ucl": 60, "cal": 514, "tl": 699, "cb": 93, "tb": 96, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Services.KeyVaultService", "rp": "WebTemplate.Core_KeyVaultService.html", "cl": 0, "ucl": 21, "cal": 21, "tl": 75, "cb": 0, "tb": 4, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "WebTemplate.Core.Services.NoOpEmailSender", "rp": "WebTemplate.Core_NoOpEmailSender.html", "cl": 3, "ucl": 0, "cal": 3, "tl": 14, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Services.RefreshTokenCleanupService", "rp": "WebTemplate.Core_RefreshTokenCleanupService.html", "cl": 35, "ucl": 1, "cal": 36, "tl": 59, "cb": 9, "tb": 14, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Services.SmtpEmailSender", "rp": "WebTemplate.Core_SmtpEmailSender.html", "cl": 22, "ucl": 1, "cal": 23, "tl": 41, "cb": 3, "tb": 4, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Core.Services.TokenService", "rp": "WebTemplate.Core_TokenService.html", "cl": 152, "ucl": 1, "cal": 153, "tl": 257, "cb": 20, "tb": 24, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Services.RefreshTokenCleanupService", "rp": "WebTemplate.Core_RefreshTokenCleanupService.html", "cl": 34, "ucl": 1, "cal": 35, "tl": 57, "cb": 6, "tb": 8, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Services.SmtpEmailSender", "rp": "WebTemplate.Core_SmtpEmailSender.html", "cl": 22, "ucl": 1, "cal": 23, "tl": 40, "cb": 3, "tb": 4, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Core.Services.TokenService", "rp": "WebTemplate.Core_TokenService.html", "cl": 152, "ucl": 1, "cal": 153, "tl": 256, "cb": 20, "tb": 24, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "WebTemplate.Core.Services.UserService", "rp": "WebTemplate.Core_UserService.html", "cl": 301, "ucl": 18, "cal": 319, "tl": 471, "cb": 81, "tb": 98, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "WebTemplate.Core.Services.UserTypeService", "rp": "WebTemplate.Core_UserTypeService.html", "cl": 99, "ucl": 0, "cal": 99, "tl": 156, "cb": 19, "tb": 20, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
     ]},
   {
     "name": "WebTemplate.Data",
     "classes": [
+      { "name": "WebTemplate.Data.Configuration.DatabaseRetrySettings", "rp": "WebTemplate.Data_DatabaseRetrySettings.html", "cl": 10, "ucl": 4, "cal": 14, "tl": 61, "cb": 5, "tb": 10, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Data.Configuration.DataConfiguration", "rp": "WebTemplate.Data_DataConfiguration.html", "cl": 24, "ucl": 9, "cal": 33, "tl": 64, "cb": 9, "tb": 16, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "WebTemplate.Data.Context.ApplicationDbContext", "rp": "WebTemplate.Data_ApplicationDbContext.html", "cl": 65, "ucl": 0, "cal": 65, "tl": 86, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Data.Modules.UserModule", "rp": "WebTemplate.Data_UserModule.html", "cl": 138, "ucl": 145, "cal": 283, "tl": 395, "cb": 34, "tb": 100, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "WebTemplate.Data.Repositories.RefreshTokenRepository", "rp": "WebTemplate.Data_RefreshTokenRepository.html", "cl": 53, "ucl": 0, "cal": 53, "tl": 90, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.Data.Repositories.UserTypeRepository", "rp": "WebTemplate.Data_UserTypeRepository.html", "cl": 12, "ucl": 24, "cal": 36, "tl": 61, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WebTemplate.Data.Repositories.UserTypeRepository", "rp": "WebTemplate.Data_UserTypeRepository.html", "cl": 34, "ucl": 0, "cal": 34, "tl": 61, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "WebTemplate.Data.Validation.DbContextValidator", "rp": "WebTemplate.Data_DbContextValidator.html", "cl": 0, "ucl": 197, "cal": 197, "tl": 365, "cb": 0, "tb": 94, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "WebTemplate.Data.Validation.ValidateDbContextTool", "rp": "WebTemplate.Data_ValidateDbContextTool.html", "cl": 0, "ucl": 63, "cal": 63, "tl": 105, "cb": 0, "tb": 20, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "WebTemplate.Data.Validation.ValidationIssue", "rp": "WebTemplate.Data_ValidationIssue.html", "cl": 0, "ucl": 16, "cal": 16, "tl": 365, "cb": 0, "tb": 8, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "WebTemplate.Data.Validation.ValidationResult", "rp": "WebTemplate.Data_ValidationResult.html", "cl": 0, "ucl": 40, "cal": 40, "tl": 365, "cb": 0, "tb": 12, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-    ]},
-  {
-    "name": "WebTemplate.UserModule",
-    "classes": [
-      { "name": "WebTemplate.UserModule.AuthOptions", "rp": "WebTemplate.UserModule_AuthOptions.html", "cl": 0, "ucl": 3, "cal": 3, "tl": 44, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.UserModule.JwtOptions", "rp": "WebTemplate.UserModule_JwtOptions.html", "cl": 0, "ucl": 6, "cal": 6, "tl": 44, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.UserModule.PasswordRequirementsOptions", "rp": "WebTemplate.UserModule_PasswordRequirementsOptions.html", "cl": 0, "ucl": 6, "cal": 6, "tl": 44, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.UserModule.SeedOptions", "rp": "WebTemplate.UserModule_SeedOptions.html", "cl": 0, "ucl": 3, "cal": 3, "tl": 44, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.UserModule.UserModule", "rp": "WebTemplate.UserModule_UserModule.html", "cl": 103, "ucl": 72, "cal": 175, "tl": 238, "cb": 15, "tb": 42, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WebTemplate.UserModule.UserModuleOptions", "rp": "WebTemplate.UserModule_UserModuleOptions.html", "cl": 0, "ucl": 4, "cal": 4, "tl": 44, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
     ]},
 ];
 
@@ -334,10 +344,22 @@ var riskHotspots = [
       { "value": 34, "exceeded": true },
     ]},
   {
+    "assembly": "WebTemplate.API", "class": "WebTemplate.API.AdminSeeder", "reportPath": "WebTemplate.API_AdminSeeder.html", "methodName": "SeedAsync()", "methodShortName": "SeedAsync()", "fileIndex": 0, "line": 13,
+    "metrics": [
+      { "value": 420, "exceeded": true },
+      { "value": 20, "exceeded": true },
+    ]},
+  {
     "assembly": "WebTemplate.Data", "class": "WebTemplate.Data.Validation.DbContextValidator", "reportPath": "WebTemplate.Data_DbContextValidator.html", "methodName": "ValidateEntity(System.Type)", "methodShortName": "ValidateEntity(...)", "fileIndex": 0, "line": 55,
     "metrics": [
       { "value": 420, "exceeded": true },
       { "value": 20, "exceeded": true },
+    ]},
+  {
+    "assembly": "WebTemplate.Data", "class": "WebTemplate.Data.Modules.UserModule", "reportPath": "WebTemplate.Data_UserModule.html", "methodName": "InitializeDatabaseSchemaAsync()", "methodShortName": "InitializeDatabaseSchemaAsync()", "fileIndex": 0, "line": 232,
+    "metrics": [
+      { "value": 342, "exceeded": true },
+      { "value": 18, "exceeded": true },
     ]},
   {
     "assembly": "WebTemplate.Data", "class": "WebTemplate.Data.Validation.DbContextValidator", "reportPath": "WebTemplate.Data_DbContextValidator.html", "methodName": "ValidateIndexes(Microsoft.EntityFrameworkCore.Metadata.IEntityType,System.Type)", "methodShortName": "ValidateIndexes(...)", "fileIndex": 0, "line": 188,
@@ -352,16 +374,22 @@ var riskHotspots = [
       { "value": 16, "exceeded": true },
     ]},
   {
-    "assembly": "WebTemplate.API", "class": "WebTemplate.API.AdminSeeder", "reportPath": "WebTemplate.API_AdminSeeder.html", "methodName": "SeedAsync()", "methodShortName": "SeedAsync()", "fileIndex": 0, "line": 14,
+    "assembly": "WebTemplate.Data", "class": "WebTemplate.Data.Validation.DbContextValidator", "reportPath": "WebTemplate.Data_DbContextValidator.html", "methodName": "ValidateRelationships(Microsoft.EntityFrameworkCore.Metadata.IEntityType,System.Type)", "methodShortName": "ValidateRelationships(...)", "fileIndex": 0, "line": 229,
     "metrics": [
       { "value": 210, "exceeded": true },
       { "value": 14, "exceeded": false },
     ]},
   {
-    "assembly": "WebTemplate.Data", "class": "WebTemplate.Data.Validation.DbContextValidator", "reportPath": "WebTemplate.Data_DbContextValidator.html", "methodName": "ValidateRelationships(Microsoft.EntityFrameworkCore.Metadata.IEntityType,System.Type)", "methodShortName": "ValidateRelationships(...)", "fileIndex": 0, "line": 229,
+    "assembly": "WebTemplate.API", "class": "Program", "reportPath": "WebTemplate.API_Program.html", "methodName": "BuildConfiguration()", "methodShortName": "BuildConfiguration()", "fileIndex": 0, "line": 195,
     "metrics": [
-      { "value": 210, "exceeded": true },
-      { "value": 14, "exceeded": false },
+      { "value": 200, "exceeded": true },
+      { "value": 18, "exceeded": true },
+    ]},
+  {
+    "assembly": "WebTemplate.Core", "class": "WebTemplate.Core.Configuration.Features.FeaturesOptions", "reportPath": "WebTemplate.Core_FeaturesOptions.html", "methodName": "Validate()", "methodShortName": "Validate()", "fileIndex": 0, "line": 23,
+    "metrics": [
+      { "value": 184, "exceeded": true },
+      { "value": 32, "exceeded": true },
     ]},
   {
     "assembly": "WebTemplate.Data", "class": "WebTemplate.Data.Validation.ValidationResult", "reportPath": "WebTemplate.Data_ValidationResult.html", "methodName": "GetReport()", "methodShortName": "GetReport()", "fileIndex": 0, "line": 289,
@@ -370,9 +398,21 @@ var riskHotspots = [
       { "value": 12, "exceeded": false },
     ]},
   {
-    "assembly": "WebTemplate.UserModule", "class": "WebTemplate.UserModule.UserModule", "reportPath": "WebTemplate.UserModule_UserModule.html", "methodName": "ResolveModuleConfig(Microsoft.Extensions.Configuration.IConfiguration)", "methodShortName": "ResolveModuleConfig(...)", "fileIndex": 0, "line": 179,
+    "assembly": "WebTemplate.Data", "class": "WebTemplate.Data.Modules.UserModule", "reportPath": "WebTemplate.Data_UserModule.html", "methodName": "InitializeUserModuleAsync()", "methodShortName": "InitializeUserModuleAsync()", "fileIndex": 0, "line": 152,
     "metrics": [
-      { "value": 78, "exceeded": true },
+      { "value": 123, "exceeded": true },
+      { "value": 22, "exceeded": true },
+    ]},
+  {
+    "assembly": "WebTemplate.Core", "class": "WebTemplate.Core.Features.AdminSeedModule", "reportPath": "WebTemplate.Core_AdminSeedModule.html", "methodName": "ConfigurePipeline(Microsoft.AspNetCore.Builder.IApplicationBuilder)", "methodShortName": "ConfigurePipeline(...)", "fileIndex": 0, "line": 26,
+    "metrics": [
+      { "value": 110, "exceeded": true },
+      { "value": 10, "exceeded": false },
+    ]},
+  {
+    "assembly": "WebTemplate.Data", "class": "WebTemplate.Data.Modules.UserModule", "reportPath": "WebTemplate.Data_UserModule.html", "methodName": "ResolveModuleConfig(Microsoft.Extensions.Configuration.IConfiguration)", "methodShortName": "ResolveModuleConfig(...)", "fileIndex": 0, "line": 316,
+    "metrics": [
+      { "value": 74, "exceeded": true },
       { "value": 22, "exceeded": true },
     ]},
   {
@@ -388,25 +428,55 @@ var riskHotspots = [
       { "value": 8, "exceeded": false },
     ]},
   {
-    "assembly": "WebTemplate.UserModule", "class": "WebTemplate.UserModule.UserModule", "reportPath": "WebTemplate.UserModule_UserModule.html", "methodName": "InitializeUserModuleAsync()", "methodShortName": "InitializeUserModuleAsync()", "fileIndex": 0, "line": 122,
+    "assembly": "WebTemplate.Data", "class": "WebTemplate.Data.Modules.UserModule", "reportPath": "WebTemplate.Data_UserModule.html", "methodName": "PickSection()", "methodShortName": "PickSection()", "fileIndex": 0, "line": 341,
     "metrics": [
-      { "value": 72, "exceeded": true },
-      { "value": 8, "exceeded": false },
+      { "value": 70, "exceeded": true },
+      { "value": 18, "exceeded": true },
     ]},
   {
-    "assembly": "WebTemplate.Core", "class": "WebTemplate.Core.Features.FeatureHost", "reportPath": "WebTemplate.Core_FeatureHost.html", "methodName": "Discover()", "methodShortName": "Discover()", "fileIndex": 0, "line": 19,
+    "assembly": "WebTemplate.API", "class": "Program", "reportPath": "WebTemplate.API_Program.html", "methodName": "IsRunningUnderTests()", "methodShortName": "IsRunningUnderTests()", "fileIndex": 0, "line": 17,
+    "metrics": [
+      { "value": 58, "exceeded": true },
+      { "value": 16, "exceeded": true },
+    ]},
+  {
+    "assembly": "WebTemplate.Core", "class": "WebTemplate.Core.Configuration.AuthSettings", "reportPath": "WebTemplate.Core_AuthSettings.html", "methodName": "Validate()", "methodShortName": "Validate()", "fileIndex": 0, "line": 56,
+    "metrics": [
+      { "value": 47, "exceeded": true },
+      { "value": 30, "exceeded": true },
+    ]},
+  {
+    "assembly": "WebTemplate.Core", "class": "WebTemplate.Core.Common.Result", "reportPath": "WebTemplate.Core_Result.html", "methodName": ".ctor(System.Boolean,WebTemplate.Core.Common.Error,System.Collections.Generic.IEnumerable`1<WebTemplate.Core.Common.Error>)", "methodShortName": ".ctor(...)", "fileIndex": 0, "line": 39,
+    "metrics": [
+      { "value": 21, "exceeded": false },
+      { "value": 20, "exceeded": true },
+    ]},
+  {
+    "assembly": "WebTemplate.Core", "class": "WebTemplate.Core.Features.FeatureHost", "reportPath": "WebTemplate.Core_FeatureHost.html", "methodName": "Discover()", "methodShortName": "Discover()", "fileIndex": 0, "line": 18,
     "metrics": [
       { "value": 20, "exceeded": false },
       { "value": 20, "exceeded": true },
     ]},
   {
-    "assembly": "WebTemplate.Core", "class": "WebTemplate.Core.Services.AuthService", "reportPath": "WebTemplate.Core_AuthService.html", "methodName": "LoginAsync()", "methodShortName": "LoginAsync()", "fileIndex": 0, "line": 92,
+    "assembly": "WebTemplate.Core", "class": "WebTemplate.Core.Services.AuthService", "reportPath": "WebTemplate.Core_AuthService.html", "methodName": "LoginAsync()", "methodShortName": "LoginAsync()", "fileIndex": 0, "line": 88,
     "metrics": [
-      { "value": 20, "exceeded": false },
+      { "value": 21, "exceeded": false },
       { "value": 20, "exceeded": true },
     ]},
   {
-    "assembly": "WebTemplate.Core", "class": "WebTemplate.Core.Services.AuthService", "reportPath": "WebTemplate.Core_AuthService.html", "methodName": "RegisterAsync()", "methodShortName": "RegisterAsync()", "fileIndex": 0, "line": 192,
+    "assembly": "WebTemplate.Data", "class": "WebTemplate.Data.Modules.UserModule", "reportPath": "WebTemplate.Data_UserModule.html", "methodName": "AddUserModule(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)", "methodShortName": "AddUserModule(...)", "fileIndex": 0, "line": 27,
+    "metrics": [
+      { "value": 23, "exceeded": false },
+      { "value": 20, "exceeded": true },
+    ]},
+  {
+    "assembly": "WebTemplate.API", "class": "Program", "reportPath": "WebTemplate.API_Program.html", "methodName": "<Main>$()", "methodShortName": "<Main>$()", "fileIndex": 0, "line": 10,
+    "metrics": [
+      { "value": 19, "exceeded": false },
+      { "value": 18, "exceeded": true },
+    ]},
+  {
+    "assembly": "WebTemplate.Core", "class": "WebTemplate.Core.Services.AuthService", "reportPath": "WebTemplate.Core_AuthService.html", "methodName": "RegisterAsync()", "methodShortName": "RegisterAsync()", "fileIndex": 0, "line": 188,
     "metrics": [
       { "value": 16, "exceeded": false },
       { "value": 16, "exceeded": true },

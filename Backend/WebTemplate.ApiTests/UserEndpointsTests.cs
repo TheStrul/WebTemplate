@@ -24,12 +24,12 @@ namespace WebTemplate.ApiTests
         public async Task InitializeAsync()
         {
             _factory = new TestWebAppFactory();
-            await _factory.InitializeDatabaseAsync();
             _client = _factory.CreateClient(new WebApplicationFactoryClientOptions
             {
                 BaseAddress = new Uri("https://localhost/"),
                 AllowAutoRedirect = false
             });
+            await _factory.InitializeDatabaseAsync();
         }
 
         public Task DisposeAsync()

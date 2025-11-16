@@ -6,6 +6,8 @@ namespace WebTemplate.ApiTests
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
+    using Microsoft.AspNetCore.TestHost;
     using WebTemplate.Core.Entities;
     using WebTemplate.Data.Context;
     using Xunit;
@@ -13,8 +15,9 @@ namespace WebTemplate.ApiTests
     public class TestWebAppFactory : WebApplicationFactory<WebTemplate.API.Program>, IAsyncLifetime
     {
         private const string TestDatabaseName = "CoreWebTemplateDb_IntegrationTests";
-        private bool _seeded = false;
-        private readonly SemaphoreSlim _seedLock = new SemaphoreSlim(1, 1);
+        private static readonly string SharedDbName = $"WebTemplate_Test_{Guid.NewGuid()}";
+        private static bool _seeded = false;
+        private static readonly SemaphoreSlim _seedLock = new SemaphoreSlim(1, 1);
 
         // Ensure environment is set as early as possible
         static TestWebAppFactory()
@@ -32,6 +35,7 @@ namespace WebTemplate.ApiTests
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
             builder.UseEnvironment("Testing");
+            builder.UseTestServer();
 
             // Make sure environment variables also reflect Testing for libraries that read env vars directly
             System.Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Testing");
@@ -52,7 +56,7 @@ namespace WebTemplate.ApiTests
 
                     // Required by ApiConfiguration
                     ["AllowedHosts"] = "*",
-                    
+
                     // Database (will be overridden to InMemory in ConfigureServices)
                     ["Database:ConnectionString"] = "InMemory",
                     ["ConnectionStrings:DefaultConnection"] = "InMemory",
@@ -117,7 +121,7 @@ namespace WebTemplate.ApiTests
                     ["Features:AdminSeed:Password"] = "Admin123!@#",
                     ["Features:AdminSeed:FirstName"] = "System",
                     ["Features:AdminSeed:LastName"] = "Administrator",
-                    
+
                     // Feature flags
                     ["Features:Swagger:Enabled"] = "false",
                     ["Features:Cors:Enabled"] = "false",
@@ -155,18 +159,31 @@ namespace WebTemplate.ApiTests
                     services.Remove(descriptor);
                 }
 
-                // Register ONLY InMemory database for tests
+                // Register ONLY InMemory database for tests - use shared DB name to persist data across requests
                 services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseInMemoryDatabase($"WebTemplate_Test_{Guid.NewGuid()}"),
+                    options.UseInMemoryDatabase(SharedDbName),
                     ServiceLifetime.Scoped);
             });
+        }
+
+        protected override IHost CreateHost(IHostBuilder builder)
+        {
+            // Ensure TestServer is used and host is started so TestServer.Application is initialized
+            builder.ConfigureWebHost(webBuilder =>
+            {
+                webBuilder.UseEnvironment("Testing");
+                webBuilder.UseTestServer();
+            });
+
+            var host = builder.Build();
+            host.Start();
+            return host;
         }
 
         // Ensure DB is initialized once per test collection before any tests run
         public async Task InitializeAsync()
         {
             // Force the factory to build by accessing Services
-            // This should trigger WebApplicationFactory to build the application
             _ = this.Services;
             await InitializeDatabaseAsync();
         }
@@ -223,65 +240,56 @@ namespace WebTemplate.ApiTests
             var adminPassword = config["Features:AdminSeed:Password"];
             if (string.IsNullOrWhiteSpace(adminPassword)) throw new InvalidOperationException("Admin seed password configuration missing.");
             var adminEmail = config["Features:AdminSeed:Email"] ?? throw new InvalidOperationException("Admin seed email configuration missing.");
-            try
+
+            var db = serviceProvider.GetRequiredService<ApplicationDbContext>();
+            var userManager = serviceProvider.GetRequiredService<Microsoft.AspNetCore.Identity.UserManager<ApplicationUser>>();
+            var roleManager = serviceProvider.GetRequiredService<Microsoft.AspNetCore.Identity.RoleManager<Microsoft.AspNetCore.Identity.IdentityRole>>();
+
+            // Ensure roles exist
+            string[] roleNames = { "Admin", "User", "Moderator" };
+            foreach (var roleName in roleNames)
             {
-                var db = serviceProvider.GetRequiredService<ApplicationDbContext>();
-                var userManager = serviceProvider.GetRequiredService<Microsoft.AspNetCore.Identity.UserManager<ApplicationUser>>();
-                var roleManager = serviceProvider.GetRequiredService<Microsoft.AspNetCore.Identity.RoleManager<Microsoft.AspNetCore.Identity.IdentityRole>>();
-
-                // Ensure roles exist
-                string[] roleNames = { "Admin", "User", "Moderator" };
-                foreach (var roleName in roleNames)
+                if (!await roleManager.RoleExistsAsync(roleName))
                 {
-                    if (!await roleManager.RoleExistsAsync(roleName))
-                    {
-                        var result = await roleManager.CreateAsync(new Microsoft.AspNetCore.Identity.IdentityRole(roleName));
-                        if (!result.Succeeded)
-                        {
-                            Console.WriteLine($"Warning: Failed to create role {roleName}");
-                        }
-                    }
-                }
-
-                var existingAdmin = await userManager.FindByEmailAsync(adminEmail);
-                if (existingAdmin == null)
-                {
-                    var adminUser = new ApplicationUser
-                    {
-                        Id = Guid.NewGuid().ToString(),
-                        UserName = adminEmail,
-                        Email = adminEmail,
-                        EmailConfirmed = true,
-                        FirstName = config["Features:AdminSeed:FirstName"] ?? throw new InvalidOperationException("Admin seed first name missing."),
-                        LastName = config["Features:AdminSeed:LastName"] ?? throw new InvalidOperationException("Admin seed last name missing."),
-                        UserTypeId = 1,
-                        IsActive = true,
-                        CreatedAt = DateTime.UtcNow,
-                        NormalizedUserName = adminEmail.ToUpperInvariant(),
-                        NormalizedEmail = adminEmail.ToUpperInvariant(),
-                        SecurityStamp = Guid.NewGuid().ToString(),
-                        ConcurrencyStamp = Guid.NewGuid().ToString()
-                    };
-
-                    // Hash the password
-                    var passwordHash = userManager.PasswordHasher.HashPassword(adminUser, adminPassword);
-                    adminUser.PasswordHash = passwordHash;
-
-                    // Add to database
-                    db.Users.Add(adminUser);
-                    await db.SaveChangesAsync();
-
-                    // Add to Admin role
-                    var roleResult = await userManager.AddToRoleAsync(adminUser, "Admin");
+                    var roleResult = await roleManager.CreateAsync(new Microsoft.AspNetCore.Identity.IdentityRole(roleName));
                     if (!roleResult.Succeeded)
                     {
-                        Console.WriteLine("Warning: Failed to add Admin role to user");
+                        var errors = string.Join(", ", roleResult.Errors.Select(e => e.Description));
+                        throw new InvalidOperationException($"Failed to create role {roleName}: {errors}");
                     }
                 }
             }
-            catch (Exception ex)
+
+            var existingAdmin = await userManager.FindByEmailAsync(adminEmail);
+            if (existingAdmin == null)
             {
-                Console.WriteLine($"Warning: Error seeding admin user: {ex.Message}");
+                var adminUser = new ApplicationUser
+                {
+                    UserName = adminEmail,
+                    Email = adminEmail,
+                    EmailConfirmed = true,
+                    FirstName = config["Features:AdminSeed:FirstName"] ?? throw new InvalidOperationException("Admin seed first name missing."),
+                    LastName = config["Features:AdminSeed:LastName"] ?? throw new InvalidOperationException("Admin seed last name missing."),
+                    UserTypeId = 1,
+                    IsActive = true,
+                    CreatedAt = DateTime.UtcNow
+                };
+
+                // Create user with password using UserManager
+                var createResult = await userManager.CreateAsync(adminUser, adminPassword);
+                if (!createResult.Succeeded)
+                {
+                    var errors = string.Join(", ", createResult.Errors.Select(e => e.Description));
+                    throw new InvalidOperationException($"Failed to create admin user: {errors}");
+                }
+
+                // Add to Admin role
+                var roleResult = await userManager.AddToRoleAsync(adminUser, "Admin");
+                if (!roleResult.Succeeded)
+                {
+                    var errors = string.Join(", ", roleResult.Errors.Select(e => e.Description));
+                    throw new InvalidOperationException($"Failed to add Admin role to user: {errors}");
+                }
             }
         }
     }

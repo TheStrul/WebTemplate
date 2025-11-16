@@ -188,7 +188,11 @@ namespace WebTemplate.API.Controllers
             if (!_features.EnableConfirmEmail) return NotFound();
             try
             {
-                var result = await _authService.ConfirmEmailAsync(confirmEmailDto);
+                // Tokens sent from query strings are typically URL-encoded; decode before processing
+                var decodedToken = Uri.UnescapeDataString(confirmEmailDto.Token);
+                var dto = new ConfirmEmailDto { UserId = confirmEmailDto.UserId, Token = decodedToken };
+
+                var result = await _authService.ConfirmEmailAsync(dto);
                 return result.Success ? Ok(result) : BadRequest(result);
             }
             catch (Exception ex)
