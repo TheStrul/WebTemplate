@@ -149,8 +149,9 @@ public static class UsageExamples
 
     /// <summary>
     /// Example: Generate a project from configuration
+    /// REQUIRES: Dependency Injection setup with ITemplateEngine registered
     /// </summary>
-    public static async Task GenerateProject()
+    public static async Task GenerateProject(ProjectGenerationService generationService)
     {
         // Load existing configuration
         var persistenceService = new ConfigurationPersistenceService();
@@ -170,8 +171,7 @@ public static class UsageExamples
             Console.WriteLine($"[Progress] {message}");
         });
 
-        // Generate project
-        var generationService = new ProjectGenerationService();
+        // Generate project using injected service
         var result = await generationService.GenerateProjectAsync(config, progress);
 
         if (result.Success)
@@ -244,8 +244,9 @@ public static class UsageExamples
 
     /// <summary>
     /// Example: Run all tests
+    /// REQUIRES: Dependency Injection setup with all required services
     /// </summary>
-    public static async Task RunAllExamples()
+    public static async Task RunAllExamples(ProjectGenerationService? generationService = null)
     {
         Console.WriteLine("=== WebTemplate.Setup Backend Examples ===\n");
 
@@ -269,9 +270,16 @@ public static class UsageExamples
         await TestDatabaseConnection();
         Console.WriteLine();
 
-        Console.WriteLine("6. Generating project (commented out - will create actual project)...");
-        // await GenerateProject(); // Uncomment to actually generate a project
-        Console.WriteLine("   (Skipped - uncomment to run)");
+        if (generationService != null)
+        {
+            Console.WriteLine("6. Generating project...");
+            await GenerateProject(generationService);
+        }
+        else
+        {
+            Console.WriteLine("6. Generating project (skipped - requires DI setup)...");
+            Console.WriteLine("   (Pass ProjectGenerationService to RunAllExamples to enable)");
+        }
         Console.WriteLine();
 
         Console.WriteLine("=== All examples completed ===");
