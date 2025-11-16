@@ -165,8 +165,9 @@ namespace WebTemplate.ApiTests
         // Ensure DB is initialized once per test collection before any tests run
         public async Task InitializeAsync()
         {
-            // Build the web application explicitly
-            var app = this.CreateDefaultClient();
+            // Force the factory to build by accessing Services
+            // This should trigger WebApplicationFactory to build the application
+            _ = this.Services;
             await InitializeDatabaseAsync();
         }
 
