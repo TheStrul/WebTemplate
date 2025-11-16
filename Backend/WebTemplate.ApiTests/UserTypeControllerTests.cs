@@ -11,6 +11,10 @@ namespace WebTemplate.ApiTests
     /// Integration tests for UserType endpoints (UserTypeController)
     /// Tests CRUD operations, authorization, and validation
     /// Requires Admin role for all endpoints
+    /// 
+    /// NOTE: These tests require WebApplicationFactory to be properly configured.
+    /// Currently disabled pending factory initialization fix.
+    /// Use E2E tests (WebTemplate.E2ETests) for API validation against running server.
     /// </summary>
     [Collection("Integration Tests")]
     public class UserTypeControllerTests : IAsyncLifetime
