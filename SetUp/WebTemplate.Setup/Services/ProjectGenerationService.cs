@@ -1,5 +1,6 @@
 using WebTemplate.Setup.Models;
 using WebTemplate.TemplateEngine.Interfaces;
+using Microsoft.Data.SqlClient;
 
 namespace WebTemplate.Setup.Services;
 
@@ -88,8 +89,12 @@ public class ProjectGenerationService
                     // Database doesn't exist - check if we should create it
                     if (!config.Database.CreateDatabaseIfNotExists)
                     {
+                        var dbName = new SqlConnectionStringBuilder(config.Database.ConnectionString).InitialCatalog;
                         return (false, 
-                            $"Database does not exist and CreateDatabaseIfNotExists is disabled. " +
+                            $"Database '{dbName}' does not exist and CreateDatabaseIfNotExists is disabled.\n\n" +
+                            $"Options:\n" +
+                            $"1. Enable 'CreateDatabaseIfNotExists' in database configuration\n" +
+                            $"2. Create the database manually first\n\n" +
                             $"Connection string: {config.Database.ConnectionString}", 
                             targetPath);
                     }
@@ -100,7 +105,7 @@ public class ProjectGenerationService
                     
                     if (!createDbResult.Success)
                     {
-                        return (false, $"Database creation failed: {createDbResult.Message}", targetPath);
+                        return (false, $"Database creation failed:\n\n{createDbResult.Message}", targetPath);
                     }
 
                     progress.Report(createDbResult.Message);
@@ -126,7 +131,7 @@ public class ProjectGenerationService
 
                 if (!dbResult.Success)
                 {
-                    return (false, $"Database initialization failed: {dbResult.Message}", targetPath);
+                    return (false, $"Database initialization failed:\n\n{dbResult.Message}", targetPath);
                 }
             }
 

@@ -30,7 +30,71 @@ public class DatabaseService
     }
 
     /// <summary>
-    /// Checks if a database exists
+    /// Creates a database
+    /// Note: Caller should verify database doesn't already exist using DatabaseExistsAsync
+    /// </summary>
+    public async Task<(bool Success, string Message)> CreateDatabaseIfNotExistsAsync(string connectionString)
+    {
+        try
+        {
+            var builder = new SqlConnectionStringBuilder(connectionString);
+            var databaseName = builder.InitialCatalog;
+            var serverName = builder.DataSource;
+            builder.InitialCatalog = "master";
+
+            using var connection = new SqlConnection(builder.ConnectionString);
+            await connection.OpenAsync();
+
+            // Create database
+            var createCommand = new SqlCommand(
+                $"CREATE DATABASE [{databaseName}]",
+                connection
+            );
+            await createCommand.ExecuteNonQueryAsync();
+
+            return (true, $"Database '{databaseName}' created successfully on server '{serverName}'");
+        }
+        catch (SqlException ex) when (ex.Number == -2 || ex.Number == 2)
+        {
+            // Error -2 or 2: Network or instance-related error
+            var builder = new SqlConnectionStringBuilder(connectionString);
+            return (false, 
+                $"Cannot connect to SQL Server '{builder.DataSource}'.\n\n" +
+                $"Please verify:\n" +
+                $"• SQL Server is running\n" +
+                $"• Server name is correct: {builder.DataSource}\n" +
+                $"• Network connectivity is available\n" +
+                $"• SQL Server is configured to accept remote connections\n\n" +
+                $"Original error: {ex.Message}");
+        }
+        catch (SqlException ex) when (ex.Number == 1801)
+        {
+            // Error 1801: Database already exists
+            var builder = new SqlConnectionStringBuilder(connectionString);
+            return (false, $"Database '{builder.InitialCatalog}' already exists on server '{builder.DataSource}'");
+        }
+        catch (SqlException ex) when (ex.Number == 262)
+        {
+            // Error 262: Permission denied
+            return (false, 
+                $"Permission denied: Current user doesn't have permissions to create databases.\n\n" +
+                $"Please verify:\n" +
+                $"• Login credentials have dbcreator role\n" +
+                $"• User has appropriate permissions on the server\n\n" +
+                $"Original error: {ex.Message}");
+        }
+        catch (SqlException ex)
+        {
+            return (false, $"SQL Error: {ex.Number} - {ex.Message}");
+        }
+        catch (Exception ex)
+        {
+            return (false, $"Error creating database: {ex.Message}");
+        }
+    }
+
+    /// <summary>
+    /// Checks if a database exists with better error diagnostics
     /// </summary>
     public async Task<bool> DatabaseExistsAsync(string connectionString)
     {
@@ -52,44 +116,16 @@ public class DatabaseService
             var result = await checkCommand.ExecuteScalarAsync();
             return result != null;
         }
+        catch (SqlException ex) when (ex.Number == -2 || ex.Number == 2)
+        {
+            // Network error - cannot determine if database exists
+            // Return false to let caller handle it
+            return false;
+        }
         catch (Exception ex)
         {
             // If we can't connect or check, assume it doesn't exist
             return false;
-        }
-    }
-
-    /// <summary>
-    /// Creates a database
-    /// Note: Caller should verify database doesn't already exist using DatabaseExistsAsync
-    /// </summary>
-    public async Task<(bool Success, string Message)> CreateDatabaseIfNotExistsAsync(string connectionString)
-    {
-        try
-        {
-            var builder = new SqlConnectionStringBuilder(connectionString);
-            var databaseName = builder.InitialCatalog;
-            builder.InitialCatalog = "master";
-
-            using var connection = new SqlConnection(builder.ConnectionString);
-            await connection.OpenAsync();
-
-            // Create database
-            var createCommand = new SqlCommand(
-                $"CREATE DATABASE [{databaseName}]",
-                connection
-            );
-            await createCommand.ExecuteNonQueryAsync();
-
-            return (true, $"Database '{databaseName}' created successfully");
-        }
-        catch (SqlException ex)
-        {
-            return (false, $"SQL Error: {ex.Message}");
-        }
-        catch (Exception ex)
-        {
-            return (false, $"Error creating database: {ex.Message}");
         }
     }
 
