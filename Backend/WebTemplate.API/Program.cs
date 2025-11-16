@@ -6,8 +6,11 @@ using WebTemplate.Data.Modules;
 using System.Diagnostics;
 using System.Reflection;
 
-public class Program
+internal class Program
 {
+    // Public parameterless constructor required by WebApplicationFactory
+    public Program() { }
+
     private static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
