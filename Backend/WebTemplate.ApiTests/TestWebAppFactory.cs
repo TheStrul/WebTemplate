@@ -8,8 +8,9 @@ namespace WebTemplate.ApiTests
     using Microsoft.Extensions.DependencyInjection;
     using WebTemplate.Core.Entities;
     using WebTemplate.Data.Context;
+    using Xunit;
 
-    public class TestWebAppFactory : WebApplicationFactory<WebTemplate.API.Program>
+    public class TestWebAppFactory : WebApplicationFactory<WebTemplate.API.Program>, IAsyncLifetime
     {
         private const string TestDatabaseName = "CoreWebTemplateDb_IntegrationTests";
         private bool _seeded = false;
@@ -97,6 +98,14 @@ namespace WebTemplate.ApiTests
                     ServiceLifetime.Scoped);
             });
         }
+
+        // Ensure DB is initialized once per test collection before any tests run
+        public async Task InitializeAsync()
+        {
+            await InitializeDatabaseAsync();
+        }
+
+        public Task DisposeAsync() => Task.CompletedTask;
 
         public async Task InitializeDatabaseAsync()
         {

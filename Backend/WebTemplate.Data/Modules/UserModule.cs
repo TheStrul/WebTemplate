@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using System.Reflection;
 using System.Text;
 using WebTemplate.Core.Configuration;
 using WebTemplate.Core.Entities;
@@ -24,6 +25,11 @@ public static class UserModule
 {
     public static IServiceCollection AddUserModule(this IServiceCollection services, IConfiguration rootConfig)
     {
+        // For test environments, the DbContext is configured by TestWebAppFactory.
+        // We can skip the rest of the setup for DbContext and connection strings.
+        var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+        var isTesting = "Testing".Equals(environment, StringComparison.OrdinalIgnoreCase);
+
         // Resolve module configuration with simple override strategy:
         // 1) External JSON pointed by UserModule:ConfigPath or env USER_MODULE_CONFIG
         // 2) appsettings section: UserModule
@@ -34,12 +40,23 @@ public static class UserModule
         services.Configure<JwtSettings>(moduleJwt);
         services.Configure<AuthSettings>(moduleAuth);
 
-        // DbContext
-        services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(connectionString, sqlOptions =>
+        // DbContext - only add if not in a test environment where it's added separately
+        if (!isTesting)
+        {
+            if (string.IsNullOrWhiteSpace(connectionString))
             {
-                sqlOptions.EnableRetryOnFailure(5, TimeSpan.FromSeconds(30), null);
-            }));
+                throw new InvalidOperationException(
+                    "Connection string is required but not configured. Please provide a connection string via one of these methods: " +
+                    "1) UserModule:Db:ConnectionString, 2) ConnectionStrings:DefaultConnection in appsettings.json, " +
+                    "3) External config file specified in UserModule:ConfigPath or USER_MODULE_CONFIG environment variable.");
+            }
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(connectionString, sqlOptions =>
+                {
+                    sqlOptions.EnableRetryOnFailure(5, TimeSpan.FromSeconds(30), null);
+                }));
+        }
 
         // Identity
         services.AddIdentity<ApplicationUser, IdentityRole>(options =>
@@ -352,14 +369,6 @@ public static class UserModule
             {
                 conn = root.GetConnectionString("DefaultConnection") ?? string.Empty;
             }
-        }
-
-        if (string.IsNullOrWhiteSpace(conn))
-        {
-            throw new InvalidOperationException(
-                "Connection string is required but not configured. Please provide a connection string via one of these methods: " +
-                "1) UserModule:Db:ConnectionString, 2) ConnectionStrings:DefaultConnection in appsettings.json, " +
-                "3) External config file specified in UserModule:ConfigPath or USER_MODULE_CONFIG environment variable.");
         }
 
         return (jwt, auth, conn);

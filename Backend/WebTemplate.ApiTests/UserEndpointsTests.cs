@@ -13,24 +13,31 @@ namespace WebTemplate.ApiTests
     /// Tests both user profile endpoints and admin user management endpoints
     /// </summary>
     [Collection("Integration Tests")]
-    public class UserEndpointsTests
+    public class UserEndpointsTests : IAsyncLifetime
     {
         private readonly TestWebAppFactory _factory;
-        private readonly HttpClient _client;
+        private HttpClient _client = default!;
         private readonly JsonSerializerOptions _json = new(JsonSerializerDefaults.Web);
 
         public UserEndpointsTests(TestWebAppFactory factory)
         {
             _factory = factory;
+        }
 
-            // Initialize database before creating client
-            factory.InitializeDatabaseAsync().GetAwaiter().GetResult();
-
-            _client = factory.CreateClient(new WebApplicationFactoryClientOptions
+        public async Task InitializeAsync()
+        {
+            await _factory.InitializeDatabaseAsync();
+            _client = _factory.CreateClient(new WebApplicationFactoryClientOptions
             {
                 BaseAddress = new Uri("https://localhost/"),
                 AllowAutoRedirect = false
             });
+        }
+
+        public Task DisposeAsync()
+        {
+            _client?.Dispose();
+            return Task.CompletedTask;
         }
 
         #region Helper Methods

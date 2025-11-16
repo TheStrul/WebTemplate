@@ -11,24 +11,33 @@ namespace WebTemplate.ApiTests
     using Xunit;
 
     [Collection("Integration Tests")]
-    public class AuthEndpointsSanity
+    public class AuthEndpointsSanity : IAsyncLifetime
     {
         private readonly TestWebAppFactory _factory;
-        private readonly HttpClient _client;
+        private HttpClient _client = default!;
         private readonly JsonSerializerOptions _json = new(JsonSerializerDefaults.Web);
 
         public AuthEndpointsSanity(TestWebAppFactory factory)
         {
             _factory = factory;
+        }
 
-            // Initialize database before creating client
-            factory.InitializeDatabaseAsync().GetAwaiter().GetResult();
+        public async Task InitializeAsync()
+        {
+            // Initialize database before creating client (async to avoid deadlocks)
+            await _factory.InitializeDatabaseAsync();
 
-            _client = factory.CreateClient(new WebApplicationFactoryClientOptions
+            _client = _factory.CreateClient(new WebApplicationFactoryClientOptions
             {
                 BaseAddress = new Uri("https://localhost/"),
                 AllowAutoRedirect = false
             });
+        }
+
+        public Task DisposeAsync()
+        {
+            _client?.Dispose();
+            return Task.CompletedTask;
         }
 
         private async Task<T> WithScope<T>(Func<IServiceProvider, Task<T>> action)
