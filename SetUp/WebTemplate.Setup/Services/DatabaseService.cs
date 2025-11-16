@@ -40,9 +40,14 @@ public class DatabaseService
             var builder = new SqlConnectionStringBuilder(connectionString);
             var databaseName = builder.InitialCatalog;
             var serverName = builder.DataSource;
-            builder.InitialCatalog = "master";
+            
+            // Build connection string to master database (where we can create databases)
+            var masterBuilder = new SqlConnectionStringBuilder(connectionString)
+            {
+                InitialCatalog = "master"
+            };
 
-            using var connection = new SqlConnection(builder.ConnectionString);
+            using var connection = new SqlConnection(masterBuilder.ConnectionString);
             await connection.OpenAsync();
 
             // Create database
@@ -102,9 +107,14 @@ public class DatabaseService
         {
             var builder = new SqlConnectionStringBuilder(connectionString);
             var databaseName = builder.InitialCatalog;
-            builder.InitialCatalog = "master";
+            
+            // Build connection string to master database
+            var masterBuilder = new SqlConnectionStringBuilder(connectionString)
+            {
+                InitialCatalog = "master"
+            };
 
-            using var connection = new SqlConnection(builder.ConnectionString);
+            using var connection = new SqlConnection(masterBuilder.ConnectionString);
             await connection.OpenAsync();
 
             var checkCommand = new SqlCommand(
