@@ -60,7 +60,8 @@ public class DatabaseService
     }
 
     /// <summary>
-    /// Creates database if it doesn't exist
+    /// Creates a database
+    /// Note: Caller should verify database doesn't already exist using DatabaseExistsAsync
     /// </summary>
     public async Task<(bool Success, string Message)> CreateDatabaseIfNotExistsAsync(string connectionString)
     {
@@ -72,19 +73,6 @@ public class DatabaseService
 
             using var connection = new SqlConnection(builder.ConnectionString);
             await connection.OpenAsync();
-
-            // Check if database exists
-            var checkCommand = new SqlCommand(
-                $"SELECT database_id FROM sys.databases WHERE name = @dbName",
-                connection
-            );
-            checkCommand.Parameters.AddWithValue("@dbName", databaseName);
-
-            var exists = await checkCommand.ExecuteScalarAsync() != null;
-            if (exists)
-            {
-                return (true, $"Database '{databaseName}' already exists");
-            }
 
             // Create database
             var createCommand = new SqlCommand(
