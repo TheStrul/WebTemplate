@@ -1,0 +1,83 @@
+Test run for C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.E2ETests\bin\Debug\net9.0\WebTemplate.E2ETests.dll (.NETCoreApp,Version=v9.0)
+VSTest version 18.0.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:00.41]     WebTemplate.E2ETests.AuthFlowTests.RefreshToken_WithValidToken_ReturnsNewTokens [FAIL]
+[xUnit.net 00:00:00.51]     WebTemplate.E2ETests.AuthFlowTests.Login_WithInvalidCredentials_ReturnsBadRequest [FAIL]
+[xUnit.net 00:00:00.52]     WebTemplate.E2ETests.AuthFlowTests.Register_WithDuplicateEmail_ReturnsBadRequest [FAIL]
+[xUnit.net 00:00:00.53]     WebTemplate.E2ETests.AuthFlowTests.FullAuthFlow_RegisterLoginLogout_WorksCorrectly [FAIL]
+[xUnit.net 00:00:00.55]     WebTemplate.E2ETests.SmokeTests.Auth_RegisterNewUser_Succeeds [FAIL]
+[xUnit.net 00:00:00.56]     WebTemplate.E2ETests.SmokeTests.Auth_AdminLogin_Succeeds [FAIL]
+[xUnit.net 00:00:00.56]     WebTemplate.E2ETests.SmokeTests.Auth_GetStatus_WithValidToken_ReturnsUserInfo [FAIL]
+[xUnit.net 00:00:00.58]     WebTemplate.E2ETests.SmokeTests.User_GetProfile_WithValidToken_ReturnsProfile [FAIL]
+  Failed WebTemplate.E2ETests.AuthFlowTests.RefreshToken_WithValidToken_ReturnsNewTokens [169 ms]
+  Error Message:
+   System.Net.Http.HttpRequestException : Response status code does not indicate success: 404 (Not Found).
+  Stack Trace:
+     at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at WebTemplate.E2ETests.AuthFlowTests.RefreshToken_WithValidToken_ReturnsNewTokens() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.E2ETests\AuthFlowTests.cs:line 106
+--- End of stack trace from previous location ---
+  Failed WebTemplate.E2ETests.AuthFlowTests.Login_WithInvalidCredentials_ReturnsBadRequest [94 ms]
+  Error Message:
+   Expected response.StatusCode to be HttpStatusCode.BadRequest {value: 400}, but found HttpStatusCode.NotFound {value: 404}.
+  Stack Trace:
+     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at WebTemplate.E2ETests.AuthFlowTests.Login_WithInvalidCredentials_ReturnsBadRequest() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.E2ETests\AuthFlowTests.cs:line 70
+--- End of stack trace from previous location ---
+  Failed WebTemplate.E2ETests.AuthFlowTests.Register_WithDuplicateEmail_ReturnsBadRequest [16 ms]
+  Error Message:
+   System.Net.Http.HttpRequestException : Response status code does not indicate success: 404 (Not Found).
+  Stack Trace:
+     at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at WebTemplate.E2ETests.E2ETestBase.RegisterUserAsync(String email, String password, String firstName, String lastName) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.E2ETests\E2ETestBase.cs:line 73
+   at WebTemplate.E2ETests.AuthFlowTests.Register_WithDuplicateEmail_ReturnsBadRequest() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.E2ETests\AuthFlowTests.cs:line 78
+--- End of stack trace from previous location ---
+  Failed WebTemplate.E2ETests.AuthFlowTests.FullAuthFlow_RegisterLoginLogout_WorksCorrectly [7 ms]
+  Error Message:
+   System.Net.Http.HttpRequestException : Response status code does not indicate success: 404 (Not Found).
+  Stack Trace:
+     at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at WebTemplate.E2ETests.E2ETestBase.RegisterUserAsync(String email, String password, String firstName, String lastName) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.E2ETests\E2ETestBase.cs:line 73
+   at WebTemplate.E2ETests.AuthFlowTests.FullAuthFlow_RegisterLoginLogout_WorksCorrectly() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.E2ETests\AuthFlowTests.cs:line 25
+--- End of stack trace from previous location ---
+  Failed WebTemplate.E2ETests.SmokeTests.Auth_RegisterNewUser_Succeeds [8 ms]
+  Error Message:
+   System.Net.Http.HttpRequestException : Response status code does not indicate success: 404 (Not Found).
+  Stack Trace:
+     at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at WebTemplate.E2ETests.E2ETestBase.RegisterUserAsync(String email, String password, String firstName, String lastName) in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.E2ETests\E2ETestBase.cs:line 73
+   at WebTemplate.E2ETests.SmokeTests.Auth_RegisterNewUser_Succeeds() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.E2ETests\SmokeTests.cs:line 53
+--- End of stack trace from previous location ---
+  Failed WebTemplate.E2ETests.SmokeTests.Auth_AdminLogin_Succeeds [8 ms]
+  Error Message:
+   System.Net.Http.HttpRequestException : Response status code does not indicate success: 404 (Not Found).
+  Stack Trace:
+     at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at WebTemplate.E2ETests.E2ETestBase.LoginAsAdminAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.E2ETests\E2ETestBase.cs:line 47
+   at WebTemplate.E2ETests.SmokeTests.Auth_AdminLogin_Succeeds() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.E2ETests\SmokeTests.cs:line 39
+--- End of stack trace from previous location ---
+  Failed WebTemplate.E2ETests.SmokeTests.Auth_GetStatus_WithValidToken_ReturnsUserInfo [6 ms]
+  Error Message:
+   System.Net.Http.HttpRequestException : Response status code does not indicate success: 404 (Not Found).
+  Stack Trace:
+     at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at WebTemplate.E2ETests.E2ETestBase.LoginAsAdminAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.E2ETests\E2ETestBase.cs:line 47
+   at WebTemplate.E2ETests.SmokeTests.Auth_GetStatus_WithValidToken_ReturnsUserInfo() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.E2ETests\SmokeTests.cs:line 64
+--- End of stack trace from previous location ---
+  Failed WebTemplate.E2ETests.SmokeTests.User_GetProfile_WithValidToken_ReturnsProfile [6 ms]
+  Error Message:
+   System.Net.Http.HttpRequestException : Response status code does not indicate success: 404 (Not Found).
+  Stack Trace:
+     at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at WebTemplate.E2ETests.E2ETestBase.LoginAsAdminAsync() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.E2ETests\E2ETestBase.cs:line 47
+   at WebTemplate.E2ETests.SmokeTests.User_GetProfile_WithValidToken_ReturnsProfile() in C:\Users\avist\source\repos\GitHubLocal\Customers\WebTemplate\Backend\WebTemplate.E2ETests\SmokeTests.cs:line 82
+--- End of stack trace from previous location ---
+
+Failed!  - Failed:     8, Passed:     1, Skipped:     0, Total:     9, Duration: 338 ms - WebTemplate.E2ETests.dll (net9.0)

@@ -10,7 +10,7 @@ namespace WebTemplate.Core.Configuration
     /// </summary>
     public class UserModuleFeatures
     {
-        public const string SectionName = "UserModule:Features";
+        public const string SectionName = "AuthSettings:UserModuleFeatures";
 
         /// <summary>
         /// Enable login endpoint - REQUIRED
