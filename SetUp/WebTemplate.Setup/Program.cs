@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using WebTemplate.Setup.Services;
 using WebTemplate.Setup.UI;
+using WebTemplate.TemplateEngine;
 
 namespace WebTemplate.Setup;
 
@@ -33,6 +34,9 @@ static class Program
         // Services used by MainForm
         services.AddSingleton<ConfigurationPersistenceService>();
         services.AddSingleton<ProjectGenerationService>();
+
+        // Template Engine Services
+        services.AddTemplateEngine();
 
         // Forms
         services.AddTransient<MainForm>();

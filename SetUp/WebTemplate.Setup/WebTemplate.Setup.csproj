@@ -14,4 +14,8 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WebTemplate.TemplateEngine\WebTemplate.TemplateEngine.csproj" />
+  </ItemGroup>
+
 </Project>
