@@ -6,7 +6,7 @@ using WebTemplate.Data.Modules;
 using System.Diagnostics;
 using System.Reflection;
 
-internal class Program
+public class Program
 {
     private static async Task Main(string[] args)
     {
