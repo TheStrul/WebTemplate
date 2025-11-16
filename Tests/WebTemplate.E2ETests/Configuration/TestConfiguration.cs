@@ -81,10 +81,15 @@ public class TestConfiguration : ITestConfiguration
         // Search up to 10 levels
         for (int i = 0; i < 10 && currentDir != null; i++)
         {
-            // Look for WebTemplate.API directory
+            // Look for WebTemplate.API directory (direct)
             var apiPath = Path.Combine(currentDir.FullName, "WebTemplate.API");
             if (Directory.Exists(apiPath))
                 return apiPath;
+
+            // Also check Backend/WebTemplate.API (standard structure)
+            var backendApiPath = Path.Combine(currentDir.FullName, "Backend", "WebTemplate.API");
+            if (Directory.Exists(backendApiPath))
+                return backendApiPath;
 
             // Also check sibling directory (when running from E2ETests folder)
             var siblingPath = Path.Combine(currentDir.FullName, "..", "WebTemplate.API");
@@ -92,12 +97,19 @@ public class TestConfiguration : ITestConfiguration
             if (Directory.Exists(fullSiblingPath))
                 return fullSiblingPath;
 
+            // Check Backend sibling
+            var backendSiblingPath = Path.Combine(currentDir.FullName, "..", "..", "Backend", "WebTemplate.API");
+            var fullBackendSiblingPath = Path.GetFullPath(backendSiblingPath);
+            if (Directory.Exists(fullBackendSiblingPath))
+                return fullBackendSiblingPath;
+
             currentDir = currentDir.Parent;
         }
 
         throw new InvalidOperationException(
             "Cannot find WebTemplate.API project directory. " +
-            "Ensure E2E tests are run from within the solution structure.");
+            "Ensure E2E tests are run from within the solution structure.\n" +
+            $"Searched from: {new DirectoryInfo(Directory.GetCurrentDirectory()).FullName}");
     }
 
     /// <summary>
