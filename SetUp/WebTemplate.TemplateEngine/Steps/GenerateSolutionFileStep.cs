@@ -35,7 +35,7 @@ public class GenerateSolutionFileStep : GenerationStepBase
             var solutionContent = GenerateSolutionContent(context);
 
             // Write the solution file
-            File.WriteAllText(solutionPath, solutionContent, Encoding.UTF8);
+            File.WriteAllText(solutionPath, solutionContent, new UTF8Encoding(false));
 
             var message = $"Solution file created: {Path.GetFileName(solutionPath)}";
             Logger.LogInformation(message);

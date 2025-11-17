@@ -3,10 +3,10 @@
   "configurationName": "JitonClubApp",
   "description": "",
   "createdAt": "2025-11-16T20:56:06.9263425Z",
-  "modifiedAt": "2025-11-16T20:56:37.2873829Z",
+  "modifiedAt": "2025-11-17T02:52:01.2504872Z",
   "project": {
     "projectName": "JitonClubApp",
-    "targetPath": "C:\\Users\\avist\\source\\repos\\GitHubLocal\\Customers\\JitonClubApp9",
+    "targetPath": "C:\\Users\\avist\\source\\repos\\GitHubLocal\\Customers\\JitonClubApp",
     "companyName": "Jiton Club",
     "authorName": "avist",
     "initializeGit": true,
@@ -81,7 +81,7 @@
     "environmentVariables": {}
   },
   "database": {
-    "connectionString": "Server=(localdb)\\mssqllocaldb;Database=WebTemplate;Trusted_Connection=True;TrustServerCertificate=True;",
+    "connectionString": "Server=(localdb)\\mssqllocaldb;Database=JitonClubAppDb;Trusted_Connection=True;TrustServerCertificate=True;",
     "executeInitScript": true,
     "initScriptPath": "Backend/WebTemplate.Data/Migrations/db-init.sql",
     "testConnection": true,

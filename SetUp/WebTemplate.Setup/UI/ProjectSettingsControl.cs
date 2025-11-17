@@ -17,7 +17,7 @@ public partial class ProjectSettingsControl : UserControl
 
     private void SetupEventHandlers()
     {
-        txtProjectName.TextChanged += (s, e) => OnSettingsChanged();
+        txtProjectName.TextChanged += (s, e) => { OnSettingsChanged(); ProjectNameChanged?.Invoke(this, txtProjectName.Text); };
         txtTargetPath.TextChanged += (s, e) => OnSettingsChanged();
         txtCompanyName.TextChanged += (s, e) => OnSettingsChanged();
         txtAuthorName.TextChanged += (s, e) => OnSettingsChanged();
@@ -71,6 +71,7 @@ public partial class ProjectSettingsControl : UserControl
     }
 
     public event EventHandler? SettingsChanged;
+    public event EventHandler<string>? ProjectNameChanged;
 
     private void OnSettingsChanged()
     {

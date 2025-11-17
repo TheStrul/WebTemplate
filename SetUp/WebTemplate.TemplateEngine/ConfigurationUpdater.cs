@@ -186,12 +186,19 @@ public class ConfigurationUpdater
                 if (defaultConn != null)
                 {
                     var oldValue = defaultConn.GetValue<string>();
-                    if (oldValue?.Contains(config.OldDatabaseName) == true)
+                    if (oldValue != null)
                     {
-                        var newValue = oldValue.Replace(config.OldDatabaseName, config.NewDatabaseName);
-                        connStrings["DefaultConnection"] = newValue;
-                        replacements++;
-                        _logger.LogDebug("Updated DefaultConnection in {FilePath}", filePath);
+                        // Replace database name with project-specific name
+                        var newValue = oldValue
+                            .Replace("WebTemplateDb_Dev", $"{config.NewDatabaseName}_Dev")
+                            .Replace("WebTemplateDb", config.NewDatabaseName);
+
+                        if (oldValue != newValue)
+                        {
+                            connStrings["DefaultConnection"] = newValue;
+                            replacements++;
+                            _logger.LogDebug("Updated DefaultConnection in {FilePath}", filePath);
+                        }
                     }
                 }
             }
@@ -219,7 +226,7 @@ public class ConfigurationUpdater
             {
                 var options = new JsonSerializerOptions { WriteIndented = true };
                 var updatedContent = node.ToJsonString(options);
-                await File.WriteAllTextAsync(filePath, updatedContent, Encoding.UTF8, cancellationToken);
+                await File.WriteAllTextAsync(filePath, updatedContent, new UTF8Encoding(false), cancellationToken);
 
                 return new FileUpdateResult
                 {
@@ -347,7 +354,7 @@ public class ConfigurationUpdater
             {
                 var options = new JsonSerializerOptions { WriteIndented = true };
                 var updatedContent = node.ToJsonString(options);
-                await File.WriteAllTextAsync(filePath, updatedContent, Encoding.UTF8, cancellationToken);
+                await File.WriteAllTextAsync(filePath, updatedContent, new UTF8Encoding(false), cancellationToken);
 
                 return new FileUpdateResult
                 {
@@ -435,7 +442,7 @@ public class ConfigurationUpdater
                 content = header + content;
             }
 
-            await File.WriteAllTextAsync(filePath, content, Encoding.UTF8, cancellationToken);
+            await File.WriteAllTextAsync(filePath, content, new UTF8Encoding(false), cancellationToken);
 
             return new FileUpdateResult
             {
@@ -486,7 +493,7 @@ public class ConfigurationUpdater
 
             if (content != updatedContent)
             {
-                await File.WriteAllTextAsync(copilotFile, updatedContent, Encoding.UTF8, cancellationToken);
+                await File.WriteAllTextAsync(copilotFile, updatedContent, new UTF8Encoding(false), cancellationToken);
 
                 results.Add(new FileUpdateResult
                 {

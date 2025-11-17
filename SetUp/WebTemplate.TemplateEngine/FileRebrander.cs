@@ -190,7 +190,7 @@ public class FileRebrander
                             failedItems.Add($"{itemName} (destination exists)");
                             continue;
                         }
-                        
+
                         Directory.Move(itemPath, newPath);
                         _logger.LogDebug("Renamed directory: {OldPath} -> {NewPath}", itemPath, newPath);
                     }
@@ -203,7 +203,7 @@ public class FileRebrander
                             failedItems.Add($"{itemName} (destination exists)");
                             continue;
                         }
-                        
+
                         File.Move(itemPath, newPath);
                         _logger.LogDebug("Renamed file: {OldPath} -> {NewPath}", itemPath, newPath);
                     }
@@ -333,7 +333,7 @@ public class FileRebrander
                     var updatedBytes = Encoding.UTF8.GetByteCount(updatedContent);
                     var bytesDiff = Math.Abs(updatedBytes - originalBytes);
 
-                    await File.WriteAllTextAsync(filePath, updatedContent, Encoding.UTF8, cancellationToken);
+                    await File.WriteAllTextAsync(filePath, updatedContent, new UTF8Encoding(false), cancellationToken);
 
                     filesModified++;
                     bytesModified += bytesDiff;

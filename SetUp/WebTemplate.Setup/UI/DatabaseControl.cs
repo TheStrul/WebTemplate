@@ -6,6 +6,7 @@ namespace WebTemplate.Setup.UI;
 public partial class DatabaseControl : UserControl
 {
     private DatabaseConfiguration? _config;
+    private string _projectName = "";
     public event EventHandler? SettingsChanged;
 
     public DatabaseControl()
@@ -34,6 +35,11 @@ public partial class DatabaseControl : UserControl
         txtInitScriptPath.TextChanged += (s, e) => SettingsChanged?.Invoke(this, EventArgs.Empty);
         chkTestConnection.CheckedChanged += (s, e) => SettingsChanged?.Invoke(this, EventArgs.Empty);
         chkCreateDatabaseIfNotExists.CheckedChanged += (s, e) => SettingsChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void SetProjectName(string projectName)
+    {
+        _projectName = projectName;
     }
 
     public void LoadSettings(DatabaseConfiguration config)
@@ -89,7 +95,8 @@ public partial class DatabaseControl : UserControl
     {
         if (string.IsNullOrWhiteSpace(txtConnectionString.Text))
         {
-            txtConnectionString.Text = "Server=localhost;Database=WebTemplate;Trusted_Connection=True;TrustServerCertificate=True;";
+            var dbName = string.IsNullOrWhiteSpace(_projectName) ? "WebTemplateDb" : $"{_projectName}Db";
+            txtConnectionString.Text = $"Server=(localdb)\\mssqllocaldb;Database={dbName};Trusted_Connection=True;TrustServerCertificate=True;";
         }
         if (string.IsNullOrWhiteSpace(txtInitScriptPath.Text))
         {

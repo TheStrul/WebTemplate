@@ -77,7 +77,7 @@ namespace WebTemplate.Setup.UI
             this.txtConnectionString.Location = new Point(20, 48);
             this.txtConnectionString.Multiline = true;
             this.txtConnectionString.Name = "txtConnectionString";
-            this.txtConnectionString.PlaceholderText = "Server=localhost;Database=WebTemplate;Trusted_Connection=True;TrustServerCertificate=True;";
+            this.txtConnectionString.PlaceholderText = "Server=(localdb)\\mssqllocaldb;Database=WebTemplateDb;Trusted_Connection=True;TrustServerCertificate=True;";
             this.txtConnectionString.Size = new Size(740, 50);
             this.txtConnectionString.TabIndex = 1;
             //

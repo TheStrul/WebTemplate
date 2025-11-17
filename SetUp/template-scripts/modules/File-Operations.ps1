@@ -77,8 +77,7 @@ function Get-ProjectInformation {
         'TestResults',
         '*.user',
         '*.suo',
-        '*.log',
-        'package-lock.json'
+        '*.log'
     )
 
     return @{

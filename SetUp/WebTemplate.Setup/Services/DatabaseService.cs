@@ -30,7 +30,7 @@ public class DatabaseService
     }
 
     /// <summary>
-    /// Creates a database
+    /// Creates a database and its _Dev variant
     /// Note: Caller should verify database doesn't already exist using DatabaseExistsAsync
     /// </summary>
     public async Task<(bool Success, string Message)> CreateDatabaseIfNotExistsAsync(string connectionString)
@@ -40,7 +40,7 @@ public class DatabaseService
             var builder = new SqlConnectionStringBuilder(connectionString);
             var databaseName = builder.InitialCatalog;
             var serverName = builder.DataSource;
-            
+
             // Build connection string to master database (where we can create databases)
             var masterBuilder = new SqlConnectionStringBuilder(connectionString)
             {
@@ -50,20 +50,28 @@ public class DatabaseService
             using var connection = new SqlConnection(masterBuilder.ConnectionString);
             await connection.OpenAsync();
 
-            // Create database
+            // Create base database
             var createCommand = new SqlCommand(
                 $"CREATE DATABASE [{databaseName}]",
                 connection
             );
             await createCommand.ExecuteNonQueryAsync();
 
-            return (true, $"Database '{databaseName}' created successfully on server '{serverName}'");
+            // Also create _Dev variant for development environment
+            var devDatabaseName = $"{databaseName}_Dev";
+            var createDevCommand = new SqlCommand(
+                $"CREATE DATABASE [{devDatabaseName}]",
+                connection
+            );
+            await createDevCommand.ExecuteNonQueryAsync();
+
+            return (true, $"Databases '{databaseName}' and '{devDatabaseName}' created successfully on server '{serverName}'");
         }
         catch (SqlException ex) when (ex.Number == -2 || ex.Number == 2)
         {
             // Error -2 or 2: Network or instance-related error
             var builder = new SqlConnectionStringBuilder(connectionString);
-            return (false, 
+            return (false,
                 $"Cannot connect to SQL Server '{builder.DataSource}'.\n\n" +
                 $"Please verify:\n" +
                 $"• SQL Server is running\n" +
@@ -81,7 +89,7 @@ public class DatabaseService
         catch (SqlException ex) when (ex.Number == 262)
         {
             // Error 262: Permission denied
-            return (false, 
+            return (false,
                 $"Permission denied: Current user doesn't have permissions to create databases.\n\n" +
                 $"Please verify:\n" +
                 $"• Login credentials have dbcreator role\n" +
@@ -107,7 +115,7 @@ public class DatabaseService
         {
             var builder = new SqlConnectionStringBuilder(connectionString);
             var databaseName = builder.InitialCatalog;
-            
+
             // Build connection string to master database
             var masterBuilder = new SqlConnectionStringBuilder(connectionString)
             {

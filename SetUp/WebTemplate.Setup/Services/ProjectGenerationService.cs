@@ -69,7 +69,7 @@ public class ProjectGenerationService
             {
                 progress.Report("Checking if database exists...");
                 var dbService = new DatabaseService();
-                
+
                 // Validate required database configuration
                 if (string.IsNullOrWhiteSpace(config.Database.ConnectionString))
                 {
@@ -81,28 +81,40 @@ public class ProjectGenerationService
                     return (false, "Project name is required for database initialization", targetPath);
                 }
 
-                // Check if database already exists
+                // Check if base database exists
                 var databaseExists = await dbService.DatabaseExistsAsync(config.Database.ConnectionString);
 
-                if (!databaseExists)
+                // Also check if _Dev database exists
+                var builder = new SqlConnectionStringBuilder(config.Database.ConnectionString);
+                var devDbName = $"{builder.InitialCatalog}_Dev";
+                var devConnectionString = new SqlConnectionStringBuilder(config.Database.ConnectionString)
                 {
-                    // Database doesn't exist - check if we should create it
+                    InitialCatalog = devDbName
+                }.ConnectionString;
+                var devDatabaseExists = await dbService.DatabaseExistsAsync(devConnectionString);
+
+                if (!databaseExists || !devDatabaseExists)
+                {
+                    // At least one database doesn't exist - check if we should create them
                     if (!config.Database.CreateDatabaseIfNotExists)
                     {
-                        var dbName = new SqlConnectionStringBuilder(config.Database.ConnectionString).InitialCatalog;
-                        return (false, 
-                            $"Database '{dbName}' does not exist and CreateDatabaseIfNotExists is disabled.\n\n" +
+                        var missingDbs = new List<string>();
+                        if (!databaseExists) missingDbs.Add(builder.InitialCatalog);
+                        if (!devDatabaseExists) missingDbs.Add(devDbName);
+
+                        return (false,
+                            $"Database(s) '{string.Join("', '", missingDbs)}' do not exist and CreateDatabaseIfNotExists is disabled.\n\n" +
                             $"Options:\n" +
                             $"1. Enable 'CreateDatabaseIfNotExists' in database configuration\n" +
-                            $"2. Create the database manually first\n\n" +
-                            $"Connection string: {config.Database.ConnectionString}", 
+                            $"2. Create the database(s) manually first\n\n" +
+                            $"Connection string: {config.Database.ConnectionString}",
                             targetPath);
                     }
 
-                    // Create the database
-                    progress.Report("Database does not exist - creating database...");
+                    // Create the databases
+                    progress.Report("Creating databases...");
                     var createDbResult = await dbService.CreateDatabaseIfNotExistsAsync(config.Database.ConnectionString);
-                    
+
                     if (!createDbResult.Success)
                     {
                         return (false, $"Database creation failed:\n\n{createDbResult.Message}", targetPath);
@@ -112,7 +124,7 @@ public class ProjectGenerationService
                 }
                 else
                 {
-                    progress.Report("Database exists - proceeding with initialization...");
+                    progress.Report("Databases exist - proceeding with initialization...");
                 }
 
                 // Build the script path safely

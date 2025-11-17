@@ -116,7 +116,8 @@ function Update-FileContents {
             }
 
             if ($content -ne $originalContent) {
-                Set-Content -Path $file.FullName -Value $content -NoNewline
+                # Use UTF8 without BOM to avoid JSON parsing errors
+                [System.IO.File]::WriteAllText($file.FullName, $content, (New-Object System.Text.UTF8Encoding $false))
                 $updated++
             }
         }

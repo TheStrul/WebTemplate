@@ -96,6 +96,7 @@ public partial class MainForm : Form
 
         // Wire up change events
         _projectControl.SettingsChanged += (s, e) => MarkDirty();
+        _projectControl.ProjectNameChanged += (s, projectName) => _databaseControl?.SetProjectName(projectName);
         _featuresControl.SettingsChanged += (s, e) => MarkDirty();
         _secretsControl.SettingsChanged += (s, e) => MarkDirty();
         _databaseControl.SettingsChanged += (s, e) => MarkDirty();
@@ -363,6 +364,7 @@ public partial class MainForm : Form
         _projectControl?.LoadSettings(_currentConfiguration.Project);
         _featuresControl?.LoadSettings(_currentConfiguration.Features);
         _secretsControl?.LoadSettings(_currentConfiguration.Secrets);
+        _databaseControl?.SetProjectName(_currentConfiguration.Project.ProjectName);
         _databaseControl?.LoadSettings(_currentConfiguration.Database);
         _serverControl?.LoadSettings(_currentConfiguration.Server);
         _authControl?.LoadSettings(_currentConfiguration.Auth);
