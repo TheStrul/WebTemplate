@@ -151,6 +151,7 @@ public class TemplateEngine : ITemplateEngine
         {
             typeof(ValidateTemplateStep),
             typeof(CopyFilesStep),
+            typeof(GenerateSolutionFileStep),
             typeof(RebrandProjectStep),
             typeof(UpdateConfigurationsStep),
             typeof(InitializeGitStep),

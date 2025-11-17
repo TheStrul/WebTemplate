@@ -5,12 +5,12 @@ using WebTemplate.TemplateEngine.Models;
 namespace WebTemplate.TemplateEngine.Steps;
 
 /// <summary>
-/// Step 5: Updates configuration files (appsettings.json, package.json, README, etc.)
+/// Step 6: Updates configuration files (appsettings.json, package.json, README, etc.)
 /// </summary>
 public class UpdateConfigurationsStep : GenerationStepBase
 {
     public override string StepName => "Updating Configurations";
-    public override int StepNumber => 5;
+    public override int StepNumber => 6;
 
     private readonly ConfigurationUpdater _updater;
 

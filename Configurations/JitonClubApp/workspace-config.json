@@ -81,7 +81,7 @@
     "environmentVariables": {}
   },
   "database": {
-    "connectionString": "Server=localhost;Database=WebTemplate;Trusted_Connection=True;TrustServerCertificate=True;",
+    "connectionString": "Server=(localdb)\\mssqllocaldb;Database=WebTemplate;Trusted_Connection=True;TrustServerCertificate=True;",
     "executeInitScript": true,
     "initScriptPath": "Backend/WebTemplate.Data/Migrations/db-init.sql",
     "testConnection": true,

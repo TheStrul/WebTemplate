@@ -5,12 +5,12 @@ using WebTemplate.TemplateEngine.Models;
 namespace WebTemplate.TemplateEngine.Steps;
 
 /// <summary>
-/// Step 7: Validates that the newly generated project has the correct structure and all files were renamed properly
+/// Step 8: Validates that the newly generated project has the correct structure and all files were renamed properly
 /// </summary>
 public class ValidateProjectStep : GenerationStepBase
 {
     public override string StepName => "Validating Generated Project";
-    public override int StepNumber => 7;
+    public override int StepNumber => 8;
 
     public ValidateProjectStep(ILogger<ValidateProjectStep> logger)
         : base(logger)

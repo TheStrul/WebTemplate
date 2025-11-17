@@ -5,12 +5,12 @@ using WebTemplate.TemplateEngine.Models;
 namespace WebTemplate.TemplateEngine.Steps;
 
 /// <summary>
-/// Step 4: Rebrands all files, directories, and file contents from old project name to new project name
+/// Step 5: Rebrands all files, directories, and file contents from old project name to new project name
 /// </summary>
 public class RebrandProjectStep : GenerationStepBase
 {
     public override string StepName => "Rebranding Project";
-    public override int StepNumber => 4;
+    public override int StepNumber => 5;
 
     private readonly FileRebrander _rebrander;
 

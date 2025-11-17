@@ -5,12 +5,12 @@ using WebTemplate.TemplateEngine.Models;
 namespace WebTemplate.TemplateEngine.Steps;
 
 /// <summary>
-/// Step 6: Initializes git repository and optionally creates initial commit
+/// Step 7: Initializes a Git repository with an initial commit (optional)
 /// </summary>
 public class InitializeGitStep : GenerationStepBase
 {
     public override string StepName => "Initializing Git Repository";
-    public override int StepNumber => 6;
+    public override int StepNumber => 7;
 
     private readonly GitInitializer _gitInitializer;
 

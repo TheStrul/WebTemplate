@@ -34,6 +34,7 @@ public static class TemplateEngineServiceCollectionExtensions
         // Generation steps (in execution order)
         services.AddTransient<ValidateTemplateStep>();
         services.AddTransient<CopyFilesStep>();
+        services.AddTransient<GenerateSolutionFileStep>();
         services.AddTransient<RebrandProjectStep>();
         services.AddTransient<UpdateConfigurationsStep>();
         services.AddTransient<InitializeGitStep>();
